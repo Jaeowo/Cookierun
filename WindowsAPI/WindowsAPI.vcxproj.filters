@@ -65,6 +65,9 @@
     <Filter Include="Engine\GameObject\Cookie">
       <UniqueIdentifier>{4a0a01ca-3869-4d0d-be22-16b0fe303a71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObject\Pet">
+      <UniqueIdentifier>{c2455c3b-c14b-46ed-b79d-38d8ab7f4a3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -193,6 +196,9 @@
     <ClInclude Include="yaLobbieCookie.h">
       <Filter>Engine\GameObject\Cookie</Filter>
     </ClInclude>
+    <ClInclude Include="yaSquirrel.h">
+      <Filter>Engine\GameObject\Pet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -315,6 +321,9 @@
     </ClCompile>
     <ClCompile Include="yaLobbieCookie.cpp">
       <Filter>Engine\GameObject\Cookie</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSquirrel.cpp">
+      <Filter>Engine\GameObject\Pet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

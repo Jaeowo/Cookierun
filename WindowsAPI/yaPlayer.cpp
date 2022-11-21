@@ -10,6 +10,7 @@
 #include "yaCamera.h"
 #include "yaRigidbody.h"
 #include "yaUIManager.h"
+#include "yaSquirrel.h"
 
 namespace ya
 {
@@ -25,6 +26,15 @@ namespace ya
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Walk"
 			, L"WalkC", Vector2(0, 0), 0.15f);
 
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\DoubleJump"
+			, L"DoubleJumpC", Vector2(0, 0), 0.15f);
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Jump"
+			, L"JumpC", Vector2(0, 0), 0.2f);
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Slide"
+			, L"SlideC", Vector2(0, 0), 0.2f);
+
 		mAnimator->Play(L"WalkC", true);
 
 		AddComponent(mAnimator);
@@ -38,6 +48,7 @@ namespace ya
 
 		AddComponent<Rigidbody>();
 
+
 		mCoff = 0.1f;
 	}
 
@@ -49,7 +60,11 @@ namespace ya
 	void Player::Tick()
 	{
 		GameObject::Tick();
-		GetComponent<Rigidbody>()->AddForce(Vector2(200.0f, 0.0f));
+		if (KEY_PREESE(eKeyCode::D))
+		{
+			GetComponent<Rigidbody>()->AddForce(Vector2(200.0f, 0.0f));
+		}
+
 
 		
 		//Vector2 pos = GetPos();
@@ -86,6 +101,8 @@ namespace ya
 			rigidbody->SetGround(false);
 
 		}
+
+	
 
 
 		//SetPos(pos);

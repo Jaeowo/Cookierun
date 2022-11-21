@@ -29,6 +29,7 @@ namespace ya
 
 	private:
 		std::vector<std::vector<GameObject*>> mObjects;
+		WindowData mWindowInfo;
 
 	};
 

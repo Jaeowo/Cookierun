@@ -7,6 +7,7 @@
 #include "yaToolScene.h"
 #include "yaGround.h"
 #include "yaCollisionManager.h"
+#include "yaSquirrel.h"
 
 namespace ya
 {
@@ -38,6 +39,8 @@ namespace ya
 
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(1000.0f, 725.0f));
+
+		Squirrel* squirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 	}
 
 	void PlayScene::Tick()

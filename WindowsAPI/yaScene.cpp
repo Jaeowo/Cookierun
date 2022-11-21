@@ -2,6 +2,8 @@
 #include "yaGameObject.h"
 #include "yaSceneManager.h"
 #include "yaCollisionManager.h"
+#include "yaApplication.h"
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -10,6 +12,7 @@ namespace ya
 	{
 		SceneManager::SetPlayScene(this);
 		mObjects.resize(_COLLIDER_LAYER);
+		mWindowInfo = Application::GetInstance().GetWindowData();
 	}
 
 	Scene::~Scene()
@@ -67,7 +70,16 @@ namespace ya
 				if (mObjects[y][x]->IsDeath())
 					continue;
 
-					mObjects[y][x]->Render(hdc);
+				Vector2 pos = mObjects[y][x]->GetPos();
+				pos = Camera::CalculatePos(pos);
+				if (pos.x < -100
+					|| pos.y < -100)
+					continue;
+				if (pos.x > mWindowInfo.width + 100
+					|| pos.y > mWindowInfo.height + 100)
+					continue;
+
+				mObjects[y][x]->Render(hdc);
 			}
 		}
 
@@ -80,7 +92,7 @@ namespace ya
 
 	void Scene::Exit()
 	{
-		CollisionManager::Clear();
+		//CollisionManager::Clear();
 	}
 
 	void Scene::AddGameObject(GameObject* object, eColliderLayer type)

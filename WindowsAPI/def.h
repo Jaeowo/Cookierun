@@ -50,6 +50,7 @@ enum class eColliderLayer
 	BackGround2,
 	BackGround3,
 	Tile,
+	Pet,
 	Player,
 	Player_Projecttile,
 	Monster,

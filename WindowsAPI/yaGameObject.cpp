@@ -9,6 +9,7 @@ namespace ya
 		, mDead(false)
 		, mDeathTime(-100.0f)
 		, mDeathTimeOn(false)
+		, mIsCulling(false)
 	{
 
 	}

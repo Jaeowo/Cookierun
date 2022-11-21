@@ -60,6 +60,7 @@ namespace ya
 		Vector2 mPos;
 		Vector2 mScale;
 		bool mDead;
+		bool mIsCulling;
 		float mDeathTime;
 		bool mDeathTimeOn;
 	};
