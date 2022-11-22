@@ -158,4 +158,5 @@ namespace ya
 		memset(mMatrix, 0, sizeof(WORD) * _COLLIDER_LAYER);
 		mCollisionInformation.clear();
 	}
+	
 }

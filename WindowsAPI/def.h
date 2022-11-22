@@ -47,11 +47,9 @@ enum class eColliderLayer
 
 	//GameObject
 	BackGround,
-	BackGround2,
-	BackGround3,
 	Tile,
-	Pet,
 	Player,
+	Pet,
 	Player_Projecttile,
 	Monster,
 	Monster_Projecttile,
@@ -59,7 +57,7 @@ enum class eColliderLayer
 
 	//UI
 	BackPack,
-	UI = _COLLIDER_LAYER -1,
+	UI = _COLLIDER_LAYER - 1,
 	End = _COLLIDER_LAYER,
 };
 
@@ -77,6 +75,7 @@ enum class eUIType
 	SHOP,
 	INVENTORY,
 	OPTION,
+
 
 	END,
 };

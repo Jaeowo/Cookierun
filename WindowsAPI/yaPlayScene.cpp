@@ -40,7 +40,7 @@ namespace ya
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(1000.0f, 725.0f));
 
-		Squirrel* squirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
+		Squirrel* sqruirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 	}
 
 	void PlayScene::Tick()

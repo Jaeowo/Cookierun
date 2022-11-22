@@ -18,7 +18,7 @@ namespace ya
 		}
 
 		template <typename T>
-		static __forceinline T* Instantiate(Vector2 position ,eColliderLayer type)
+		static __forceinline T* Instantiate(Vector2 position, eColliderLayer type)
 		{
 			T* gameObject = new T(position);
 			Scene* scene = SceneManager::GetPlayScene();

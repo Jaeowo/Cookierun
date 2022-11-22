@@ -13,10 +13,12 @@ namespace ya
 		, mCollisionCount(0)
 	{
 		mScale = Vector2(100.0f, 100.0f);
+
 	}
 
 	Collider::~Collider()
 	{
+
 	}
 
 	void Collider::Tick()

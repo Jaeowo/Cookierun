@@ -3,6 +3,7 @@
 #include "yaCollider.h"
 #include "yaRigidbody.h"
 
+
 namespace ya
 {
 	Ground::Ground()
@@ -43,4 +44,5 @@ namespace ya
 	void Ground::OnCollisionExit(Collider* other)
 	{
 	}
+
 }

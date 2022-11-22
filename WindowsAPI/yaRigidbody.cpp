@@ -44,7 +44,6 @@ namespace ya
 			mVelocity += mGravity * Time::DeltaTime();
 		}
 
-
 		// 최대 속도 제한
 		Vector2 gravity = mGravity;
 		gravity.Normalize();

@@ -23,16 +23,16 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 // int main() {}
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR    lpCmdLine,
+    _In_ int       nCmdShow)
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-    
+
     // 메모리 누수를 체크해주는 함수
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc(264);
+    //_CrtSetBreakAlloc(229);
 
     // 1. wndclass 정의 윈도의 기반(여러가지 속성)이 되는 클래스 정의해준다.
 
@@ -52,14 +52,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_WINDOWSAPI, szWindowClass, MAX_LOADSTRING);
-    
-    
+
+
 
     MyRegisterClass(hInstance, WndProc, szWindowClass);
     MyRegisterClass(hInstance, AtlasWndProc, L"AtlasWindow");
 
     // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance (hInstance, nCmdShow))
+    if (!InitInstance(hInstance, nCmdShow))
     {
         return FALSE;
     }
@@ -90,7 +90,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             if (WM_QUIT == msg.message)
-                break;  
+                break;
 
             if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
             {
@@ -112,7 +112,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
 
-    return (int) msg.wParam;
+    return (int)msg.wParam;
 }
 
 
@@ -128,17 +128,17 @@ ATOM MyRegisterClass(HINSTANCE hInstance, WNDPROC wndProc, LPCWSTR windowName)
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.style          = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc    = wndProc;
-    wcex.cbClsExtra     = 0;
-    wcex.cbWndExtra     = 0;
-    wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINDOWSAPI));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = nullptr;//MAKEINTRESOURCEW(IDC_WINDOWSAPI);
-    wcex.lpszClassName  = windowName;
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.style = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc = wndProc;
+    wcex.cbClsExtra = 0;
+    wcex.cbWndExtra = 0;
+    wcex.hInstance = hInstance;
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINDOWSAPI));
+    wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+    wcex.lpszMenuName = nullptr;//MAKEINTRESOURCEW(IDC_WINDOWSAPI);
+    wcex.lpszClassName = windowName;
+    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
 }
@@ -155,39 +155,39 @@ ATOM MyRegisterClass(HINSTANCE hInstance, WNDPROC wndProc, LPCWSTR windowName)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-   
-   WindowData windowData;
-   windowData.width= 1600;
-   windowData.height = 900;
+    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+    WindowData windowData;
+    windowData.width = 1600;
+    windowData.height = 900;
 
-   windowData.hWnd = hWnd;
-   windowData.hdc = nullptr;
+    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
-   {
-      return FALSE;
-   }
-   SetWindowPos(hWnd, nullptr, 0, 0, windowData.width, windowData.height, 0);
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+    windowData.hWnd = hWnd;
+    windowData.hdc = nullptr;
 
-   ya::Application::GetInstance().Initialize(windowData);
+    if (!hWnd)
+    {
+        return FALSE;
+    }
+    SetWindowPos(hWnd, nullptr, 0, 0, windowData.width, windowData.height, 0);
+    ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);
 
-   eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
-   if (type != eSceneType::Tool)
-       return TRUE;
+    ya::Application::GetInstance().Initialize(windowData);
 
-   WindowData atlasWindowData;
-   hWnd = CreateWindowW(L"AtlasWindow", szTitle, WS_OVERLAPPEDWINDOW,
-       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-   atlasWindowData.hWnd = hWnd;
-   ya::Application::GetInstance().initializeAtlasWindow(atlasWindowData);
+    eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+    if (type != eSceneType::Tool)
+        return TRUE;
 
-   return TRUE;
+    WindowData atlasWindowData;
+    hWnd = CreateWindowW(L"AtlasWindow", szTitle, WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+    atlasWindowData.hWnd = hWnd;
+    ya::Application::GetInstance().initializeAtlasWindow(atlasWindowData);
+
+    return TRUE;
 }
 
 //
@@ -209,96 +209,96 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_CREATE:
-        {
+    {
 
-        }
+    }
     break;
     case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        // 메뉴 선택을 구문 분석합니다:
+        switch (wmId)
         {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            
-            case ID_TILE_SAVE:
-                //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-            {
-                ya::Scene* scene = ya::SceneManager::GetPlayScene();
-                ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
-                toolScene->SaveTilePalette();
-            }
+        case IDM_ABOUT:
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
             break;
 
-            case ID_TILE_LOAD:
-                //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-            {
-                ya::Scene* scene = ya::SceneManager::GetPlayScene();
-                ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
-                toolScene->LoadTilePalette();
-            }
-            break;
-
-
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+        case ID_TILE_SAVE:
+            //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+        {
+            ya::Scene* scene = ya::SceneManager::GetPlayScene();
+            ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
+            toolScene->SaveTilePalette();
         }
         break;
+
+        case ID_TILE_LOAD:
+            //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+        {
+            ya::Scene* scene = ya::SceneManager::GetPlayScene();
+            ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
+            toolScene->LoadTilePalette();
+        }
+        break;
+
+
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
+        }
+    }
+    break;
 
     case WM_KEYDOWN:
-        {
+    {
 
 
-        }
-        break;
+    }
+    break;
 
     case WM_TIMER:
     {
-       
+
     }
     break;
 
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
 
-            //// 스톡 오브젝트
-            // 화면 지우기
+        //// 스톡 오브젝트
+        // 화면 지우기
 
-            //DeleteObject();
+        //DeleteObject();
 
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            EndPaint(hWnd, &ps);
-            //문자
-            //HFONT
+        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+        EndPaint(hWnd, &ps);
+        //문자
+        //HFONT
 
-            //HBITMAP
-            //HBITMAP
-            //DC 정리
+        //HBITMAP
+        //HBITMAP
+        //DC 정리
 
-            // 1. PEN BRUSH 핸들을 선언한다.
-            // 2. GDI 오브젝트를 생성해준다.
-            // 3. 생성된 오브젝트로 hdc 세팅해줘야한다. selectobject
-            //사용하고
+        // 1. PEN BRUSH 핸들을 선언한다.
+        // 2. GDI 오브젝트를 생성해준다.
+        // 3. 생성된 오브젝트로 hdc 세팅해줘야한다. selectobject
+        //사용하고
 
-            // 기존의 오브젝트로 되돌린다 ( 해제 )
-            // 핸들을 삭제한다.
-        }
-        break;
+        // 기존의 오브젝트로 되돌린다 ( 해제 )
+        // 핸들을 삭제한다.
+    }
+    break;
     case WM_DESTROY:
     {
         PostQuitMessage(0);
         //KillTimer(hWnd, 0);
     }
-        break;
+    break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }

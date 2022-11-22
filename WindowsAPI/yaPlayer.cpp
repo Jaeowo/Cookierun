@@ -11,6 +11,8 @@
 #include "yaRigidbody.h"
 #include "yaUIManager.h"
 #include "yaSquirrel.h"
+#include "yaObject.h"
+#include "yaCollisionManager.h"
 
 namespace ya
 {
@@ -22,7 +24,10 @@ namespace ya
 		SetPos({ 300.0f, 600.0f });
 		SetScale({ 1.0f, 1.0f });
 
+		AddComponent<Rigidbody>();
+
 		mAnimator = new Animator();
+
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Walk"
 			, L"WalkC", Vector2(0, 0), 0.15f);
 
@@ -35,18 +40,24 @@ namespace ya
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Slide"
 			, L"SlideC", Vector2(0, 0), 0.2f);
 
-		mAnimator->Play(L"WalkC", true);
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Landing"
+			, L"LandingC", Vector2(0, 0), 0.2f);
+
+			mAnimator->Play(L"WalkC", true);
+	
 
 		AddComponent(mAnimator);
-		Collider* col = new Collider();
-		col->SetScale(Vector2(100.0f, 150.0f));
-		col->SetOffset(Vector2(10.0f, 125.0f));
-		AddComponent(col);
+		
 
 		//지금 중앙을 중심으로 보고있는데 좌하단 위치로 바꿔주기
-		Camera::SetTarget(this);
+		//Camera::SetTarget(this);
 
-		AddComponent<Rigidbody>();
+		Collider* col = new Collider();
+		AddComponent(col);
+
+		col->SetOffset(Vector2(10.0f, 125.0f));
+		col->SetScale(Vector2(100.0f, 150.0f));
+		
 
 
 		mCoff = 0.1f;
@@ -60,66 +71,18 @@ namespace ya
 	void Player::Tick()
 	{
 		GameObject::Tick();
+
 		if (KEY_PREESE(eKeyCode::D))
 		{
 			GetComponent<Rigidbody>()->AddForce(Vector2(200.0f, 0.0f));
 		}
 
-
-		
-		//Vector2 pos = GetPos();
-
-		//Vector2 scale = GetScale();
-		//scale += Time::DeltaTime();
-		//SetScale(scale);
-		//
-		//if (KEY_PREESE(eKeyCode::W))
-		//{
-		//	pos.y -= 120.0f * Time::DeltaTime();
-		//	//missile->mDir.y = -1.0f;
-		//}
-		//if (KEY_PREESE(eKeyCode::S))
-		//{
-		//	pos.y += 120.0f * Time::DeltaTime();
-		//}
-		//if (KEY_PREESE(eKeyCode::A))
-		//{
-		//	pos.x -= 120.0f * Time::DeltaTime();
-		//	//missile->mDir.x = 1.0f;
-		//}
-		//if (KEY_PREESE(eKeyCode::D))
-		//{
-		//	pos.x += 120.0f * Time::DeltaTime();
-		//}
-		if (KEY_DOWN(eKeyCode::SPACE))
-		{
-			Rigidbody* rigidbody = GetComponent<Rigidbody>();
-			Vector2 velocity = rigidbody->GetVelocity();
-			velocity.y = -500.0f;
-			rigidbody->SetVelocity(velocity);
-
-			rigidbody->SetGround(false);
-
-		}
-
-	
-
-
-		//SetPos(pos);
+		Jump();
+		Slide();
 	}
 
 	void Player::Render(HDC hdc)
 	{
-		//HBRUSH blueBrush = CreateSolidBrush(RGB(153, 204, 255));
-		//Brush brush(hdc, blueBrush);
-
-		//HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-		//Pen pen(hdc, redPen);
-
-
-
-
-
 		GameObject::Render(hdc);
 	}
 
@@ -140,11 +103,112 @@ namespace ya
 	void Player::WalkComplete()
 	{
 	
-
 		Scene* playScene = SceneManager::GetPlayScene();;
 
 		Vector2 playerPos = GetPos();
 		Vector2 playerScale = GetScale() / 2.0f;
 
 	}
+	void Player::Jump()
+	{
+		int JumpCount = GetJumpCount();
+		Rigidbody* rigidbody = GetComponent<Rigidbody>();
+		bool IsGround = false;
+		IsGround = rigidbody->GetGround();
+
+		if (IsGround == true)
+		{
+			JumpCount = 0;
+			SetJumpCount(JumpCount);
+		
+		}
+
+		if (JumpCount == 0)
+		{
+			if (KEY_DOWN(eKeyCode::W))
+			{
+			
+				Rigidbody* rigidbody = GetComponent<Rigidbody>();
+				Vector2 velocity = rigidbody->GetVelocity();
+				velocity.y = -500.0f;
+				rigidbody->SetVelocity(velocity);
+
+				rigidbody->SetGround(false);
+				
+				JumpCount = 1;
+				SetJumpCount(JumpCount);
+
+				bool IsGround = false;
+				IsGround = rigidbody->GetGround();
+				
+				
+				
+			}
+			if (KEY_DOWN(eKeyCode::W))
+			{
+				mAnimator->Play(L"JumpC", true);
+
+			}
+		}
+		else if (JumpCount == 1)
+		{
+			if (KEY_DOWN(eKeyCode::W))
+			{
+				Rigidbody* rigidbody = GetComponent<Rigidbody>();
+				Vector2 velocity = rigidbody->GetVelocity();
+				velocity.y = -500.0f;
+				rigidbody->SetVelocity(velocity);
+
+				rigidbody->SetGround(false);
+
+				JumpCount = 2;
+				SetJumpCount(JumpCount);
+			}
+
+			if (KEY_DOWN(eKeyCode::W))
+			{
+				mAnimator->Play(L"DoubleJumpC", false);
+
+			}
+		}
+		//점프 끝나면 Landing 애니메이션 띄우도록...
+	}
+	void Player::Slide()
+	{
+		//땅에 붙어있을 때만 사용가능
+
+		Rigidbody* rigidbody = GetComponent<Rigidbody>();
+		bool IsGround = false;
+		IsGround = rigidbody->GetGround();
+
+		if (IsGround == true)
+		{
+			if (KEY_DOWN(eKeyCode::S))
+			{
+				mAnimator->Play(L"SlideC", true);
+
+			}
+
+			if (KEY_PREESE(eKeyCode::S))
+			{
+				//기존 충돌박스 삭제하고 새로 충돌박스 만들어 주고 싶은데 모르겠다
+				Collider* col2 = new Collider();
+				AddComponent(col2);
+
+				col2->SetOffset(Vector2(10.0f, 170.0f));
+				col2->SetScale(Vector2(100.0f, 50.0f));
+			}
+
+			if (KEY_UP(eKeyCode::S))
+			{
+				mAnimator->Play(L"WalkC", true);
+			}
+		}
+		}
+
+	void Player::Walk()
+	{
+	}
+
+
 }

@@ -8,6 +8,7 @@ namespace ya
 	LARGE_INTEGER Time::mCurFrequency;
 	float Time::mDeltaTime = 0.0f;
 	float Time::mTime = 0.0f;
+	float Time::mTimeScale = 1.0f;
 
 	void Time::Initialize()
 	{
@@ -40,7 +41,7 @@ namespace ya
 			float fps = 1.0f / mDeltaTime;
 			swprintf_s(szFloat, 50, L"fps : %f", fps);
 
-			HWND hWnd 
+			HWND hWnd
 				= Application::GetInstance().GetWindowData().hWnd;
 
 			SetWindowText(hWnd, szFloat);

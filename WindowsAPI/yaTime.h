@@ -11,7 +11,8 @@ namespace ya
 		static void Tick();
 		static void Render(HDC hdc);
 
-		static float DeltaTime() { return mDeltaTime; }
+		static float DeltaTime() { return mDeltaTime * mTimeScale; }
+		static void SetTimeScale(float scale) { mTimeScale = scale; }
 
 	private:
 		//CPU 고유 진동수 ( 1초당 몇번 ) 1초 12000번 진동하는 CPU
@@ -21,5 +22,6 @@ namespace ya
 
 		static float mDeltaTime;
 		static float mTime;
+		static float mTimeScale;
 	};
 }

@@ -1,18 +1,22 @@
 #include "yaSquirrel.h"
 #include "yaPlayer.h"
 #include "yaAnimator.h"
+#include "yaGameObject.h"
+#include "yaComponent.h"
+#include "yaObject.h"
 
 namespace ya
 {
 	Squirrel::Squirrel()
 	{
-		SetPos({ 200.0f, 600.0f });
+		SetPos({200.0f, 600.0f });
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Squirrel\\WalkP"
 			, L"WalkS", Vector2(0, 0), 0.15f);
 
 		mAnimator->Play(L"WalkS", true);
+
 		AddComponent(mAnimator);
 
 	}
@@ -21,11 +25,13 @@ namespace ya
 	}
 	void Squirrel::Tick()
 	{
+		
+
 		GameObject::Tick();
 	}
 	void Squirrel::Render(HDC hdc)
 	{
-
+		
 
 		GameObject::Render(hdc);
 	}

@@ -21,10 +21,13 @@ namespace ya
 		virtual void OnCollisionStay(Collider* other);
 		virtual void OnCollisionExit(Collider* other);
 
-		void SetPos(Vector2 pos) { mPos = pos; }
+		void SetPos(Vector2 pos)
+		{
+			mPos = pos;
+		}
 		Vector2 GetPos() { return mPos; }
 		void SetScale(Vector2 scale) { mScale = scale; }
-		Vector2 GetScale () { return mScale; }
+		Vector2 GetScale() { return mScale; }
 		void Death() { mDead = true; }
 		bool IsDeath() { return mDead; }
 		void SetDeathTime(float time);
@@ -39,11 +42,12 @@ namespace ya
 			return comp;
 		}
 
+
 		template <typename T>
 		__forceinline T* GetComponent()
 		{
 			T* component;
-			for ( Component* c : mComponents)
+			for (Component* c : mComponents)
 			{
 				component = dynamic_cast<T*>(c);
 				if (component != nullptr)
