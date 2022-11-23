@@ -52,11 +52,19 @@ namespace ya
 		//지금 중앙을 중심으로 보고있는데 좌하단 위치로 바꿔주기
 		//Camera::SetTarget(this);
 
+		Vector2 ColOffset = GetColOffset();
+		Vector2 ColScale = GetColScale();
+
 		Collider* col = new Collider();
 		AddComponent(col);
 
-		col->SetOffset(Vector2(10.0f, 125.0f));
-		col->SetScale(Vector2(100.0f, 150.0f));
+		ColOffset = (Vector2(10.0f, 125.0f));
+		SetColOffset(ColOffset);
+		col->SetOffset(ColOffset);
+		
+		ColScale = (Vector2(100.0f, 150.0f));
+		SetColOffset(ColScale);
+		col->SetScale(ColScale);
 		
 
 
@@ -176,6 +184,9 @@ namespace ya
 	void Player::Slide()
 	{
 		//땅에 붙어있을 때만 사용가능
+		Vector2 ColOffset;
+		Vector2 ColScale;
+;
 
 		Rigidbody* rigidbody = GetComponent<Rigidbody>();
 		bool IsGround = false;
@@ -192,15 +203,25 @@ namespace ya
 			if (KEY_PREESE(eKeyCode::S))
 			{
 				//기존 충돌박스 삭제하고 새로 충돌박스 만들어 주고 싶은데 모르겠다
-				Collider* col2 = new Collider();
-				AddComponent(col2);
+			
+				ColOffset = (Vector2(10.0f, 170.0f));
+				SetColOffset(ColOffset);
 
-				col2->SetOffset(Vector2(10.0f, 170.0f));
-				col2->SetScale(Vector2(100.0f, 50.0f));
+				ColScale = (Vector2(100.0f, 50.0f));
+				SetColOffset(ColScale);
+
+				/*col2->SetOffset(Vector2(10.0f, 170.0f));
+				col2->SetScale(Vector2(100.0f, 50.0f));*/
 			}
 
 			if (KEY_UP(eKeyCode::S))
 			{
+				ColOffset = (Vector2(10.0f, 125.0f));
+				SetColOffset(ColOffset);
+
+				ColScale = (Vector2(100.0f, 150.0f));
+				SetColOffset(ColScale);
+
 				mAnimator->Play(L"WalkC", true);
 			}
 		}
