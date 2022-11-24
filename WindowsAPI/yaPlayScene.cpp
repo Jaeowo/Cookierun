@@ -8,6 +8,8 @@
 #include "yaGround.h"
 #include "yaCollisionManager.h"
 #include "yaSquirrel.h"
+#include "yaFire02.h"
+#include "yaDown.h"
 
 namespace ya
 {
@@ -35,12 +37,15 @@ namespace ya
 	
 		//Ä³¸¯ÅÍ
 		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
-		//AddGameObject(new Player(), eColliderLayer::Player);
 
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
-		ground->SetPos(Vector2(1000.0f, 725.0f));
+		ground->SetPos(Vector2(1000.0f, 750.0f));
 
 		Squirrel* sqruirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
+
+		Fire02* fire02 = ya::object::Instantiate<Fire02>(eColliderLayer::Obstruction);
+
+		Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
 	}
 
 	void PlayScene::Tick()

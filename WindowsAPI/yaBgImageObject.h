@@ -17,8 +17,13 @@ namespace ya
 
 		void SetImage(const std::wstring& key ,const std::wstring& fileName);
 
+		/*void BgMoveX(int XMove);
+		int GetXMove(){ return mXMove; }
+		void SetXMove(int XMove) { mXMove = XMove; }*/
+
 	private:
 		Image* mImage;
 		Image* mPixelImage;
+		/*int mXMove;*/
 	};
 }

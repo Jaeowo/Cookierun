@@ -21,7 +21,7 @@ namespace ya
 		, mHp(100)
 	{
 		SetName(L"Player");
-		SetPos({ 300.0f, 600.0f });
+		SetPos({ 400.0f, 600.0f });
 		SetScale({ 1.0f, 1.0f });
 
 		AddComponent<Rigidbody>();
@@ -32,7 +32,7 @@ namespace ya
 			, L"WalkC", Vector2(0, 0), 0.15f);
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\DoubleJump"
-			, L"DoubleJumpC", Vector2(0, 0), 0.15f);
+			, L"DoubleJumpC", Vector2(0, 0), 0.1f);
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Jump"
 			, L"JumpC", Vector2(0, 0), 0.2f);
@@ -48,23 +48,14 @@ namespace ya
 
 		AddComponent(mAnimator);
 		
-
-		//지금 중앙을 중심으로 보고있는데 좌하단 위치로 바꿔주기
-		//Camera::SetTarget(this);
-
-		Vector2 ColOffset = GetColOffset();
-		Vector2 ColScale = GetColScale();
+		Camera::SetTarget(this);
 
 		Collider* col = new Collider();
 		AddComponent(col);
 
-		ColOffset = (Vector2(10.0f, 125.0f));
-		SetColOffset(ColOffset);
-		col->SetOffset(ColOffset);
+		col->SetOffset(Vector2(10.0f, 125.0f));
 		
-		ColScale = (Vector2(100.0f, 150.0f));
-		SetColOffset(ColScale);
-		col->SetScale(ColScale);
+		col->SetScale(Vector2(100.0f, 150.0f));
 		
 
 
@@ -138,7 +129,7 @@ namespace ya
 			
 				Rigidbody* rigidbody = GetComponent<Rigidbody>();
 				Vector2 velocity = rigidbody->GetVelocity();
-				velocity.y = -500.0f;
+				velocity.y = -630.0f;
 				rigidbody->SetVelocity(velocity);
 
 				rigidbody->SetGround(false);
@@ -148,7 +139,7 @@ namespace ya
 
 				bool IsGround = false;
 				IsGround = rigidbody->GetGround();
-				
+
 				
 				
 			}
@@ -164,7 +155,7 @@ namespace ya
 			{
 				Rigidbody* rigidbody = GetComponent<Rigidbody>();
 				Vector2 velocity = rigidbody->GetVelocity();
-				velocity.y = -500.0f;
+				velocity.y = -630.0f;
 				rigidbody->SetVelocity(velocity);
 
 				rigidbody->SetGround(false);
@@ -179,7 +170,11 @@ namespace ya
 
 			}
 		}
-		//점프 끝나면 Landing 애니메이션 띄우도록...
+	
+		//점프 끝나면 Landing 애니메이션 띄우고 다시 Walk
+		//mAnimator->Play(L"LandingC", true);
+		//mAnimator->Play(L"WalkC", true);
+		
 	}
 	void Player::Slide()
 	{
@@ -203,24 +198,11 @@ namespace ya
 			if (KEY_PREESE(eKeyCode::S))
 			{
 				//기존 충돌박스 삭제하고 새로 충돌박스 만들어 주고 싶은데 모르겠다
-			
-				ColOffset = (Vector2(10.0f, 170.0f));
-				SetColOffset(ColOffset);
-
-				ColScale = (Vector2(100.0f, 50.0f));
-				SetColOffset(ColScale);
-
-				/*col2->SetOffset(Vector2(10.0f, 170.0f));
-				col2->SetScale(Vector2(100.0f, 50.0f));*/
 			}
 
 			if (KEY_UP(eKeyCode::S))
 			{
-				ColOffset = (Vector2(10.0f, 125.0f));
-				SetColOffset(ColOffset);
-
-				ColScale = (Vector2(100.0f, 150.0f));
-				SetColOffset(ColScale);
+				//원래 충돌박스 설정으로
 
 				mAnimator->Play(L"WalkC", true);
 			}

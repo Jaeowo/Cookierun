@@ -9,7 +9,7 @@ namespace ya
 {
 	Squirrel::Squirrel()
 	{
-		SetPos({200.0f, 600.0f });
+		SetPos({300.0f, 600.0f });
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Squirrel\\WalkP"

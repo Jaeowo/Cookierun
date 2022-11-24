@@ -48,6 +48,7 @@ enum class eColliderLayer
 	//GameObject
 	BackGround,
 	Tile,
+	Obstruction,
 	Player,
 	Pet,
 	Player_Projecttile,

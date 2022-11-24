@@ -9,7 +9,7 @@ namespace ya
 	Ground::Ground()
 	{
 		Collider* collider = AddComponent<Collider>();
-		collider->SetScale(Vector2(2000.0f, 50.0f)); 
+		collider->SetScale(Vector2(2000.0f, 100.0f)); 
 
 	}
 	Ground::~Ground()

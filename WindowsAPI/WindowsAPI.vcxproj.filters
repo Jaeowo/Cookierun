@@ -199,6 +199,12 @@
     <ClInclude Include="yaSquirrel.h">
       <Filter>Engine\GameObject\Pet</Filter>
     </ClInclude>
+    <ClInclude Include="yaFire02.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="yaDown.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -324,6 +330,12 @@
     </ClCompile>
     <ClCompile Include="yaSquirrel.cpp">
       <Filter>Engine\GameObject\Pet</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFire02.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaDown.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

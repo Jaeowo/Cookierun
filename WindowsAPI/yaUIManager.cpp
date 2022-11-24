@@ -143,7 +143,7 @@ namespace ya
 						}
 					}
 				}
-
+				uiBase->InActive();
 				uiBase->UIClear();
 			}
 			else

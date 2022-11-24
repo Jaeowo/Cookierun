@@ -37,17 +37,11 @@ namespace ya
 		void SetJumpCount(int JumpCount) { mJumpCount = JumpCount; }
 		int GetJumpCount() { return mJumpCount; }
 
-		void SetColOffset(Vector2 ColOffset) { mColOffset = ColOffset; }
-		Vector2 GetColOffset() { return mColOffset; }
-
-		void SetColScale(Vector2 ColScale) { mColScale = ColScale; }
-		Vector2 GetColScale() { return mColScale; }
 
 	private:
 		int mJumpCount;
 		int mHp;
-		Vector2 mColOffset;
-		Vector2 mColScale;
+
 
 
 	//=======

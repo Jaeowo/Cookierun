@@ -64,9 +64,14 @@ namespace ya
 			mLookPosition.x += 600.0f * Time::DeltaTime();
 		}
 
-
+		
 		if (mTarget != nullptr)
+		{
 			mLookPosition = mTarget->GetPos();
+			mLookPosition.x += 400.0f;
+			mLookPosition.y -= 100.0f;
+		}
+			
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
@@ -92,7 +97,11 @@ namespace ya
 	Vector2 Camera::GetLookPos()
 	{
 		if (mTarget != nullptr)
+		{
 			mLookPosition = mTarget->GetPos();
+			mLookPosition.x += 400.0f;
+			mLookPosition.y -= 100.0f;
+		}
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 
