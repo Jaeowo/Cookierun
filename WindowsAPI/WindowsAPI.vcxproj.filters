@@ -205,6 +205,12 @@
     <ClInclude Include="yaDown.h">
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClInclude>
+    <ClInclude Include="yaEventTrigger.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRolling.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -335,6 +341,12 @@
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClCompile>
     <ClCompile Include="yaDown.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaEventTrigger.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRolling.cpp">
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClCompile>
   </ItemGroup>

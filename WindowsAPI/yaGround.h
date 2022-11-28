@@ -17,7 +17,6 @@ namespace ya
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
-		bool IsGround();
 
 	};
 }

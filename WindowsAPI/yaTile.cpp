@@ -13,6 +13,7 @@ namespace ya
         , mY(-1)
         , mX(-1)
     {
+      
     }
 
     Tile::~Tile()
@@ -32,10 +33,15 @@ namespace ya
 
         mY = index / maxColumn;
         mX = index % maxColumn;
+        
+        
     }
 
     void Tile::Tick()
     {
+        //GameObject::Tick();
+
+       
     }
 
     void Tile::Render(HDC hdc)
@@ -53,6 +59,8 @@ namespace ya
             , mAtlas->GetDC(), tileImgX, tileImgY
             , TILE_SIZE_X , TILE_SIZE_Y
             , RGB(255, 0, 255));
+       
+        
     }
 
     void Tile::SetIndex(UINT index)

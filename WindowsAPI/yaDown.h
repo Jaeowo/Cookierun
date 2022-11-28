@@ -3,6 +3,8 @@
 
 namespace ya
 {
+	
+
 	class Animator;
 	class Image;
 	class Down
@@ -11,6 +13,12 @@ namespace ya
 	public:
 		Down();
 		~Down();
+
+		enum class eState
+		{
+			Run,
+			Down
+		};
 
 		virtual void Tick() override;
 		virtual void Render(HDC hdc) override;
@@ -22,9 +30,12 @@ namespace ya
 		int GetLength() { return mLength; }
 
 	private:
+		eState mState;
 		Image* mImage;
 		Animator* mAnimator;
 		int mLength;
+		float mSpeed;
+
 
 	};
 }

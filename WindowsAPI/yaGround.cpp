@@ -2,6 +2,7 @@
 #include "yaPlayer.h"
 #include "yaCollider.h"
 #include "yaRigidbody.h"
+#include "yaAnimator.h"
 
 
 namespace ya
@@ -18,6 +19,8 @@ namespace ya
 	void Ground::Tick()
 	{
 		GameObject::Tick();
+
+		//Translate(200.0f);
 	}
 	void Ground::Render(HDC hdc)
 	{
@@ -27,7 +30,9 @@ namespace ya
 	{
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		playerObj->GetComponent<Rigidbody>()->SetGround(true);
-
+		playerObj->SetState(Player::eState::Walk);
+		playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
+	
 		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);
 		float fScale = other->GetScale().y / 2.0f + GetComponent<Collider>()->GetScale().y / 2.0f;
 

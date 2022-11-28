@@ -8,6 +8,8 @@
 namespace ya
 {
 	Animation::Animation()
+		:mAlphaValue(255.0f)
+		,mBlink(false)
 	{
 
 	}
@@ -21,6 +23,24 @@ namespace ya
 		if (mbComplete)
 			return;
 
+		//맞았을 때만 켜지도록 깜빡깜빡
+		//Blink GetSet만들어서 false,true 바뀌도록
+		//Set함수 만들어서 하나만 바뀌도록
+		if (mBlink)
+		{
+			const float blinkSpeed = 100.0f;
+			
+
+			if (mAlphaValue <= 0.0f)
+				mAlphaValue += (blinkSpeed * Time::DeltaTime());
+			else
+				mAlphaValue -= (blinkSpeed * Time::DeltaTime());
+		}
+		else
+		{
+			mAlphaValue = 255.0f;
+		}
+
 		mTime += Time::DeltaTime();
 		if (mSpriteSheet[mSpriteIndex].duration < mTime)
 		{
@@ -30,6 +50,9 @@ namespace ya
 			else
 				mSpriteIndex++;
 		}
+
+		
+
 	}
 
 	void Animation::Render(HDC hdc)

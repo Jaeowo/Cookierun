@@ -8,6 +8,7 @@ namespace ya
 {
 	BgImageObject::BgImageObject()
 		: mImage(nullptr)
+		,mSpeed(0.0f)
 	{
 		SetPos(Vector2::Zero);
 		SetScale(Vector2::One);
@@ -40,6 +41,8 @@ namespace ya
 		TransparentBlt(hdc, finalPos.x, finalPos.y, rect.x, rect.y
 			, mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()
 			, RGB(255, 0, 255));
+
+		Translate(mSpeed);
 
 		/*
 		TransparentBlt

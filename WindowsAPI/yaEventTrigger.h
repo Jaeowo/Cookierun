@@ -3,14 +3,12 @@
 
 namespace ya
 {
-	class Animator;
-	class Image;
-	class Fire02
-		: public GameObject
+	class EventTrigger
+		:public GameObject
 	{
 	public:
-		Fire02();
-		~Fire02();
+		EventTrigger();
+		~EventTrigger();
 
 		virtual void Tick() override;
 		virtual void Render(HDC hdc) override;
@@ -19,12 +17,9 @@ namespace ya
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
-
-
 	private:
-		Image* mImage;
-		Animator* mAnimator;
-		float mSpeed;
+
+
 	};
 }
 

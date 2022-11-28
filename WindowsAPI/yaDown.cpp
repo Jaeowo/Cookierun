@@ -2,18 +2,21 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaTime.h"
+#include "yaPlayer.h"
 
 namespace ya
 {
 	Down::Down()
+		:mSpeed(-300.0f)
+		,mState(eState::Run)
 	{
-		SetPos({ 1200.0f, 605.0f });
+		SetPos({ 1400.0f, 605.0f });
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Down"
-			, L"Down", Vector2(0, 0), 0.35f);
+			, L"Down", Vector2(0, 0), 0.25f);
 
-		mAnimator->Play(L"Down", false);
+		mAnimator->Play(L"Down", true);
 
 		AddComponent(mAnimator);
 
@@ -29,6 +32,25 @@ namespace ya
 	void Down::Tick()
 	{
 		GameObject::Tick();
+
+		//case ya::Player::eState::Walk:
+
+		Translate(mSpeed);
+		switch (mState)
+		{
+		case ya::Down::eState::Run:
+		{
+		}
+		break;
+		case ya::Down::eState::Down:
+		{
+		}
+		break;
+
+		default:
+			break;
+		}
+
 	}
 	void Down::Render(HDC hdc)
 	{
@@ -37,6 +59,14 @@ namespace ya
 	}
 	void Down::OnCollisionEnter(Collider* other)
 	{
+
+		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
+		playerObj->SetState(Player::eState::Attack);
+		playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
+
+		int hp = playerObj->GetHp();
+		hp -= 10;
+		playerObj->SetHp(hp);
 	}
 	void Down::OnCollisionStay(Collider* other)
 	{

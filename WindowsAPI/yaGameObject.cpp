@@ -94,6 +94,13 @@ namespace ya
 		component->mOwner = this;
 	}
 
+	void GameObject::Translate(float speed)
+	{
+		Pos pos = GetPos();
+		pos.x += speed * Time::DeltaTime();
+		SetPos(pos);
+	}
+
 	void GameObject::DeathLoop()
 	{
 		if (mDeathTimeOn == true)

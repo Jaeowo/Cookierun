@@ -22,6 +22,7 @@ namespace ya
 		UINT mIndex;
 		UINT mX;
 		UINT mY;
+
 	};
 
 }

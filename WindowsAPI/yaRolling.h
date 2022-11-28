@@ -3,14 +3,16 @@
 
 namespace ya
 {
+
 	class Animator;
 	class Image;
-	class Fire02
-		: public GameObject
-	{
+
+    class Rolling :
+        public GameObject
+    {
 	public:
-		Fire02();
-		~Fire02();
+		Rolling();
+		~Rolling();
 
 		virtual void Tick() override;
 		virtual void Render(HDC hdc) override;
@@ -25,7 +27,10 @@ namespace ya
 		Image* mImage;
 		Animator* mAnimator;
 		float mSpeed;
-	};
+		int mLength;
+	
+    };
+
 }
 
 

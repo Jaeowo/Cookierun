@@ -1,10 +1,12 @@
 #include "yaFire02.h"
 #include "yaAnimator.h"
 #include "yaCollider.h"
+#include "yaPlayer.h"
 
 namespace ya
 {
 	Fire02::Fire02()
+		:mSpeed(-300.0f)
 	{
 		SetPos({ 800.0f, 650.0f });
 		mAnimator = new Animator();
@@ -18,6 +20,8 @@ namespace ya
 
 		Collider* col = new Collider();
 		AddComponent(col);
+
+		
 	}
 	Fire02::~Fire02()
 	{
@@ -25,6 +29,7 @@ namespace ya
 	void Fire02::Tick()
 	{
 		GameObject::Tick();
+		Translate(mSpeed);
 	}
 	void Fire02::Render(HDC hdc)
 	{
@@ -33,6 +38,15 @@ namespace ya
 	}
 	void Fire02::OnCollisionEnter(Collider* other)
 	{
+		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
+		playerObj->SetState(Player::eState::Attack);
+		playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
+
+		int hp = playerObj->GetHp();
+		hp -= 10;
+		playerObj->SetHp(hp);
+
+		
 	}
 	void Fire02::OnCollisionStay(Collider* other)
 	{

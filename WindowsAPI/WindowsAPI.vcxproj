@@ -133,7 +133,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="yaDown.h" />
+    <ClInclude Include="yaEventTrigger.h" />
     <ClInclude Include="yaFire02.h" />
+    <ClInclude Include="yaRolling.h" />
     <ClInclude Include="yaSquirrel.h" />
     <ClInclude Include="yaAnimation.h" />
     <ClInclude Include="Common.h" />
@@ -181,7 +183,9 @@
   <ItemGroup>
     <ClCompile Include="Maths.cpp" />
     <ClCompile Include="yaDown.cpp" />
+    <ClCompile Include="yaEventTrigger.cpp" />
     <ClCompile Include="yaFire02.cpp" />
+    <ClCompile Include="yaRolling.cpp" />
     <ClCompile Include="yaSquirrel.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />

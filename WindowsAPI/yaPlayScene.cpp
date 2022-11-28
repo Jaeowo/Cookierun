@@ -10,6 +10,7 @@
 #include "yaSquirrel.h"
 #include "yaFire02.h"
 #include "yaDown.h"
+#include "yaRolling.h"
 
 namespace ya
 {
@@ -28,12 +29,13 @@ namespace ya
 		Bg1->SetImage(L"Bg1", L"Bg1.bmp");
 		Bg1->Initialize();
 		AddGameObject(Bg1, eColliderLayer::BackGround);
+		Bg1->SetSpeed(-1.5f);
 
 		BgImageObject* Bg2 = new BgImageObject();
 		Bg2->SetImage(L"Bg2", L"Bg3.bmp");
 		Bg2->Initialize();
 		AddGameObject(Bg2, eColliderLayer::BackGround);
-
+		Bg2->SetSpeed(-4.5f);
 	
 		//Ä³¸¯ÅÍ
 		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
@@ -46,6 +48,8 @@ namespace ya
 		Fire02* fire02 = ya::object::Instantiate<Fire02>(eColliderLayer::Obstruction);
 
 		Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
+
+		Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);
 	}
 
 	void PlayScene::Tick()
@@ -66,6 +70,11 @@ namespace ya
 		int strLen = wcsnlen_s(szFloat, 50);
 		TextOut(hdc, 10, 30, szFloat, strLen);
 
+		wchar_t szFloat2[50] = {};
+		swprintf_s(szFloat2, 50, L"Hp:");
+		int strLen2 = wcsnlen_s(szFloat2, 50);
+		TextOut(hdc, 10, 50, szFloat2, strLen2);
+
 		ya::Scene* scene = ya::SceneManager::GetScene(eSceneType::Tool);
 		ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
 		toolScene->LoadTilePalette(L"..\\Resources\\TileSaveFiles\\Test2");
@@ -73,8 +82,7 @@ namespace ya
 
 	void PlayScene::Enter()
 	{
-		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::Player, true);
-		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::Player_Projecttile, true);
+		CollisionManager::SetLayer(eColliderLayer::Obstruction, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Ground, eColliderLayer::Player, true);
 
 	}

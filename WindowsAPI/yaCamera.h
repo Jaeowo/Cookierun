@@ -12,7 +12,10 @@ namespace ya
 		static void Initialize();
 		static void Tick();
 		static void Render(HDC hdc);
-		static Vector2 CalculatePos(Vector2 pos) { return pos - mDistance; }
+		static Vector2 CalculatePos(Vector2 pos) 
+		{
+			return pos - mDistance;
+		}
 		static void SetTarget(GameObject* gameObj) { mTarget = gameObj; }
 		static void SetCameraEffect(eCameraEffect effect) { mEffect = effect; }
 

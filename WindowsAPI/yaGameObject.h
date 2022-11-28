@@ -56,7 +56,7 @@ namespace ya
 
 			return nullptr;
 		}
-
+		void Translate(float speed);
 		void DeathLoop();
 
 	private:
