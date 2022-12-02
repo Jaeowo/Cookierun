@@ -10,11 +10,11 @@ namespace ya
 		:mSpeed(-300.0f)
 		,mState(eState::Run)
 	{
-		SetPos({ 1400.0f, 605.0f });
+		SetPos({ 2400.0f, 605.0f });
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Down"
-			, L"Down", Vector2(0, 0), 0.25f);
+			, L"Down", Vector2(0, 0), 0.15f);
 
 		mAnimator->Play(L"Down", true);
 

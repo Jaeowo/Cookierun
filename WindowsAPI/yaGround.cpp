@@ -28,11 +28,22 @@ namespace ya
 	}
 	void Ground::OnCollisionEnter(Collider* other)
 	{
+
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		playerObj->GetComponent<Rigidbody>()->SetGround(true);
-		playerObj->SetState(Player::eState::Walk);
-		playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
+		playerObj->GetComponent<Animator>()->Play(L"WalkC", true);
+
+		if (playerObj->GetState() == Player::eState::Jump)
+		{
+			playerObj->SetState(Player::eState::Walk);
+			playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
+		}
 	
+		if (playerObj->GetState() == Player::eState::Biggest)
+		{
+
+		}
+
 		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);
 		float fScale = other->GetScale().y / 2.0f + GetComponent<Collider>()->GetScale().y / 2.0f;
 
@@ -42,6 +53,7 @@ namespace ya
 			playerPos.y -= (fScale - fLen) - 1.0f;
 			playerObj->SetPos(playerPos);
 		}
+
 	}
 	void Ground::OnCollisionStay(Collider* other)
 	{

@@ -68,6 +68,12 @@
     <Filter Include="Engine\GameObject\Pet">
       <UniqueIdentifier>{c2455c3b-c14b-46ed-b79d-38d8ab7f4a3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObject\Jelly">
+      <UniqueIdentifier>{47b4174a-4d90-4179-a679-03ded4c6f7b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Item">
+      <UniqueIdentifier>{13aa60cf-fd62-40dd-94d5-1575af5668f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -211,6 +217,21 @@
     <ClInclude Include="yaRolling.h">
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClInclude>
+    <ClInclude Include="yaJelly.h">
+      <Filter>Engine\GameObject\Jelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGroundTile.h">
+      <Filter>Engine\GameObject\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRope01.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRope02.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBiggest.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -348,6 +369,21 @@
     </ClCompile>
     <ClCompile Include="yaRolling.cpp">
       <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaJelly.cpp">
+      <Filter>Engine\GameObject\Jelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGroundTile.cpp">
+      <Filter>Engine\GameObject\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRope01.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRope02.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBiggest.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

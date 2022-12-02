@@ -4,12 +4,13 @@
 #include "yaGameObject.h"
 #include "yaComponent.h"
 #include "yaObject.h"
+#include "yaCollider.h"
 
 namespace ya
 {
 	Squirrel::Squirrel()
 	{
-		SetPos({300.0f, 600.0f });
+		SetPos({300.0f, 600.0f }); //플레이어 옆에 쫓아가도록 바꾸기
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Squirrel\\WalkP"
@@ -18,6 +19,10 @@ namespace ya
 		mAnimator->Play(L"WalkS", true);
 
 		AddComponent(mAnimator);
+
+		Collider* col = new Collider();
+		//col->SetOffset(Vector2(0.0f, 45.0f));
+		AddComponent(col);
 
 	}
 	Squirrel::~Squirrel()

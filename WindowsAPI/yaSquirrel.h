@@ -24,7 +24,7 @@ namespace ya
 	private:
 		Image* mImage;
 		Animator* mAnimator;
-
+		
 	};
 }
 

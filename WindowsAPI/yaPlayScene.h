@@ -3,6 +3,11 @@
 
 namespace ya
 {
+
+	class Image;
+	class Player;
+	class Squirrel;
+
 	class PlayScene : public Scene
 	{
 	public:
@@ -17,7 +22,9 @@ namespace ya
 		virtual void Exit();
 
 	private:
-
+		Image* mImage;
+		Player* mPlayer;
+		Squirrel* mSquirrel;
 	};
 
 }

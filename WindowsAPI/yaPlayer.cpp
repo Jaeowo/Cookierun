@@ -20,7 +20,6 @@ namespace ya
 	Player::Player()
 		: mSpeed(200.0f)
 		, mHp(100)
-		, mCollision(false)
 		, mState(eState::Walk)
 	{
 		SetName(L"Player");
@@ -49,7 +48,7 @@ namespace ya
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Attack"
 			, L"AttackC", Vector2(0, 0), 0.13f);
 
-		mAnimator->Play(L"WalkC", true);
+		
 
 		//mAnimator->FindEvents(L"MoveRight")->mCompleteEvent = std::bind(&Player::WalkComplete, this);
 		//mAnimator->GetCompleteEvent(L"MoveRight") = std::bind(&Player::WalkComplete, this);
@@ -108,6 +107,13 @@ namespace ya
 		{
 			Attack();
 		}
+		break;
+		case ya::Player::eState::Biggest:
+		{
+			Biggest();
+			
+		}
+		break;
 		case ya::Player::eState::Death:
 		{
 
@@ -222,6 +228,13 @@ namespace ya
 		//mAnimator->Play(L"AttackC", true);
 	}
 
+	void Player::Biggest()
+	{
+		mCollider->SetOffset(Vector2(200.0f, 375.0f));
+		mCollider->SetScale(Vector2(200.0f, 370.0f));
+
+	}
+
 	void Player::Walk()
 	{
 		//Translate(mSpeed);
@@ -244,11 +257,7 @@ namespace ya
 		mState = eState::Walk;
 	}
 
-	bool Player::CheckCollision()
-	{
-		
-		return false;
-	}
+
 
 
 

@@ -17,10 +17,14 @@ namespace ya
 			Jump,
 			Slide,
 			Attack,
+			Biggest,
+			BiggestJump, 
+			BiggestSlide,
 			Skill1,
 			Skill2,
 			Death,
 		};
+		//거대화시 충돌박스 사이즈가 다름
 
 		Player();
 		~Player();
@@ -41,6 +45,7 @@ namespace ya
 		void Jump();
 		void Slide();
 		void Attack();
+		void Biggest();
 
 		void SetHp(int hp) { mHp = hp; }
 		int GetHp() { return mHp; }
@@ -52,13 +57,10 @@ namespace ya
 		eState GetState() { return mState; }
 
 		void LandingComplete();
-		bool CheckCollision();
 
 	private:
 		int mJumpCount;
 		int mHp;
-		bool mCollision;
-
 
 
 	//=======
@@ -68,7 +70,6 @@ namespace ya
 		float mSpeed;
 		Image* mImage;
 		Animator* mAnimator;
-		Squirrel* msquirrel;
 		Collider* mCollider;
 
 		

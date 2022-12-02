@@ -11,7 +11,9 @@ namespace ya
 		:mSpeed(-300.0f)
 		,mLength(0)
 	{
-		SetPos({ 700.0f, 650.0f });
+		Vector2 RollingPos = { 2600.0f, 650.0f };
+		SetPos(RollingPos);
+
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Rolling"
@@ -35,13 +37,12 @@ namespace ya
 
 		bool IsGround = false;
 
-		//일정 시간마다 통통 튀어오르도록 만들어보기
 		mLength = (mSpeed * Time::DeltaTime());
 
-		if (mLength >= 300.0f)
+		if (mLength >= 1000.0f)
 		{
-			
-			//mLength = 0;
+			RollingPos.y += 200;
+			mLength = 0;
 		}
 
 		
