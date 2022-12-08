@@ -57,12 +57,25 @@ namespace ya
 	void Rolling::OnCollisionEnter(Collider* other)
 	{
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
-		playerObj->SetState(Player::eState::Attack);
-		playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
+		if (playerObj->GetState() == Player::eState::BiggestJump
+			|| playerObj->GetState() == Player::eState::BiggestSlide
+			|| playerObj->GetState() == Player::eState::Biggest)
+		{
 
-		int hp = playerObj->GetHp();
-		hp -= 10;
-		playerObj->SetHp(hp);
+		}
+		else if (playerObj->GetState() == Player::eState::Mujuk
+			|| playerObj->GetState() == Player::eState::MujukJump
+			|| playerObj->GetState() == Player::eState::MujukSlide)
+		{
+		}
+		else
+		{
+			playerObj->SetState(Player::eState::Attack);
+			playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
+			int hp = playerObj->GetHp();
+			hp -= 10;
+			playerObj->SetHp(hp);
+		}
 	}
 	void Rolling::OnCollisionStay(Collider* other)
 	{

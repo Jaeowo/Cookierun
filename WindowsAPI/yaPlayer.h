@@ -7,24 +7,40 @@ namespace ya
 	class Animator;
 	class Image;
 	class Squirrel;
+
 	class Player : public GameObject
 	{
 	public:
-		//클래스로도 관리가능
+
 		enum class eState
 		{
 			Walk,
 			Jump,
 			Slide,
 			Attack,
+
 			Biggest,
 			BiggestJump, 
 			BiggestSlide,
+
+			Run,
+			RunJump,
+			RunSlide,
+
 			Skill1,
 			Skill2,
+
+			BonusTimeIntro,
+			BonusTimeUp,
+			BonusTimeDown,
+
+			Mujuk, //무적시간
+			MujukJump,
+			MujukSlide,
+
 			Death,
+	
 		};
-		//거대화시 충돌박스 사이즈가 다름
 
 		Player();
 		~Player();
@@ -45,7 +61,18 @@ namespace ya
 		void Jump();
 		void Slide();
 		void Attack();
+
 		void Biggest();
+		void BiggestJump();
+		void BiggestSlide();
+
+		void Mujuk();
+		void MujukJump();
+		void MujukSlide();
+
+		void Run();
+		void RunJump();
+		void RunSlide();
 
 		void SetHp(int hp) { mHp = hp; }
 		int GetHp() { return mHp; }
@@ -58,20 +85,30 @@ namespace ya
 
 		void LandingComplete();
 
+		float GetSpeed() { return mSpeed; }
+
 	private:
 		int mJumpCount;
 		int mHp;
-
+		float mSpeed;
 
 	//=======
+	public:
+		void SetScore(int Score) { mScore = Score; }
+		int GetScore() { return mScore; }
+
+		void SetItemTime(float ItemTime) { mItemTime = ItemTime; }
+		float GetItemTime() { return mItemTime; }
+
 	private:
 		eState mState;
 		float mCoff;
-		float mSpeed;
 		Image* mImage;
 		Animator* mAnimator;
 		Collider* mCollider;
-
+		int mScore;
+		float mItemTime;
+		float mMujukTime;
 		
 	};
 

@@ -38,6 +38,9 @@ namespace ya
 		bool isComplete() { return mbComplete; }
 		void SetAnimator(Animator* animator) { mAnimator = animator; }
 
+		void SetBlink(bool Blink) { mBlink = Blink; }
+		bool GetBlink() { return mBlink; }
+
 	private:
 		Animator* mAnimator;
 		Image* mImage;

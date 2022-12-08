@@ -22,6 +22,7 @@ namespace ya
 		AddComponent(mAnimator);
 
 		Collider* col = new Collider();
+		col->SetScale(Vector2(70.0f, 70.0f));
 		AddComponent(col);
 
 	}
@@ -39,6 +40,7 @@ namespace ya
 	}
 	void Biggest::OnCollisionEnter(Collider* other)
 	{
+		
 
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 
@@ -48,13 +50,8 @@ namespace ya
 		{
 			playerObj->SetScale(Vector2{ i,i });
 		}
-		
-		mTime += Time::DeltaTime();
 
-		if (mTime >= 1.0f)
-		{
-			playerObj->SetState(Player::eState::Walk);
-		}
+		playerObj->SetItemTime(0.0f);		
 		
 		this->Death();
 

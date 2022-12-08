@@ -5,9 +5,19 @@ namespace ya
 {
 	class Animator;
 	class Image;
+	class Player;
+
 	class Squirrel
 		: public GameObject
 	{
+	public:
+		enum class eState
+		{
+			Trace,
+			Magnet,
+			BonusTime,
+		};
+
 	public:
 		Squirrel();
 		~Squirrel();
@@ -24,7 +34,7 @@ namespace ya
 	private:
 		Image* mImage;
 		Animator* mAnimator;
-		
+		Player* mPlayer;
 	};
 }
 

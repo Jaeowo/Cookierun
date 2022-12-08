@@ -20,7 +20,6 @@ namespace ya
 	{
 		GameObject::Tick();
 
-		//Translate(200.0f);
 	}
 	void Ground::Render(HDC hdc)
 	{
@@ -39,9 +38,16 @@ namespace ya
 			playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
 		}
 	
-		if (playerObj->GetState() == Player::eState::Biggest)
+		if (playerObj->GetState() == Player::eState::BiggestJump)
 		{
+			playerObj->SetState(Player::eState::Biggest);
+			playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
+		}
 
+		if (playerObj->GetState() == Player::eState::RunJump)
+		{
+			playerObj->SetState(Player::eState::Run);
+			playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
 		}
 
 		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);

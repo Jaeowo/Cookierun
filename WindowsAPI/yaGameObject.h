@@ -58,6 +58,7 @@ namespace ya
 		}
 		void Translate(float speed);
 		void DeathLoop();
+		void Away(int Distance);
 
 	private:
 		std::vector<Component*> mComponents;

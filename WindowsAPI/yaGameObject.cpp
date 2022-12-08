@@ -110,4 +110,12 @@ namespace ya
 				Death();
 		}
 	}
+	void GameObject::Away(int Distance)
+	{
+		Pos pos = GetPos();
+		pos.x += Distance;
+		pos.y += Distance;
+		SetPos(pos);
+
+	}
 }

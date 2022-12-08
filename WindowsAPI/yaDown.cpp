@@ -34,8 +34,8 @@ namespace ya
 		GameObject::Tick();
 
 		//case ya::Player::eState::Walk:
-
 		Translate(mSpeed);
+
 		switch (mState)
 		{
 		case ya::Down::eState::Run:
@@ -61,12 +61,27 @@ namespace ya
 	{
 
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
-		playerObj->SetState(Player::eState::Attack);
-		playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
+		
 
-		int hp = playerObj->GetHp();
-		hp -= 10;
-		playerObj->SetHp(hp);
+		if (   playerObj->GetState() == Player::eState::BiggestJump 
+			|| playerObj->GetState() == Player::eState::BiggestSlide
+			|| playerObj->GetState() == Player::eState::Biggest)
+		{
+		}
+		else if (playerObj->GetState() == Player::eState::Mujuk
+			|| playerObj->GetState() == Player::eState::MujukJump
+			|| playerObj->GetState() == Player::eState::MujukSlide)
+		{
+		}
+		else
+		{
+			playerObj->SetState(Player::eState::Attack);
+			playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
+		
+			int hp = playerObj->GetHp();
+			hp -= 10;
+			playerObj->SetHp(hp);
+		}
 	}
 	void Down::OnCollisionStay(Collider* other)
 	{

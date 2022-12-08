@@ -74,6 +74,15 @@
     <Filter Include="Engine\GameObject\Item">
       <UniqueIdentifier>{13aa60cf-fd62-40dd-94d5-1575af5668f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Scene\MapSetting">
+      <UniqueIdentifier>{2324dbd1-158c-45bf-af40-1b4e8d620995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Jelly\Bear">
+      <UniqueIdentifier>{76d4a228-8d80-45b4-8825-538b4398ee56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Jelly\Coin">
+      <UniqueIdentifier>{89e64c1a-aa0f-4076-9e54-04545b8184d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -232,6 +241,54 @@
     <ClInclude Include="yaBiggest.h">
       <Filter>Engine\GameObject\Item</Filter>
     </ClInclude>
+    <ClInclude Include="yaRun.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFire01.h">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSmallHp.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBigHp.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaChangeBear.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaChangeCoin.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGoBonusTime.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBigBear.h">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaIceBear.h">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPinkBear.h">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRainbowBear.h">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaYellowBear.h">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGoldCoin.h">
+      <Filter>Engine\GameObject\Jelly\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSilverCoin.h">
+      <Filter>Engine\GameObject\Jelly\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMagnet.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaEatingEffect.h">
+      <Filter>Engine\GameObject\Jelly</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -384,6 +441,54 @@
     </ClCompile>
     <ClCompile Include="yaBiggest.cpp">
       <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRun.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFire01.cpp">
+      <Filter>Engine\GameObject\Obstruction</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSmallHp.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBigHp.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaChangeBear.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaChangeCoin.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGoBonusTime.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBigBear.cpp">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaIceBear.cpp">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPinkBear.cpp">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRainbowBear.cpp">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaYellowBear.cpp">
+      <Filter>Engine\GameObject\Jelly\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGoldCoin.cpp">
+      <Filter>Engine\GameObject\Jelly\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSilverCoin.cpp">
+      <Filter>Engine\GameObject\Jelly\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMagnet.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaEatingEffect.cpp">
+      <Filter>Engine\GameObject\Jelly</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
