@@ -5,7 +5,7 @@
 namespace ya
 {
 	GroundTile::GroundTile()
-		:mSpeed(-300.0f)
+		:mSpeed(-50.0f)
 		,mCount(1)
 	{
 		SetName(L"Tile1");
@@ -21,7 +21,7 @@ namespace ya
 	}
 	void GroundTile::Tick()
 	{
-		Translate(mSpeed);
+		//Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void GroundTile::Render(HDC hdc)
@@ -36,10 +36,12 @@ namespace ya
 		rect.x = mImage->GetWidth() * scale.x;
 		rect.y = mImage->GetHeight() * scale.y;
 
-		for (int i = 1; i <= mCount; ++i)
+		
+
+		for (int i = 0; i <= mCount; ++i)
 		{
-			TransparentBlt(hdc, (finalPos.x) * i , finalPos.y, rect.x, rect.y
-				, mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()
+			TransparentBlt(hdc, (finalPos.x + rect.x) * i , finalPos.y, rect.x, rect.y
+				, mImage->GetDC(), 0 , 0, mImage->GetWidth(), mImage->GetHeight()
 				, RGB(255, 0, 255));
 		}
 

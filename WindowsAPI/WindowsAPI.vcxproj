@@ -145,6 +145,7 @@
     <ClInclude Include="yaGoldCoin.h" />
     <ClInclude Include="yaGroundTile.h" />
     <ClInclude Include="yaBiggest.h" />
+    <ClInclude Include="yaHpBar.h" />
     <ClInclude Include="yaIceBear.h" />
     <ClInclude Include="yaJelly.h" />
     <ClInclude Include="yaMagnet.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="yaGoldCoin.cpp" />
     <ClCompile Include="yaGroundTile.cpp" />
     <ClCompile Include="yaBiggest.cpp" />
+    <ClCompile Include="yaHpBar.cpp" />
     <ClCompile Include="yaIceBear.cpp" />
     <ClCompile Include="yaJelly.cpp" />
     <ClCompile Include="yaMagnet.cpp" />

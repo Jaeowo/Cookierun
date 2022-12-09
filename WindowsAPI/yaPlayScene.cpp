@@ -32,6 +32,8 @@
 #include "yaSilverCoin.h"
 #include "yaGoldCoin.h"
 #include "yaBigBear.h"
+#include "yaHpBar.h"
+#include "yaUIManager.h"
 
 namespace ya
 {
@@ -76,13 +78,13 @@ namespace ya
 		Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);
 		Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
 
-		//타일툴로 깔면 움직일때 이상하게 되서 한 번에 여러개 띄워주고 싶은데 잘 모르겠음
+		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
 		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
 		groundtile->SetPos(Vector2{ 0.0f,700.0f });
-		groundtile->SetCount(10);
+		groundtile->SetCount(15);
 
 		//아이템
-		//Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
+		Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
 		//Run* run = ya::object::Instantiate<Run>(eColliderLayer::Jelly);
 		//BigHp* bighp = ya::object::Instantiate<BigHp>(eColliderLayer::Jelly);
 		//SmallHp* smallhp = ya::object::Instantiate<SmallHp>(eColliderLayer::Jelly);
@@ -95,11 +97,19 @@ namespace ya
 		//Jelly* jelly = ya::object::Instantiate<Jelly>(eColliderLayer::Jelly);
 		//PinkBear* pinkbear = ya::object::Instantiate<PinkBear>(eColliderLayer::Jelly);
 		//IceBear* icebear = ya::object::Instantiate<IceBear>(eColliderLayer::Jelly);
-		YellowBear* yellowbear = ya::object::Instantiate<YellowBear>(eColliderLayer::Jelly);
+		//YellowBear* yellowbear = ya::object::Instantiate<YellowBear>(eColliderLayer::Jelly);
 		//RainbowBear* rainbowbear = ya::object::Instantiate<RainbowBear>(eColliderLayer::Jelly);
 		//SilverCoin* silvercoin = ya::object::Instantiate<SilverCoin>(eColliderLayer::Jelly);
 		//GoldCoin* goldcoin = ya::object::Instantiate<GoldCoin>(eColliderLayer::Jelly);
 		//BigBear* bigbear = ya::object::Instantiate<BigBear>(eColliderLayer::Jelly);
+
+		//UI
+		UIManager::Push(eUIType::HP);
+
+		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
+		hpbar->SetTarget(player);
+
+
 	}
 
 	void PlayScene::Tick()

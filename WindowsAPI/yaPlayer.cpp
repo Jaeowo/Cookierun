@@ -81,6 +81,8 @@ namespace ya
 	{
 		GameObject::Tick();
 
+		mHp -= Time::DeltaTime();
+
 		switch (mState)
 		{
 		case ya::Player::eState::Walk:
@@ -183,7 +185,8 @@ namespace ya
 
 	void Player::Jump()
 	{
-		//Translate(mSpeed);
+
+	
 		int JumpCount = GetJumpCount();
 		Rigidbody* rigidbody = GetComponent<Rigidbody>();
 		bool IsGround = false;

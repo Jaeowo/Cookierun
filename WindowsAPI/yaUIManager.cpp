@@ -2,6 +2,7 @@
 #include "yaHUD.h"
 #include "yaButton.h"
 #include "yaPanel.h"
+#include "yaHpBar.h"
 
 namespace ya
 {
@@ -12,7 +13,10 @@ namespace ya
 
 	void UIManager::Initialize()
 	{
-	
+		HpBar* hpbar = new HpBar(eUIType::HP);
+		mUIs.insert(std::make_pair(eUIType::HP, hpbar));
+		hpbar->SetPos(Vector2(400.0f, 30.0f));
+		hpbar->ImageLoad(L"HpBar", L"..\\Resources\\Image\\UI\\HpBar.bmp");
 
 	}
 

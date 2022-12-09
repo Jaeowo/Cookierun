@@ -75,7 +75,7 @@ namespace ya
 		void RunSlide();
 
 		void SetHp(int hp) { mHp = hp; }
-		int GetHp() { return mHp; }
+		float GetHp() { return mHp; }
 
 		void SetJumpCount(int JumpCount) { mJumpCount = JumpCount; }
 		int GetJumpCount() { return mJumpCount; }
@@ -89,7 +89,7 @@ namespace ya
 
 	private:
 		int mJumpCount;
-		int mHp;
+		float mHp;
 		float mSpeed;
 
 	//=======

@@ -83,6 +83,9 @@
     <Filter Include="Engine\GameObject\Jelly\Coin">
       <UniqueIdentifier>{89e64c1a-aa0f-4076-9e54-04545b8184d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObject\UI\ex">
+      <UniqueIdentifier>{cfac73f1-fbd0-4bfc-a690-b4910f2ac0cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -193,15 +196,6 @@
     <ClInclude Include="yaUiBase.h">
       <Filter>Engine\GameObject\UI\Base</Filter>
     </ClInclude>
-    <ClInclude Include="yaButton.h">
-      <Filter>Engine\GameObject\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="yaHUD.h">
-      <Filter>Engine\GameObject\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPanel.h">
-      <Filter>Engine\GameObject\UI</Filter>
-    </ClInclude>
     <ClInclude Include="yaSoundManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
@@ -288,6 +282,18 @@
     </ClInclude>
     <ClInclude Include="yaEatingEffect.h">
       <Filter>Engine\GameObject\Jelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHpBar.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaButton.h">
+      <Filter>Engine\GameObject\UI\ex</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHUD.h">
+      <Filter>Engine\GameObject\UI\ex</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPanel.h">
+      <Filter>Engine\GameObject\UI\ex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -394,15 +400,6 @@
     <ClCompile Include="yaUiBase.cpp">
       <Filter>Engine\GameObject\UI\Base</Filter>
     </ClCompile>
-    <ClCompile Include="yaButton.cpp">
-      <Filter>Engine\GameObject\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="yaHUD.cpp">
-      <Filter>Engine\GameObject\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="yaPanel.cpp">
-      <Filter>Engine\GameObject\UI</Filter>
-    </ClCompile>
     <ClCompile Include="yaSoundManager.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
@@ -489,6 +486,18 @@
     </ClCompile>
     <ClCompile Include="yaEatingEffect.cpp">
       <Filter>Engine\GameObject\Jelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHpBar.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaButton.cpp">
+      <Filter>Engine\GameObject\UI\ex</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHUD.cpp">
+      <Filter>Engine\GameObject\UI\ex</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPanel.cpp">
+      <Filter>Engine\GameObject\UI\ex</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
