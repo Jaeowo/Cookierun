@@ -114,7 +114,10 @@ namespace ya
 		UINT height = 0;
 		UINT fileCount = 0;
 
+		wchar_t szDir[256] = {};
+		GetCurrentDirectoryW(256, szDir);
 		std::filesystem::path fs(path);
+
 		std::vector<Image*> images;
 		int fileIndex = 0;
 		for (auto& p : std::filesystem::recursive_directory_iterator(path))

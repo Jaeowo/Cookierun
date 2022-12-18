@@ -10,6 +10,7 @@ namespace ya
 		, mDeathTime(-100.0f)
 		, mDeathTimeOn(false)
 		, mIsCulling(false)
+		, mSpeed (-300.0f)
 	{
 
 	}
@@ -110,12 +111,5 @@ namespace ya
 				Death();
 		}
 	}
-	void GameObject::Away(int Distance)
-	{
-		Pos pos = GetPos();
-		pos.x += Distance;
-		pos.y += Distance;
-		SetPos(pos);
 
-	}
 }

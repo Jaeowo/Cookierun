@@ -2,11 +2,14 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaPlayer.h"
+#include "yaApplication.h"
+#include "yaTime.h"
 
 namespace ya
 {
 	Rope01::Rope01()
 		: mSpeed(-300.0f)
+		, mState(eState::None)
 	{
 		SetPos({ 3400.0f, 270.0f });
 		mAnimator = new Animator();
@@ -18,9 +21,14 @@ namespace ya
 
 		AddComponent(mAnimator);
 
-		Collider* col = new Collider();
-		col->SetScale(Vector2(100.0f, 700.0f));
-		AddComponent(col);
+
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetScale(Vector2(100.0f, 700.0f));
+			AddComponent(col);
+		}
 	}
 	Rope01::~Rope01()
 	{
@@ -28,7 +36,30 @@ namespace ya
 	void Rope01::Tick()
 	{
 		GameObject::Tick();
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
+
+		switch (mState)
+		{
+		case ya::Rope01::eState::None:
+		{
+
+		}
+		break;
+		case ya::Rope01::eState::Away:
+		{
+			Vector2 pos = this->GetPos();
+			//위에 매달린경우 -로 값 바꾸기
+			pos.x += (400 * Time::DeltaTime());
+			pos.y -= (400 * Time::DeltaTime());
+			this->SetPos(pos);
+		}
+		break;
+		default:
+			break;
+		}
+
 	}
 	void Rope01::Render(HDC hdc)
 	{
@@ -41,7 +72,7 @@ namespace ya
 			|| playerObj->GetState() == Player::eState::BiggestSlide
 			|| playerObj->GetState() == Player::eState::Biggest)
 		{
-
+			mState = eState::Away;
 		}
 		else if (playerObj->GetState() == Player::eState::Mujuk
 			|| playerObj->GetState() == Player::eState::MujukJump

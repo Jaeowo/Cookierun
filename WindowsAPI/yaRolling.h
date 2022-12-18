@@ -21,6 +21,11 @@ namespace ya
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
+		enum class eState
+		{
+			None,
+			Away,
+		};
 
 
 	private:
@@ -29,6 +34,7 @@ namespace ya
 		float mSpeed;
 		int mLength;
 		Vector2 RollingPos;
+		eState mState;
 	
     };
 

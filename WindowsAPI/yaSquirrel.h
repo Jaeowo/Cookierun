@@ -35,7 +35,7 @@ namespace ya
 		Image* mImage;
 		Animator* mAnimator;
 		Player* mPlayer;
-
+		eState mState;
 	};
 }
 

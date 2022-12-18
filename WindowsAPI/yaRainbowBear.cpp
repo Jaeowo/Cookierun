@@ -2,6 +2,7 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaPlayer.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -18,9 +19,13 @@ namespace ya
 
 		AddComponent(mAnimator);
 
-		Collider* col = new Collider();
-		//col->SetScale(Vector2(70.0f, 70.0f));
-		AddComponent(col);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			//col->SetScale(Vector2(60.0f, 60.0f));
+			AddComponent(col);
+		}
 
 	}
 	RainbowBear::~RainbowBear()
@@ -29,7 +34,9 @@ namespace ya
 	void RainbowBear::Tick()
 	{
 
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void RainbowBear::Render(HDC hdc)

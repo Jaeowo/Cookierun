@@ -6,6 +6,7 @@
 #include "yaToolScene.h"
 #include "yaObject.h"
 #include "yaCollisionManager.h"
+#include "yaJellyToolScene.h"
 
 namespace ya
 {
@@ -18,8 +19,11 @@ namespace ya
 		// 모든씬들을 초기화
 		// 다른씬에서 툴씬을 사용하려면 툴씬이 
 		// 제일 우선적으로 생성되어야 한다.
-		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
-		mScenes[(UINT)eSceneType::Tool]->Initialize();
+		mScenes[(UINT)eSceneType::MapTool] = new ToolScene();
+	
+
+		mScenes[(UINT)eSceneType::JellyTool] = new JellyToolScene();
+		
 	
 		mScenes[(UINT)eSceneType::Logo] = new LogoScene();
 		mScenes[(UINT)eSceneType::Logo]->Initialize();
@@ -32,6 +36,9 @@ namespace ya
 
 		mScenes[(UINT)eSceneType::End] = new EndScene();
 		mScenes[(UINT)eSceneType::End]->Initialize();
+
+		mScenes[(UINT)eSceneType::MapTool]->Initialize();
+		mScenes[(UINT)eSceneType::JellyTool]->Initialize();
 
 		ChangeScene(eSceneType::Play);
 		// 업캐스팅

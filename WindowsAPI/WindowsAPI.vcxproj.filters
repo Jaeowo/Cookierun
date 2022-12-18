@@ -187,9 +187,6 @@
     <ClInclude Include="yaRigidbody.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
-    <ClInclude Include="yaGround.h">
-      <Filter>Engine\GameObject\Game</Filter>
-    </ClInclude>
     <ClInclude Include="yaUIManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
@@ -294,6 +291,18 @@
     </ClInclude>
     <ClInclude Include="yaPanel.h">
       <Filter>Engine\GameObject\UI\ex</Filter>
+    </ClInclude>
+    <ClInclude Include="yaJellyToolScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaStage01.h">
+      <Filter>Engine\Scene\MapSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGround.h">
+      <Filter>Engine\GameObject\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRunEffect.h">
+      <Filter>Engine\GameObject\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +507,15 @@
     </ClCompile>
     <ClCompile Include="yaPanel.cpp">
       <Filter>Engine\GameObject\UI\ex</Filter>
+    </ClCompile>
+    <ClCompile Include="yaJellyToolScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaStage01.cpp">
+      <Filter>Engine\Scene\MapSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRunEffect.cpp">
+      <Filter>Engine\GameObject\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

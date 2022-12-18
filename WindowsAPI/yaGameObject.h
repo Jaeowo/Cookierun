@@ -32,6 +32,9 @@ namespace ya
 		bool IsDeath() { return mDead; }
 		void SetDeathTime(float time);
 
+		float GetSpeed() { return mSpeed; }
+		void SetSpeeed(float Speed) { mSpeed = Speed; }
+
 		void AddComponent(Component* component);
 		template <typename T>
 		__forceinline T* AddComponent()
@@ -58,7 +61,9 @@ namespace ya
 		}
 		void Translate(float speed);
 		void DeathLoop();
-		void Away(int Distance);
+
+		UINT mJellyType;
+
 
 	private:
 		std::vector<Component*> mComponents;
@@ -68,5 +73,7 @@ namespace ya
 		bool mIsCulling;
 		float mDeathTime;
 		bool mDeathTimeOn;
+		float mSpeed;
+
 	};
 }

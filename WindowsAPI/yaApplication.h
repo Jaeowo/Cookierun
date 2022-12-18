@@ -15,12 +15,14 @@ namespace ya
 
 		void Initialize(WindowData data);
 		void initializeAtlasWindow(WindowData data);
+		void initializeJellyAtlasWindow(WindowData data);
 		void Tick();
 
 		void SetMenuBar(bool power);
 
 		WindowData GetWindowData() { return mWindowData; }
 		WindowData GetAtlasWindowData() { return mAtlasWindowData; }
+		WindowData GetJellyAtlasWindowData() { return mJellyAtlasWindowData; }
 		HDC GetHdc() { return mWindowData.hdc; }
 		HPEN GetPen(ePenColor color) { return mPens[(UINT)color]; }
 		HBRUSH GetBrush(eBrushColor color) { return mBrushes[(UINT)color]; }
@@ -37,6 +39,7 @@ namespace ya
 	private:
 		WindowData mWindowData;
 		WindowData mAtlasWindowData;
+		WindowData mJellyAtlasWindowData;
 
 		HPEN mPens[(UINT)ePenColor::End];
 		HBRUSH mBrushes[(UINT)eBrushColor::End];

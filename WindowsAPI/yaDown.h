@@ -17,7 +17,8 @@ namespace ya
 		enum class eState
 		{
 			Run,
-			Down
+			Down,
+			Away,
 		};
 
 		virtual void Tick() override;

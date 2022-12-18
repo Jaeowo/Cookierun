@@ -148,6 +148,7 @@
     <ClInclude Include="yaHpBar.h" />
     <ClInclude Include="yaIceBear.h" />
     <ClInclude Include="yaJelly.h" />
+    <ClInclude Include="yaJellyToolScene.h" />
     <ClInclude Include="yaMagnet.h" />
     <ClInclude Include="yaPinkBear.h" />
     <ClInclude Include="yaRainbowBear.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="yaRope01.h" />
     <ClInclude Include="yaRope02.h" />
     <ClInclude Include="yaRun.h" />
+    <ClInclude Include="yaRunEffect.h" />
     <ClInclude Include="yaSilverCoin.h" />
     <ClInclude Include="yaSmallHp.h" />
     <ClInclude Include="yaSquirrel.h" />
@@ -193,6 +195,7 @@
     <ClInclude Include="yaScene.h" />
     <ClInclude Include="yaSceneManager.h" />
     <ClInclude Include="yaSoundManager.h" />
+    <ClInclude Include="yaStage01.h" />
     <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTilePalette.h" />
     <ClInclude Include="yaTime.h" />
@@ -220,6 +223,7 @@
     <ClCompile Include="yaHpBar.cpp" />
     <ClCompile Include="yaIceBear.cpp" />
     <ClCompile Include="yaJelly.cpp" />
+    <ClCompile Include="yaJellyToolScene.cpp" />
     <ClCompile Include="yaMagnet.cpp" />
     <ClCompile Include="yaPinkBear.cpp" />
     <ClCompile Include="yaRainbowBear.cpp" />
@@ -227,6 +231,7 @@
     <ClCompile Include="yaRope01.cpp" />
     <ClCompile Include="yaRope02.cpp" />
     <ClCompile Include="yaRun.cpp" />
+    <ClCompile Include="yaRunEffect.cpp" />
     <ClCompile Include="yaSilverCoin.cpp" />
     <ClCompile Include="yaSmallHp.cpp" />
     <ClCompile Include="yaSquirrel.cpp" />
@@ -258,6 +263,7 @@
     <ClCompile Include="yaScene.cpp" />
     <ClCompile Include="yaSceneManager.cpp" />
     <ClCompile Include="yaSoundManager.cpp" />
+    <ClCompile Include="yaStage01.cpp" />
     <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTilePalette.cpp" />
     <ClCompile Include="yaTime.cpp" />

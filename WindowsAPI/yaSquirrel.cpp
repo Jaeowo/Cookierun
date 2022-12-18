@@ -9,8 +9,9 @@
 namespace ya
 {
 	Squirrel::Squirrel()
+		:mState(eState::Trace)
 	{
-		SetPos({300.0f, 600.0f }); //플레이어 옆에 쫓아가도록 바꾸기
+		//플레이어 옆에 쫓아가도록 바꾸기
 
 
 		mAnimator = new Animator();
@@ -25,8 +26,8 @@ namespace ya
 		Collider* col = new Collider();
 		AddComponent(col);
 
+		//mPlayer = new Player();
 	
-
 	}
 	Squirrel::~Squirrel()
 	{
@@ -35,8 +36,30 @@ namespace ya
 	{
 		GameObject::Tick();
 		
-		//Vector2 Playerpos = mPlayer->GetPos();
-		//SetPos({ Playerpos.x - 100.0f, Playerpos.y });
+		switch (mState)
+		{
+		case ya::Squirrel::eState::Trace:
+		{
+			Vector2 PlayerPos = mPlayer->GetPos();
+			Vector2 Pos = this->GetPos();
+			Pos = PlayerPos;
+			this->SetPos({(PlayerPos.x - 100.0f), PlayerPos.y});
+			
+		}
+		break;
+		case ya::Squirrel::eState::Magnet:
+		{
+			
+		}
+		break;
+		case ya::Squirrel::eState::BonusTime:
+		{
+
+		}
+		break;
+		default:
+			break;
+		}
 		
 	}
 	void Squirrel::Render(HDC hdc)

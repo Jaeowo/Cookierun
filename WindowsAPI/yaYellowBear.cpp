@@ -4,7 +4,8 @@
 #include "yaImage.h"
 #include "yaPlayer.h"
 #include "yaEatingEffect.h"
-
+#include "yaApplication.h"
+#include "yaCamera.h"
 namespace ya
 {
 	YellowBear::YellowBear()
@@ -15,9 +16,13 @@ namespace ya
 			mImage = Resources::Load<Image>(L"YellowBear", L"..\\Resources\\Image\\Jelly\\YellowBear.bmp");
 		}
 		SetPos({ 1200, 500 });
-		Collider* col = new Collider();
-		col->SetScale(Vector2(60.0f, 60.0f));
-		AddComponent(col);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetScale(Vector2(60.0f, 60.0f));
+			AddComponent(col);
+		}
 	}
 	YellowBear::~YellowBear()
 	{
@@ -25,7 +30,9 @@ namespace ya
 	void YellowBear::Tick()
 	{
 		GameObject::Tick();
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 	}
 	void YellowBear::Render(HDC hdc)
 	{
@@ -36,6 +43,8 @@ namespace ya
 		Vector2 finalPos;
 		finalPos.x = (pos.x - mImage->GetWidth() * (scale.x / 2.0f));
 		finalPos.y = (pos.y - mImage->GetHeight() * (scale.y / 2.0f));
+
+		finalPos = Camera::CalculatePos(finalPos);
 
 		Vector2 rect;
 		rect.x = mImage->GetWidth() * scale.x;

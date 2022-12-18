@@ -6,12 +6,13 @@
 #include "yaInput.h"
 #include "yaCamera.h"
 #include <commdlg.h>
+#include "yaApplication.h"
 
 namespace ya
 {
 	TilePalette::TilePalette()
 	{
-		mImage 
+		mImage
 			= Resources::Load<Image>(L"Tile", L"..\\Resources\\Image\\Tile1.bmp");
 	}
 
@@ -25,17 +26,25 @@ namespace ya
 		{
 			if (GetFocus())
 			{
-				ya::Vector2  mousePos = ya::Input::GetMousePos();
-				ya::Vector2  cameraPos = ya::Camera::GetLookPos();
+				eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+				if (type == eSceneType::MapTool)
+				{
+					ya::Vector2  mousePos = ya::Input::GetMousePos();
+					ya::Vector2  cameraPos = ya::Camera::GetLookPos();
 
-				int y = (mousePos.y + cameraPos.y) / (TILE_SIZE_Y * TILE_SCALE);
-				int x = (mousePos.x + cameraPos.x) / (TILE_SIZE_X * TILE_SCALE);
+					int y = (mousePos.y + cameraPos.y) / (TILE_SIZE_Y * TILE_SCALE);
+					int x = (mousePos.x + cameraPos.x) / (TILE_SIZE_X * TILE_SCALE);
 
-				ya::Scene* scene = ya::SceneManager::GetPlayScene();
-				ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
-				UINT index = toolScene->GetTileIndex();
+					ya::Scene* scene = ya::SceneManager::GetPlayScene();
+					ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
+					UINT index = toolScene->GetTileIndex();
 
-				CrateTile(index, Vector2(x, y));
+					CrateTile(index, Vector2(x, y));
+				}
+				else if (type == eSceneType::JellyTool)
+				{
+					int a = 0;
+				}
 			}
 		}
 	}
@@ -50,7 +59,7 @@ namespace ya
 		TileID key;
 		key.left = indexPos.x;
 		key.right = indexPos.y;
-		
+
 		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.find(key.ID);
 		if (iter != mTiles.end())
 		{
@@ -98,7 +107,7 @@ namespace ya
 			return;
 
 		std::unordered_map<UINT64, Tile*>::iterator iter = mTiles.begin();
-		for ( ; iter != mTiles.end() ; ++iter)
+		for (; iter != mTiles.end(); ++iter)
 		{
 			int tileIndex = (*iter).second->GetIndex();
 			fwrite(&tileIndex, sizeof(int), 1, pFile);

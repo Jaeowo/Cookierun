@@ -16,6 +16,10 @@ namespace ya
 		{
 			return pos - mDistance;
 		}
+		static Vector2 CalculateToolPos(Vector2 pos)
+		{
+			return pos + mDistance;
+		}
 		static void SetTarget(GameObject* gameObj) { mTarget = gameObj; }
 		static void SetCameraEffect(eCameraEffect effect) { mEffect = effect; }
 

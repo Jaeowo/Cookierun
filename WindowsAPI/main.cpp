@@ -18,6 +18,7 @@ ATOM                MyRegisterClass(HINSTANCE hInstance, WNDPROC wndProc, LPCWST
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK    AtlasWndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK    JellyAtlasWndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 
@@ -57,6 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MyRegisterClass(hInstance, WndProc, szWindowClass);
     MyRegisterClass(hInstance, AtlasWndProc, L"AtlasWindow");
+    MyRegisterClass(hInstance, JellyAtlasWndProc, L"JellyAtlasWindow");
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance(hInstance, nCmdShow))
@@ -178,14 +180,28 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     ya::Application::GetInstance().Initialize(windowData);
 
     eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
-    if (type != eSceneType::Tool)
-        return TRUE;
 
-    WindowData atlasWindowData;
-    hWnd = CreateWindowW(L"AtlasWindow", szTitle, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-    atlasWindowData.hWnd = hWnd;
-    ya::Application::GetInstance().initializeAtlasWindow(atlasWindowData);
+    if (type == eSceneType::MapTool)
+    {
+        WindowData atlasWindowData;
+        hWnd = CreateWindowW(L"AtlasWindow", szTitle, WS_OVERLAPPEDWINDOW,
+            CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+        atlasWindowData.hWnd = hWnd;
+        ya::Application::GetInstance().initializeAtlasWindow(atlasWindowData);
+    }
+
+    //if (type == eSceneType::JellyTool)
+    //{
+    //    WindowData jellyAtlasWindowData;
+    //    hWnd = CreateWindowW(L"JellyAtlasWindow", szTitle, WS_OVERLAPPEDWINDOW,
+    //        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+    //    jellyAtlasWindowData.hWnd = hWnd;
+    //    ya::Application::GetInstance().initializeJellyAtlasWindow(jellyAtlasWindowData);
+    //}
+
+    
+
+    
 
     return TRUE;
 }

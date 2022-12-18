@@ -10,7 +10,8 @@ enum class eSceneType
 	Title,
 	Play,
 	End,
-	Tool,
+	MapTool,
+	JellyTool,
 	Max,
 };
 
@@ -94,12 +95,14 @@ union ColliderID
 };
 typedef ColliderID TileID;
 
-//#define TILE_SIZE 124
-#define TILE_SIZE_X 124
-#define TILE_SIZE_Y 140
+#define TILE_SIZE 50
+#define TILE_SIZE_X 50
+#define TILE_SIZE_Y 50
 #define TILE_SCALE 1
 
 #define TILE_LINE_X 1
 #define TILE_LINE_Y 1
+
+#define GREED_SIZE 48
 
 

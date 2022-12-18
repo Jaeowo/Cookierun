@@ -33,6 +33,12 @@ namespace ya
 		mAtlasWindowData.hdc = GetDC(data.hWnd);
 	}
 
+	void Application::initializeJellyAtlasWindow(WindowData data)
+	{
+		mJellyAtlasWindowData = data;
+		mJellyAtlasWindowData.hdc = GetDC(data.hWnd);
+	}
+
 	void Application::Tick()
 	{
 		Time::Tick();
@@ -89,6 +95,8 @@ namespace ya
 	Application::Application()
 	{
 		mWindowData.clear();
+		mAtlasWindowData.clear();
+		mJellyAtlasWindowData.clear();
 	}
 
 	Application::~Application()

@@ -3,6 +3,8 @@
 #include "yaCollider.h"
 #include "yaImage.h"
 #include "yaPlayer.h"
+#include "yaApplication.h"
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -14,9 +16,13 @@ namespace ya
 			mImage = Resources::Load<Image>(L"IceBear", L"..\\Resources\\Image\\Jelly\\IceBear.bmp");
 		}
 		SetPos({ 1100, 500 });
-		Collider* col = new Collider();
-		col->SetScale(Vector2(60.0f, 60.0f));
-		AddComponent(col);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetScale(Vector2(60.0f, 60.0f));
+			AddComponent(col);
+		}
 	}
 	IceBear::~IceBear()
 	{
@@ -24,7 +30,9 @@ namespace ya
 	void IceBear::Tick()
 	{
 		GameObject::Tick();
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 	}
 	void IceBear::Render(HDC hdc)
 	{
@@ -34,6 +42,8 @@ namespace ya
 		Vector2 finalPos;
 		finalPos.x = (pos.x - mImage->GetWidth() * (scale.x / 2.0f));
 		finalPos.y = (pos.y - mImage->GetHeight() * (scale.y / 2.0f));
+
+		finalPos = Camera::CalculatePos(finalPos);
 
 		Vector2 rect;
 		rect.x = mImage->GetWidth() * scale.x;

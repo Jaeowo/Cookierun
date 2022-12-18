@@ -34,6 +34,8 @@
 #include "yaBigBear.h"
 #include "yaHpBar.h"
 #include "yaUIManager.h"
+#include "yaJellyToolScene.h"
+#include "yaStage01.h"
 
 namespace ya
 {
@@ -71,12 +73,14 @@ namespace ya
 		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 
 		//장애물
-		Fire01* fire01 = ya::object::Instantiate<Fire01>(eColliderLayer::Obstruction);
+		//Fire01* fire01 = ya::object::Instantiate<Fire01>(eColliderLayer::Obstruction);
 		//Fire02* fire02 = ya::object::Instantiate<Fire02>(eColliderLayer::Obstruction);
-		Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
-		Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);
-		Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);
-		Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
+		//Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
+		//Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);
+		//Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);
+		//Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
+		Stage01* stage01 = new Stage01();
+		stage01->ObstructionSetting();
 
 		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
 		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
@@ -84,8 +88,8 @@ namespace ya
 		groundtile->SetCount(15);
 
 		//아이템
-		Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
-		//Run* run = ya::object::Instantiate<Run>(eColliderLayer::Jelly);
+		//Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
+		Run* run = ya::object::Instantiate<Run>(eColliderLayer::Jelly);
 		//BigHp* bighp = ya::object::Instantiate<BigHp>(eColliderLayer::Jelly);
 		//SmallHp* smallhp = ya::object::Instantiate<SmallHp>(eColliderLayer::Jelly);
 		//ChangeBear* changebear = ya::object::Instantiate<ChangeBear>(eColliderLayer::Jelly);
@@ -108,6 +112,10 @@ namespace ya
 
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
 		hpbar->SetTarget(player);
+
+		ya::Scene* scene = ya::SceneManager::GetScene(eSceneType::JellyTool);
+		ya::JellyToolScene* jellytoolScene = dynamic_cast<ya::JellyToolScene*>(scene);
+		jellytoolScene->Load(L"..\\WindowsAPI\\Test1");
 
 
 	}
@@ -133,10 +141,8 @@ namespace ya
 		int strLen = wcsnlen_s(szFloat, 50);
 		TextOut(hdc, 10, 30, szFloat, strLen);
 
+	
 
-	/*	ya::Scene* scene = ya::SceneManager::GetScene(eSceneType::Tool);
-		ya::ToolScene* toolScene = dynamic_cast<ya::ToolScene*>(scene);
-		toolScene->LoadTilePalette(L"..\\Resources\\TileSaveFiles\\Test2");*/
 	}
 
 	void PlayScene::Enter()

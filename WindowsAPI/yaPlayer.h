@@ -74,6 +74,8 @@ namespace ya
 		void RunJump();
 		void RunSlide();
 
+		void Death();
+
 		void SetHp(int hp) { mHp = hp; }
 		float GetHp() { return mHp; }
 
@@ -91,6 +93,7 @@ namespace ya
 		int mJumpCount;
 		float mHp;
 		float mSpeed;
+		float mTime;
 
 	//=======
 	public:
@@ -99,6 +102,9 @@ namespace ya
 
 		void SetItemTime(float ItemTime) { mItemTime = ItemTime; }
 		float GetItemTime() { return mItemTime; }
+
+		void SetDistance(int Distance) { mDistance = Distance; }
+		int GetDistance() { return mDistance; }
 
 	private:
 		eState mState;
@@ -109,6 +115,7 @@ namespace ya
 		int mScore;
 		float mItemTime;
 		float mMujukTime;
+		int mDistance;
 		
 	};
 

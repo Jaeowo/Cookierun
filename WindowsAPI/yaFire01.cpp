@@ -3,12 +3,13 @@
 #include "yaCollider.h"
 #include "yaPlayer.h"
 #include "yaTime.h"
+#include "yaApplication.h"
 
 namespace ya
 {
     Fire01::Fire01()
         :mSpeed (-300.0f)
-        ,mTime (0.0f)
+        ,mState (eState::None)
     {
         SetPos({ 2000.0f, 650.0f });
         mAnimator = new Animator();
@@ -20,8 +21,13 @@ namespace ya
 
         AddComponent(mAnimator);
 
-        Collider* col = new Collider();
-        AddComponent(col);
+        eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+        if (type != eSceneType::JellyTool)
+        {
+            Collider* col = new Collider();
+            AddComponent(col);
+        }
+
     }
     Fire01::~Fire01()
     {
@@ -30,7 +36,32 @@ namespace ya
     {
     
         GameObject::Tick();
-        Translate(mSpeed);
+        eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+        if (type != eSceneType::JellyTool)
+            Translate(mSpeed);
+
+       
+        switch (mState)
+        {
+        case ya::Fire01::eState::None:
+        {
+
+        }
+        break;
+        case ya::Fire01::eState::Away:
+        {
+            Vector2 pos = this->GetPos();
+            //위에 매달린경우 -로 값 바꾸기
+            pos.x += (400 * Time::DeltaTime());
+            pos.y += (400 * Time::DeltaTime());
+            this->SetPos(pos);
+        }
+        break;
+        default:
+            break;
+        }
+      
+
     }
     void Fire01::Render(HDC hdc)
     {
@@ -45,8 +76,7 @@ namespace ya
             || playerObj->GetState() == Player::eState::BiggestSlide
             || playerObj->GetState() == Player::eState::Biggest)
         {
-
-            Away(20);
+            mState = eState::Away;
           
         }
         else if (playerObj->GetState() == Player::eState::Mujuk

@@ -21,11 +21,17 @@ namespace ya
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
+		enum class eState
+		{
+			None,
+			Away,
+		};
+
 	private:
 		Image* mImage;
 		Animator* mAnimator;
 		float mSpeed;
-
+		eState mState;
 	};
 }
 

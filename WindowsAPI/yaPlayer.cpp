@@ -24,6 +24,7 @@ namespace ya
 		, mScore (0)
 		, mItemTime (0.0f)
 		, mMujukTime(0.0f)
+		, mTime (0.0f)
 	{
 	
 		AddComponent<Rigidbody>();
@@ -54,6 +55,9 @@ namespace ya
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Run"
 			, L"RunC", Vector2(0, 0), 0.13f);
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\HPDie"
+			, L"HPDieC", Vector2(0, 0), 0.13f);
 
 		mAnimator->GetCompleteEvent(L"LandingC") = std::bind(&Player::LandingComplete, this);
 		mAnimator->GetCompleteEvent(L"AttackC") = std::bind(&Player::LandingComplete, this);
@@ -152,7 +156,7 @@ namespace ya
 		break;
 		case ya::Player::eState::Death:
 		{
-
+			Death();
 		}
 		break;
 		default:
@@ -252,12 +256,18 @@ namespace ya
 			mState = eState::Walk;
 		}
 
+		if (mHp <= 0)
+		{
+			mState = eState::Death;
+		}
+
 	}
 
 	void Player::Attack()
 	{
 		//Translate(mSpeed);
 		//mAnimator->Play(L"AttackC", true);
+		
 	}
 
 	void Player::Biggest()
@@ -373,6 +383,8 @@ namespace ya
 		SetPos({ 400.0f, 500.0f });
 		mSpeed = -300.0f;
 		mMujukTime += Time::DeltaTime();
+
+
 
 		if (mMujukTime >= 2.0f)
 		{
@@ -570,6 +582,19 @@ namespace ya
 		else if (KEY_UP(eKeyCode::S))
 		{
 			mState = eState::Run;
+		}
+	}
+
+	void Player::Death()
+	{
+		mAnimator->Play(L"HPDieC", false);
+		
+		mTime += Time::DeltaTime();
+
+		if (mItemTime >= 4.0f)
+		{
+			SceneManager* scenemanager = new SceneManager;
+			scenemanager->ChangeScene(eSceneType::End);
 		}
 	}
 

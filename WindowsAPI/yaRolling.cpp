@@ -4,15 +4,15 @@
 #include "yaPlayer.h"
 #include "yaRigidbody.h"
 #include "yaTime.h"
+#include "yaApplication.h"
 
 namespace ya
 {
 	Rolling::Rolling()
 		:mSpeed(-300.0f)
 		,mLength(0)
+		, mState(eState::None)
 	{
-		Vector2 RollingPos = { 2600.0f, 650.0f };
-		SetPos(RollingPos);
 
 		mAnimator = new Animator();
 
@@ -23,9 +23,12 @@ namespace ya
 
 		AddComponent(mAnimator);
 
-		Collider* col = new Collider();
-		AddComponent(col);
-		
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			AddComponent(col);
+		}
 
 	}
 	Rolling::~Rolling()
@@ -33,7 +36,9 @@ namespace ya
 	}
 	void Rolling::Tick()
 	{
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 
 		bool IsGround = false;
 
@@ -45,7 +50,25 @@ namespace ya
 			mLength = 0;
 		}
 
-		
+		switch (mState)
+		{
+		case ya::Rolling::eState::None:
+		{
+
+		}
+		break;
+		case ya::Rolling::eState::Away:
+		{
+			Vector2 pos = this->GetPos();
+			//위에 매달린경우 -로 값 바꾸기
+			pos.x += (400 * Time::DeltaTime());
+			pos.y += (400 * Time::DeltaTime());
+			this->SetPos(pos);
+		}
+		break;
+		default:
+			break;
+		}
 
 		GameObject::Tick();
 		
@@ -61,6 +84,7 @@ namespace ya
 			|| playerObj->GetState() == Player::eState::BiggestSlide
 			|| playerObj->GetState() == Player::eState::Biggest)
 		{
+			mState = eState::Away;
 
 		}
 		else if (playerObj->GetState() == Player::eState::Mujuk
