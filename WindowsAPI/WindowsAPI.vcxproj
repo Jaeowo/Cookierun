@@ -46,7 +46,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableUnitySupport>false</EnableUnitySupport>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -196,6 +196,7 @@
     <ClInclude Include="yaSceneManager.h" />
     <ClInclude Include="yaSoundManager.h" />
     <ClInclude Include="yaStage01.h" />
+    <ClInclude Include="yaStage02.h" />
     <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTilePalette.h" />
     <ClInclude Include="yaTime.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="yaSceneManager.cpp" />
     <ClCompile Include="yaSoundManager.cpp" />
     <ClCompile Include="yaStage01.cpp" />
+    <ClCompile Include="yaStage02.cpp" />
     <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTilePalette.cpp" />
     <ClCompile Include="yaTime.cpp" />

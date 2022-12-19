@@ -46,6 +46,8 @@ namespace ya
 
 		playerObj->SetItemTime(0.0f);
 
+		playerObj->GetComponent<Animator>()->Play(L"RunC", true);
+
 		this->Death();
 
 

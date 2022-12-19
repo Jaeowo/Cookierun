@@ -304,6 +304,9 @@
     <ClInclude Include="yaRunEffect.h">
       <Filter>Engine\GameObject\Item</Filter>
     </ClInclude>
+    <ClInclude Include="yaStage02.h">
+      <Filter>Engine\Scene\MapSetting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -516,6 +519,9 @@
     </ClCompile>
     <ClCompile Include="yaRunEffect.cpp">
       <Filter>Engine\GameObject\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaStage02.cpp">
+      <Filter>Engine\Scene\MapSetting</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

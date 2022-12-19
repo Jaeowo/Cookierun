@@ -20,7 +20,7 @@
 #include "yaObject.h"
 
 #include "yaStage01.h"
-
+#include "yaStage02.h"
 
 //#include "framework.h"
 //#include "WindowsAPI.h"
@@ -29,8 +29,11 @@ namespace ya
 {
 	JellyToolScene::JellyToolScene()
 	{
-		Stage01* stage01 = new Stage01();
-		stage01->ObstructionSetting();
+		//Stage01* stage01 = new Stage01();
+		//stage01->ObstructionSetting();
+
+		Stage02* stage02 = new Stage02();
+		stage02->ObstructionSetting();
 	}
 
 	JellyToolScene::~JellyToolScene()

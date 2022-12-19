@@ -7,6 +7,8 @@
 #include "yaRope02.h"
 #include "yaObject.h"
 #include "yaPlayer.h"
+#include "yaJellyToolScene.h"
+
 
 namespace ya
 {
@@ -33,6 +35,10 @@ namespace ya
 		fire022->SetPos(Vector2(4300.0f, 650.0f));
 		Fire02* fire023 = ya::object::Instantiate<Fire02>(eColliderLayer::Obstruction);
 		fire023->SetPos(Vector2(4400.0f, 650.0f));
+
+		ya::Scene* scene = ya::SceneManager::GetScene(eSceneType::JellyTool);
+		ya::JellyToolScene* jellytoolScene = dynamic_cast<ya::JellyToolScene*>(scene);
+		jellytoolScene->Load(L"..\\WindowsAPI\\Test1");
 
 	/*	Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
 		Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);

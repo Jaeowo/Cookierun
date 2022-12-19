@@ -4,6 +4,7 @@
 #include "yaPlayer.h"
 #include "resource.h"
 #include "yaTime.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -31,8 +32,10 @@ namespace ya
 	}
 	void Biggest::Tick()
 	{
-		Translate(mSpeed);
 		GameObject::Tick();
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 	}
 	void Biggest::Render(HDC hdc)
 	{

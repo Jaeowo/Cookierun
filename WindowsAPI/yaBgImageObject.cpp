@@ -67,11 +67,5 @@ namespace ya
 		mImage = Resources::Load<Image>(key, path);
 	}
 
-	//배경 두개가 다른 속도로 움직이게 만들고 싶다...
-	//void BgImageObject::BgMoveX(int XMove)
-	//{
-	//	XMove = GetXMove();
-	//	XMove += 10 * Time::DeltaTime();
-	//	SetXMove(XMove);
-	//}
+
 }

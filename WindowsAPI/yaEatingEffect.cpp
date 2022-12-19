@@ -4,6 +4,7 @@
 #include "yaImage.h"
 #include "yaPlayer.h"
 #include "yaTime.h"
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -34,6 +35,8 @@ namespace ya
 		finalPos.x = (pos.x - mImage->GetWidth() * (scale.x / 2.0f));
 		finalPos.y = (pos.y - mImage->GetHeight() * (scale.y / 2.0f));
 
+		finalPos = Camera::CalculatePos(finalPos);
+
 		Vector2 rect;
 		rect.x = mImage->GetWidth() * scale.x;
 		rect.y = mImage->GetHeight() * scale.y;
@@ -43,14 +46,12 @@ namespace ya
 		func.BlendOp = AC_SRC_OVER;
 		func.BlendFlags = 0;
 		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = mAlphaValue; // 0 - 225
+		func.SourceConstantAlpha = 225; // 0 - 225
 
 		AlphaBlend(hdc, finalPos.x, finalPos.y, rect.x, rect.y,
 			mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()
 			, func);
 
-		const float blinkspeed = 100.0f;
-		mAlphaValue -= (blinkspeed * Time::DeltaTime());
 		GameObject::Render(hdc);
 
 		/*

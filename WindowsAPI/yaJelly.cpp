@@ -5,7 +5,8 @@
 #include "yaPlayer.h"
 #include "yaApplication.h"
 #include "yaCamera.h"
-
+#include "yaEatingEffect.h"
+#include "yaObject.h"
 namespace ya
 {
 	Jelly::Jelly()
@@ -27,6 +28,7 @@ namespace ya
 	}
 	Jelly::~Jelly()
 	{
+		
 	}
 	void Jelly::Tick()
 	{
@@ -67,6 +69,7 @@ namespace ya
 	void Jelly::OnCollisionEnter(Collider* other)
 	{
 		//점수추가
+		
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		int Score = playerObj->GetScore();
 		Score += 1000;

@@ -84,6 +84,12 @@ namespace ya
                 || playerObj->GetState() == Player::eState::MujukSlide)
         {
         }
+        else if (playerObj->GetState() == Player::eState::Run
+            || playerObj->GetState() == Player::eState::RunJump
+            || playerObj->GetState() == Player::eState::RunSlide)
+        {
+            mState = eState::Away;
+        }
         else
         {
             playerObj->SetState(Player::eState::Attack);

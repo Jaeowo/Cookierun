@@ -47,7 +47,7 @@ namespace ya
 		if (playerObj->GetState() == Player::eState::RunJump)
 		{
 			playerObj->SetState(Player::eState::Run);
-			playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
+			playerObj->GetComponent<Animator>()->Play(L"RunC", true);
 		}
 
 		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);

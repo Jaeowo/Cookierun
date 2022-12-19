@@ -13,6 +13,7 @@
 #include "yaSquirrel.h"
 #include "yaObject.h"
 #include "yaCollisionManager.h"
+#include "yaRunEffect.h"
 
 
 namespace ya
@@ -25,6 +26,7 @@ namespace ya
 		, mItemTime (0.0f)
 		, mMujukTime(0.0f)
 		, mTime (0.0f)
+		, mDistance (0)
 	{
 	
 		AddComponent<Rigidbody>();
@@ -32,6 +34,7 @@ namespace ya
 		SetName(L"Player");
 		SetPos({ 400.0f, 625.0f });
 		SetScale({ 1.0f, 1.0f });
+		PlayerPos = GetPos();
 
 		mAnimator = new Animator();
 
@@ -62,6 +65,7 @@ namespace ya
 		mAnimator->GetCompleteEvent(L"LandingC") = std::bind(&Player::LandingComplete, this);
 		mAnimator->GetCompleteEvent(L"AttackC") = std::bind(&Player::LandingComplete, this);
 		
+
 		AddComponent(mAnimator);
 		
 		Camera::SetTarget(this);
@@ -86,6 +90,9 @@ namespace ya
 		GameObject::Tick();
 
 		mHp -= Time::DeltaTime();
+
+		//mDistance = Speed * Time::DeltaTime();
+		//speed를 통일해주자..
 
 		switch (mState)
 		{
@@ -127,6 +134,7 @@ namespace ya
 		case ya::Player::eState::Run:
 		{
 			Run();
+
 		}
 		break;
 		case ya::Player::eState::RunJump:
@@ -486,16 +494,20 @@ namespace ya
 
 	void Player::Run()
 	{
-
-		mAnimator->Play(L"RunC", true);
-
+	
 		mSpeed = -600.0f;
 
 		mItemTime += Time::DeltaTime();
+		
+
+		RunEffect* runeffect = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
+		runeffect->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });
+		
 
 		if (mItemTime >= 3.0f)
 		{
 			SetState(Player::eState::Mujuk);
+			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
 		}
 
 		if (KEY_DOWN(eKeyCode::W))
@@ -506,15 +518,19 @@ namespace ya
 		{
 			mState = eState::RunSlide;
 		}
+
+	
 	}
 
 	void Player::RunJump()
 	{
-		mItemTime += Time::DeltaTime();
+		RunEffect* runeffect2 = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
+		runeffect2->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });
 
 		if (mItemTime >= 3.0f)
 		{
 			SetState(Player::eState::Mujuk);
+			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
 		}
 		int JumpCount = GetJumpCount();
 		Rigidbody* rigidbody = GetComponent<Rigidbody>();
@@ -542,7 +558,7 @@ namespace ya
 
 			bool IsGround = false;
 			IsGround = rigidbody->GetGround();
-			mAnimator->Play(L"JumpC", true);
+			mAnimator->Play(L"RunC", true);
 
 
 		}
@@ -559,7 +575,7 @@ namespace ya
 
 				JumpCount = 2;
 				SetJumpCount(JumpCount);
-				mAnimator->Play(L"DoubleJumpC", false);;
+				mAnimator->Play(L"DoubleJumpC", true);;
 			}
 
 		}
@@ -567,11 +583,14 @@ namespace ya
 
 	void Player::RunSlide()
 	{
-		mItemTime += Time::DeltaTime();
 
+		mItemTime += Time::DeltaTime();
+		RunEffect* runeffect = new RunEffect;
+		runeffect->SetPos({ (PlayerPos.x - 100.0f), PlayerPos.y });
 		if (mItemTime >= 3.0f)
 		{
 			SetState(Player::eState::Mujuk);
+			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
 		}
 		if (KEY_PREESE(eKeyCode::S))
 		{
@@ -620,5 +639,7 @@ namespace ya
 		mAnimator->Play(L"WalkC", true);
 		mState = eState::Walk;
 	}
+
+
 
 }

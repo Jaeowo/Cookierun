@@ -8,11 +8,7 @@
 #include "yaGround.h"
 #include "yaCollisionManager.h"
 #include "yaSquirrel.h"
-#include "yaFire01.h"
-#include "yaFire02.h"
-#include "yaDown.h"
-#include "yaRolling.h"
-#include "yaBiggest.h"
+
 #include "yaGroundTile.h"
 #include "yaJelly.h"
 #include "yaPinkBear.h"
@@ -36,6 +32,7 @@
 #include "yaUIManager.h"
 #include "yaJellyToolScene.h"
 #include "yaStage01.h"
+#include "yaStage02.h"
 
 namespace ya
 {
@@ -79,8 +76,12 @@ namespace ya
 		//Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);
 		//Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);
 		//Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
-		Stage01* stage01 = new Stage01();
-		stage01->ObstructionSetting();
+		
+		
+		//Stage01* stage01 = new Stage01();
+		//stage01->ObstructionSetting();
+		Stage02* stage02 = new Stage02();
+		stage02->ObstructionSetting();
 
 		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
 		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
@@ -89,7 +90,7 @@ namespace ya
 
 		//아이템
 		//Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
-		Run* run = ya::object::Instantiate<Run>(eColliderLayer::Jelly);
+		//Run* run = ya::object::Instantiate<Run>(eColliderLayer::Jelly);
 		//BigHp* bighp = ya::object::Instantiate<BigHp>(eColliderLayer::Jelly);
 		//SmallHp* smallhp = ya::object::Instantiate<SmallHp>(eColliderLayer::Jelly);
 		//ChangeBear* changebear = ya::object::Instantiate<ChangeBear>(eColliderLayer::Jelly);
@@ -113,9 +114,7 @@ namespace ya
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
 		hpbar->SetTarget(player);
 
-		ya::Scene* scene = ya::SceneManager::GetScene(eSceneType::JellyTool);
-		ya::JellyToolScene* jellytoolScene = dynamic_cast<ya::JellyToolScene*>(scene);
-		jellytoolScene->Load(L"..\\WindowsAPI\\Test1");
+		
 
 
 	}

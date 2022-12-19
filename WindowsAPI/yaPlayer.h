@@ -86,6 +86,7 @@ namespace ya
 		eState GetState() { return mState; }
 
 		void LandingComplete();
+	
 
 		float GetSpeed() { return mSpeed; }
 
@@ -116,7 +117,8 @@ namespace ya
 		float mItemTime;
 		float mMujukTime;
 		int mDistance;
-		
+		Vector2 PlayerPos;
+	
 	};
 
 }

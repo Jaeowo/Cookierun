@@ -26,7 +26,7 @@ namespace ya
 		Collider* col = new Collider();
 		AddComponent(col);
 
-		//mPlayer = new Player();
+		mPlayer = new Player();
 	
 	}
 	Squirrel::~Squirrel()
