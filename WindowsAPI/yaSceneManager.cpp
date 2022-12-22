@@ -7,6 +7,7 @@
 #include "yaObject.h"
 #include "yaCollisionManager.h"
 #include "yaJellyToolScene.h"
+#include "yaSkillScene.h"
 
 namespace ya
 {
@@ -40,7 +41,10 @@ namespace ya
 		mScenes[(UINT)eSceneType::MapTool]->Initialize();
 		mScenes[(UINT)eSceneType::JellyTool]->Initialize();
 
-		ChangeScene(eSceneType::Play);
+		mScenes[(UINT)eSceneType::Skill] = new SkillScene();
+		mScenes[(UINT)eSceneType::Skill]->Initialize();
+
+		ChangeScene(eSceneType::Skill);
 		// 업캐스팅
 		// 다운캐스팅
 

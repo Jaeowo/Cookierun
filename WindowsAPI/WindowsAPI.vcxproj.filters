@@ -86,6 +86,18 @@
     <Filter Include="Engine\GameObject\UI\ex">
       <UniqueIdentifier>{cfac73f1-fbd0-4bfc-a690-b4910f2ac0cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObject\Cookie\LilySkill">
+      <UniqueIdentifier>{fece0954-b4c0-4874-8afd-4f113c245140}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Cookie\LilySkill\SkillJelly">
+      <UniqueIdentifier>{c9f835f1-309a-47f3-93d5-cd4ac49d0903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Cookie\LilySkill\Flower">
+      <UniqueIdentifier>{a695db57-bd11-4e27-adc9-a71de7bd358b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Cookie\LilySkill\Leaf">
+      <UniqueIdentifier>{29a79076-431d-49fa-9c04-67a4cfa49687}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -298,14 +310,62 @@
     <ClInclude Include="yaStage01.h">
       <Filter>Engine\Scene\MapSetting</Filter>
     </ClInclude>
-    <ClInclude Include="yaGround.h">
-      <Filter>Engine\GameObject\Item</Filter>
-    </ClInclude>
     <ClInclude Include="yaRunEffect.h">
       <Filter>Engine\GameObject\Item</Filter>
     </ClInclude>
     <ClInclude Include="yaStage02.h">
       <Filter>Engine\Scene\MapSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillTile.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillJelly1.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillJelly2.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillJelly3.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillJelly4.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillJelly5.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillJelly6.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFlower1.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFlower2.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFlower3.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFlower4.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLeftLeaf.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRightLeaf.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClInclude>
+    <ClInclude Include="yastem.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLeafFlower.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGround.h">
+      <Filter>Engine\GameObject\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -522,6 +582,54 @@
     </ClCompile>
     <ClCompile Include="yaStage02.cpp">
       <Filter>Engine\Scene\MapSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillTile.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillJelly1.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillJelly2.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillJelly3.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillJelly4.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillJelly5.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillJelly6.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\SkillJelly</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFlower1.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFlower2.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFlower3.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFlower4.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLeftLeaf.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRightLeaf.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClCompile>
+    <ClCompile Include="yastem.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLeafFlower.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

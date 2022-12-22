@@ -12,6 +12,7 @@ enum class eSceneType
 	End,
 	MapTool,
 	JellyTool,
+	Skill,
 	Max,
 };
 

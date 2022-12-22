@@ -59,6 +59,10 @@ namespace ya
 		AddGameObject(Bg2, eColliderLayer::BackGround);
 		Bg2->SetSpeed(-9.0f);
 	
+
+		
+
+		//mImage = Resources::Load<Image>(L"Jelly", L"..\\Resources\\Image\\Jelly\\NormalJelly.bmp");
 		//Ä³¸¯ÅÍ
 		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
 

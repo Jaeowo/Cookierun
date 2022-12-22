@@ -8,9 +8,13 @@
 namespace ya
 {
 	Ground::Ground()
+		:mSpeed(-300.0f)
 	{
-		Collider* collider = AddComponent<Collider>();
-		collider->SetScale(Vector2(2000.0f, 100.0f)); 
+		//mColPos = (Vector2(8000.0f, 100.0f));
+
+		mCollider = new Collider();
+		AddComponent(mCollider);
+		
 
 	}
 	Ground::~Ground()
@@ -18,8 +22,9 @@ namespace ya
 	}
 	void Ground::Tick()
 	{
+		Translate(mSpeed);
 		GameObject::Tick();
-
+		mCollider->SetScale(mColPos);
 	}
 	void Ground::Render(HDC hdc)
 	{
@@ -67,5 +72,6 @@ namespace ya
 	void Ground::OnCollisionExit(Collider* other)
 	{
 	}
+
 
 }
