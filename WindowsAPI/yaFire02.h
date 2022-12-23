@@ -9,6 +9,7 @@ namespace ya
 		: public GameObject
 	{
 	public:
+		Fire02(Vector2 pos);
 		Fire02();
 		~Fire02();
 

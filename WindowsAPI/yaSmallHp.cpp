@@ -5,6 +5,27 @@
 
 namespace ya
 {
+	SmallHp::SmallHp(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		SetPos({ 1400.0f, 405.0f });
+		SetPos(pos);
+		mAnimator = new Animator();
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Item\\SmallHp"
+			, L"SmallHp", Vector2(0, 0), 0.25f);
+
+		mAnimator->Play(L"SmallHp", true);
+
+		AddComponent(mAnimator);
+
+		Collider* col = new Collider();
+		col->SetPos(pos);
+		col->SetScale(Vector2(70.0f, 70.0f));
+		AddComponent(col);
+
+	}
+
 	SmallHp::SmallHp()
 		:mSpeed(-300.0f)
 	{

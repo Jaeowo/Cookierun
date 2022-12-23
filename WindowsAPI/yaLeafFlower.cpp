@@ -12,6 +12,35 @@
 namespace ya
 {
 	
+	LeafFlower::LeafFlower(Vector2 pos)
+		:mSpeed(-300.0f)
+		, mState(eState::Wait)
+		, mCount(0)
+	{
+
+		mAnimator = new Animator();
+
+		//std::filesystem::path clear();
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\SkillData\\LeafFlower\\Wait"
+			, L"WaitL", Vector2(0, 0), 0.25f);
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\SkillData\\LeafFlower\\Bloom"
+			, L"BloomL", Vector2(0, 0), 0.15f);
+
+		mAnimator->Play(L"WaitL", false);
+
+		AddComponent(mAnimator);
+		SetPos(pos);
+		SetScale({ 0.5f, 0.5f });
+		/*	Collider* col = new Collider();
+			AddComponent(col);*/
+		mCollider = new Collider();
+		mCollider->SetPos(pos);
+		AddComponent(mCollider);
+		mCollider->SetScale(Vector2(150.0f, 200.0f));
+
+	}
+
 	LeafFlower::LeafFlower()
 		:mSpeed(-300.0f)
 		,mState(eState::Wait)

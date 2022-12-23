@@ -44,7 +44,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::Skill] = new SkillScene();
 		mScenes[(UINT)eSceneType::Skill]->Initialize();
 
-		ChangeScene(eSceneType::Skill);
+		ChangeScene(eSceneType::Logo);
 		// 업캐스팅
 		// 다운캐스팅
 

@@ -8,6 +8,25 @@
 
 namespace ya
 {
+	IceBear::IceBear(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Load<Image>(L"IceBear", L"..\\Resources\\Image\\Jelly\\IceBear.bmp");
+		}
+		SetPos({ 1100, 500 });
+		SetPos(pos);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetPos(pos);
+			col->SetScale(Vector2(60.0f, 60.0f));
+			AddComponent(col);
+		}
+	}
+
 	IceBear::IceBear()
 		:mSpeed(-300.0f)
 	{

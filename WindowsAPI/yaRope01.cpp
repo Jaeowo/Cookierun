@@ -7,6 +7,32 @@
 
 namespace ya
 {
+	Rope01::Rope01(Vector2 pos)
+		: mSpeed(-300.0f)
+		, mState(eState::None)
+	{
+		SetPos({ 3400.0f, 270.0f });
+		SetPos(pos);
+		mAnimator = new Animator();
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Rope01\\Wait"
+			, L"Rope01Wait", Vector2(0, 0), 0.15f);
+
+		mAnimator->Play(L"Rope01Wait", true);
+
+		AddComponent(mAnimator);
+
+
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetPos(pos);
+			col->SetScale(Vector2(100.0f, 700.0f));
+			AddComponent(col);
+		}
+	}
+
 	Rope01::Rope01()
 		: mSpeed(-300.0f)
 		, mState(eState::None)

@@ -11,6 +11,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		Run(Vector2 pos);
 		Run();
 		~Run();
 

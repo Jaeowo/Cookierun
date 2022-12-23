@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		RightLeaf(Vector2 pos);
 		RightLeaf();
 		~RightLeaf();
 

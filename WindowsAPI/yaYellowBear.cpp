@@ -8,6 +8,25 @@
 #include "yaCamera.h"
 namespace ya
 {
+	YellowBear::YellowBear(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Load<Image>(L"YellowBear", L"..\\Resources\\Image\\Jelly\\YellowBear.bmp");
+		}
+		SetPos(pos);
+		SetPos({ 1200, 500 });
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetPos(pos);
+			col->SetScale(Vector2(60.0f, 60.0f));
+			AddComponent(col);
+		}
+	}
+
 	YellowBear::YellowBear()
 		:mSpeed(-300.0f)
 	{

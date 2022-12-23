@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		GoBonusTime(Vector2 pos);
 		GoBonusTime();
 		~GoBonusTime();
 

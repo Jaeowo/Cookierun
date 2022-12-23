@@ -14,6 +14,9 @@ namespace ya
 	{
 		mScale = Vector2(100.0f, 100.0f);
 
+		//GameObject* owner = GetOwner();
+
+		//mPos = owner->GetPos() + mOffset;
 	}
 
 	Collider::~Collider()

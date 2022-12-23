@@ -2,6 +2,7 @@
 #include "yaImage.h"
 #include "yaResources.h"
 #include "yaPlayer.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -12,6 +13,12 @@ namespace ya
 		{
 			mImage = Resources::Load<Image>(L"HpBar", L"..\\Resources\\Image\\UI\\HpBar.bmp");
 		}
+
+	/*	eSceneType stype = ya::Application::GetInstance().GetPlaySceneType();
+		if (stype != eSceneType::Play)
+		{
+			return;
+		}*/
 	}
 	HpBar::~HpBar()
 	{

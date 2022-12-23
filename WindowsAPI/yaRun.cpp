@@ -5,6 +5,28 @@
 
 namespace ya
 {
+	Run::Run(Vector2 pos)
+		:mSpeed(-300.0f)
+		, mTime(0.0f)
+	{
+		SetPos({ 1500.0f, 405.0f });
+		SetPos(pos);
+		mAnimator = new Animator();
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Item\\Run"
+			, L"Run", Vector2(0, 0), 0.25f);
+
+		mAnimator->Play(L"Run", true);
+
+		AddComponent(mAnimator);
+
+		Collider* col = new Collider();
+		col->SetPos(pos);
+		col->SetScale(Vector2(70.0f, 70.0f));
+		AddComponent(col);
+
+	}
+
 	Run::Run()
 		:mSpeed(-300.0f)
 		, mTime(0.0f)

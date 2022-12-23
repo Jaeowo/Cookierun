@@ -11,6 +11,7 @@ namespace ya
 		: public GameObject
 	{
 	public:
+		Down(Vector2 pos);
 		Down();
 		~Down();
 

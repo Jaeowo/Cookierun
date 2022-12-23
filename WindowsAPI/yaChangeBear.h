@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		ChangeBear(Vector2 pos);
 		ChangeBear();
 		~ChangeBear();
 

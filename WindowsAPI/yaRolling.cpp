@@ -8,6 +8,31 @@
 
 namespace ya
 {
+	Rolling::Rolling(Vector2 pos)
+		:mSpeed(-300.0f)
+		, mLength(0)
+		, mState(eState::None)
+	{
+
+		mAnimator = new Animator();
+		SetPos(pos);
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Rolling"
+			, L"Rolling", Vector2(0, 0), 0.15f);
+
+		mAnimator->Play(L"Rolling", true);
+
+		AddComponent(mAnimator);
+
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetPos(pos);
+			AddComponent(col);
+		}
+
+	}
+
 	Rolling::Rolling()
 		:mSpeed(-300.0f)
 		,mLength(0)

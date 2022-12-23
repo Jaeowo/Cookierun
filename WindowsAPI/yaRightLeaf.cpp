@@ -5,9 +5,27 @@
 #include "yaPlayer.h"
 #include "yaApplication.h"
 #include "yaCamera.h"
+#include "yaAnimator.h"
 
 namespace ya
 {
+	RightLeaf::RightLeaf(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		SetPos(pos);
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Load<Image>(L"RightLeaf", L"..\\Resources\\Image\\SkillData\\Leaf\\RightLeaf.bmp");
+		}
+
+		Collider* col = new Collider();
+		col->SetScale(Vector2(60.0f, 60.0f));
+		col->SetPos(pos);
+		AddComponent(col);
+		SetScale({ 0.5f, 0.5f });
+		col->SetScale(Vector2(150.0f, 300.0f));
+	}
+
 	RightLeaf::RightLeaf()
 		:mSpeed(-300.0f)
 	{
@@ -16,11 +34,11 @@ namespace ya
 			mImage = Resources::Load<Image>(L"RightLeaf", L"..\\Resources\\Image\\SkillData\\Leaf\\RightLeaf.bmp");
 		}
 
-		//Collider* col = new Collider();
-		////col->SetScale(Vector2(60.0f, 60.0f));
-		//AddComponent(col);
+		Collider* col = new Collider();
+		col->SetScale(Vector2(60.0f, 60.0f));
+		AddComponent(col);
 		SetScale({ 0.5f, 0.5f });
-		//col->SetScale(Vector2(150.0f, 300.0f));
+		col->SetScale(Vector2(150.0f, 300.0f));
 	}
 	RightLeaf::~RightLeaf()
 	{
@@ -60,7 +78,9 @@ namespace ya
 	}
 	void RightLeaf::OnCollisionEnter(Collider* other)
 	{
-		//Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
+		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
+		playerObj->SetState(Player::eState::Swing);
+		playerObj->GetComponent<Animator>()->Play(L"SwingC", true);
 
 	}
 }

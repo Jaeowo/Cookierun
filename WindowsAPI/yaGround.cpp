@@ -55,6 +55,12 @@ namespace ya
 			playerObj->GetComponent<Animator>()->Play(L"RunC", true);
 		}
 
+		if (playerObj->GetState() == Player::eState::Swing)
+		{
+			playerObj->SetState(Player::eState::Swing);
+			playerObj->GetComponent<Animator>()->Play(L"SwingC", true);
+		}
+
 		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);
 		float fScale = other->GetScale().y / 2.0f + GetComponent<Collider>()->GetScale().y / 2.0f;
 

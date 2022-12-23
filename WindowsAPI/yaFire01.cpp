@@ -7,6 +7,31 @@
 
 namespace ya
 {
+    Fire01::Fire01(Vector2 pos)
+        :mSpeed(-300.0f)
+        , mState(eState::None)
+    {
+        SetPos({ 2000.0f, 650.0f });
+        SetPos(pos);
+        mAnimator = new Animator();
+
+        mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Fire01"
+            , L"Fire01", Vector2(0, 0), 0.15f);
+
+        mAnimator->Play(L"Fire01", true);
+
+        AddComponent(mAnimator);
+
+        eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+        if (type != eSceneType::JellyTool)
+        {
+            Collider* col = new Collider();
+            col->SetPos(pos);
+            AddComponent(col);
+        }
+
+    }
+
     Fire01::Fire01()
         :mSpeed (-300.0f)
         ,mState (eState::None)

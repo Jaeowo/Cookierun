@@ -10,6 +10,7 @@ namespace ya
         public GameObject
     {
 	public:
+		PinkBear(Vector2 pos);
 		PinkBear();
 		~PinkBear();
 

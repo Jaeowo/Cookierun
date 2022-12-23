@@ -38,6 +38,8 @@ namespace ya
 			MujukJump,
 			MujukSlide,
 
+			Swing,
+
 			Death,
 	
 		};
@@ -73,6 +75,7 @@ namespace ya
 		void Run();
 		void RunJump();
 		void RunSlide();
+		void Swing();
 
 		void Death();
 

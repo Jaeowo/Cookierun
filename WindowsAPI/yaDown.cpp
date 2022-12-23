@@ -7,6 +7,33 @@
 
 namespace ya
 {
+	Down::Down(Vector2 pos)
+		:mSpeed(-300.0f)
+		, mState(eState::Run)
+	{
+		SetPos({ 2400.0f, 605.0f });
+		SetPos(pos);
+		mAnimator = new Animator();
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Down"
+			, L"Down", Vector2(0, 0), 0.15f);
+
+		mAnimator->Play(L"Down", true);
+
+		AddComponent(mAnimator);
+
+		//mLength = Time::DeltaTime();
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetPos(pos);
+			col->SetOffset(Vector2(0.0f, 45.0f));
+			AddComponent(col);
+		}
+
+	}
+
 	Down::Down()
 		:mSpeed(-300.0f)
 		,mState(eState::Run)

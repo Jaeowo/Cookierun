@@ -11,6 +11,7 @@ namespace ya
         public GameObject
     {
 	public:
+		Rolling(Vector2 pos);
 		Rolling();
 		~Rolling();
 

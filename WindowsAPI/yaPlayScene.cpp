@@ -69,6 +69,7 @@ namespace ya
 		//땅
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(1000.0f, 750.0f));
+		ground->SetColPos(Vector2(8000.0f, 100.0f));
 		
 		//펫
 		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
@@ -82,10 +83,10 @@ namespace ya
 		//Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
 		
 		
-		//Stage01* stage01 = new Stage01();
-		//stage01->ObstructionSetting();
-		Stage02* stage02 = new Stage02();
-		stage02->ObstructionSetting();
+		Stage01* stage01 = new Stage01();
+		stage01->ObstructionSetting();
+		/*Stage02* stage02 = new Stage02();
+		stage02->ObstructionSetting();*/
 
 		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
 		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
@@ -118,9 +119,118 @@ namespace ya
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
 		hpbar->SetTarget(player);
 
-		
 
 
+		Load();
+		Create();
+	}
+
+	void PlayScene::Load()
+	{
+		{
+			wchar_t szFilePath[256] = {};/*= L"AStage01.jelly"*/;
+
+			
+			GetCurrentDirectoryW(256, szFilePath);
+			lstrcatW(szFilePath,L"\\AStage01" );
+			
+
+			FILE* pFile = nullptr;
+			_wfopen_s(&pFile, szFilePath, L"rb");
+			if (pFile == nullptr)
+				return;
+
+			while (true)
+			{
+				JellyData data;
+				if (fread(&data.type, sizeof(int), 1, pFile) == NULL)
+					break;
+
+				if (fread(&data.pos.x, sizeof(int), 1, pFile) == NULL)
+					break;
+
+				if (fread(&data.pos.y, sizeof(int), 1, pFile) == NULL)
+					break;
+
+				mJellyDatas.push_back(data);
+
+			}
+			fclose(pFile);
+		}
+	}
+
+	void PlayScene::Create()
+	{
+		for (JellyData data : mJellyDatas)
+		{
+
+			GameObject* jelly = nullptr;
+			switch ((eJellyType)data.type)
+			{
+			case ya::eJellyType::BigBear:
+			{
+				jelly
+					= object::Instantiate<BigBear>(data.pos, eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::BigBear;
+			}
+			break;
+			case ya::eJellyType::IceBear:
+			{
+				jelly
+					= object::Instantiate<IceBear>(data.pos, eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::IceBear;
+			}
+			break;
+			case ya::eJellyType::PinkBear:
+			{
+				jelly
+					= object::Instantiate<PinkBear>(data.pos, eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::PinkBear;
+			}
+			break;
+			case ya::eJellyType::YellowBear:
+			{
+				jelly
+					= object::Instantiate<YellowBear>(data.pos, eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::YellowBear;
+			}
+			break;
+			case ya::eJellyType::RainbowBear:
+			{
+				jelly
+					= object::Instantiate<RainbowBear>(data.pos, eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::RainbowBear;
+			}
+			break;
+			case ya::eJellyType::GoldCoin:
+			{
+				jelly
+					= object::Instantiate<GoldCoin>(eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::GoldCoin;
+			}
+			break;
+			case ya::eJellyType::SilverCoin:
+			{
+				jelly
+					= object::Instantiate<SilverCoin>(eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::SilverCoin;
+			}
+			break;
+			case ya::eJellyType::Jelly:
+			{
+				jelly
+					= object::Instantiate<Jelly>(data.pos, eColliderLayer::Jelly);
+				jelly->mJellyType = (UINT)eJellyType::Jelly;
+			}
+			break;
+			case ya::eJellyType::Max:
+				break;
+			default:
+				break;
+			}
+			jelly->SetPos(data.pos);
+			mJellies.push_back(jelly);
+		}
 	}
 
 	void PlayScene::Tick()
@@ -129,7 +239,7 @@ namespace ya
 		
 		if (KEY_DOWN(eKeyCode::N))
 		{
-			SceneManager::ChangeScene(eSceneType::End);
+			SceneManager::ChangeScene(eSceneType::Skill);
 		}
 
 	}
@@ -137,14 +247,11 @@ namespace ya
 	void PlayScene::Render(HDC hdc)
 	{
 
-
 		Scene::Render(hdc);
 		wchar_t szFloat[50] = {};
 		swprintf_s(szFloat, 50, L"Play Scene");
 		int strLen = wcsnlen_s(szFloat, 50);
 		TextOut(hdc, 10, 30, szFloat, strLen);
-
-	
 
 	}
 
@@ -153,6 +260,8 @@ namespace ya
 		CollisionManager::SetLayer(eColliderLayer::Obstruction, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Ground, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Jelly, eColliderLayer::Player, true);
+
+
 
 	}
 

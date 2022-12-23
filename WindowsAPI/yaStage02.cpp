@@ -17,8 +17,8 @@ namespace ya
 	void Stage02::ObstructionSetting()
 	{
 
-		Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
-		biggest->SetPos(Vector2(1900.0f, 405.0f));
+		//Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
+		//biggest->SetPos(Vector2(1900.0f, 405.0f));
 
 		Fire01* fire01 = ya::object::Instantiate<Fire01>(eColliderLayer::Obstruction);
 		fire01->SetPos(Vector2(2000.0f, 650.0f));

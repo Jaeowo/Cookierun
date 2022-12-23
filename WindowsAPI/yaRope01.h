@@ -11,6 +11,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		Rope01(Vector2 pos);
 		Rope01();
 		~Rope01();
 

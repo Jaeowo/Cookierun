@@ -8,6 +8,24 @@
 
 namespace ya
 {
+	PinkBear::PinkBear(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Load<Image>(L"PinkBear", L"..\\Resources\\Image\\Jelly\\PinkBear.bmp");
+		}
+		SetPos({ 1000, 500 });
+		SetPos(pos);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetPos(pos);
+			col->SetScale(Vector2(60.0f, 60.0f));
+			AddComponent(col);
+		}
+	}
 	PinkBear::PinkBear()
 		:mSpeed(-300.0f)
 	{

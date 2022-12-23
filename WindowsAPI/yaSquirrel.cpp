@@ -13,7 +13,6 @@ namespace ya
 	{
 		//플레이어 옆에 쫓아가도록 바꾸기
 
-
 		mAnimator = new Animator();
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Squirrel\\WalkP"
@@ -41,9 +40,9 @@ namespace ya
 		case ya::Squirrel::eState::Trace:
 		{
 			Vector2 PlayerPos = mPlayer->GetPos();
-			Vector2 Pos = this->GetPos();
-			Pos = PlayerPos;
-			this->SetPos({(PlayerPos.x - 100.0f), PlayerPos.y});
+			//Vector2 Pos = GetPos();
+			//Pos = PlayerPos;
+			SetPos({(PlayerPos.x - 100.0f), PlayerPos.y});
 			
 		}
 		break;

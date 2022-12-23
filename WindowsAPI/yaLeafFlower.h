@@ -23,6 +23,7 @@ namespace ya
 		void Bloom();
 
 	public:
+		LeafFlower(Vector2 pos);
 		LeafFlower();
 		~LeafFlower();
 

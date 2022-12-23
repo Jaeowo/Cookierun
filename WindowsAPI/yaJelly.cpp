@@ -9,6 +9,26 @@
 #include "yaObject.h"
 namespace ya
 {
+	Jelly::Jelly(Vector2 pos)
+		:mSpeed(-300.0f)
+
+	{
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Load<Image>(L"Jelly", L"..\\Resources\\Image\\Jelly\\NormalJelly.bmp");
+		}
+		SetPos(pos);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+		{
+			Collider* col = new Collider();
+			col->SetScale(Vector2(60.0f, 60.0f));
+			col->SetPos(pos);
+			AddComponent(col);
+		}
+
+	}
+
 	Jelly::Jelly()
 		:mSpeed(-300.0f)
 	{
@@ -22,6 +42,7 @@ namespace ya
 		{
 			Collider* col = new Collider();
 			col->SetScale(Vector2(60.0f, 60.0f));
+			col->SetPos(GetPos());
 			AddComponent(col);
 		}
 	

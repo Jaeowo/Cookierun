@@ -5,6 +5,28 @@
 
 namespace ya
 {
+	ChangeBear::ChangeBear(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		SetPos({ 1400.0f, 405.0f });
+
+		SetPos(pos);
+		mAnimator = new Animator();
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Item\\ChangeBear"
+			, L"ChangeBear", Vector2(0, 0), 0.25f);
+
+		mAnimator->Play(L"ChangeBear", true);
+
+		AddComponent(mAnimator);
+
+		Collider* col = new Collider();
+		col->SetPos(pos);
+		col->SetScale(Vector2(70.0f, 70.0f));
+		AddComponent(col);
+
+	}
+
 	ChangeBear::ChangeBear()
 		:mSpeed(-300.0f)
 	{

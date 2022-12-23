@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		Flower3(Vector2 pos);
 		Flower3();
 		~Flower3();
 

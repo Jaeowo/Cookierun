@@ -21,10 +21,16 @@ namespace ya
 		virtual void Enter();
 		virtual void Exit();
 
+		void Load();
+		void Create();
+
 	private:
 		Image* mImage;
 		Player* mPlayer;
 		Squirrel* mSquirrel;
+
+		std::vector<GameObject*> mJellies;
+		std::vector<JellyData> mJellyDatas;
 	};
 
 }

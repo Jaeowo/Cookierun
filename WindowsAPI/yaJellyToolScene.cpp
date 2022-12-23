@@ -69,63 +69,63 @@ namespace ya
 				GameObject* jelly = nullptr;
 				switch (mJellyType)
 				{
-				case ya::JellyToolScene::eJellyType::BigBear:
+				case ya::eJellyType::BigBear:
 				{
 					jelly
 						= object::Instantiate<BigBear>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::BigBear;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::IceBear:
+				case ya::eJellyType::IceBear:
 				{
 					jelly
 						= object::Instantiate<IceBear>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::IceBear;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::PinkBear:
+				case ya::eJellyType::PinkBear:
 				{
 					jelly
 						= object::Instantiate<PinkBear>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::PinkBear;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::YellowBear:
+				case ya::eJellyType::YellowBear:
 				{
 					jelly
 						= object::Instantiate<YellowBear>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::YellowBear;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::RainbowBear:
+				case ya::eJellyType::RainbowBear:
 				{
 					jelly
 						= object::Instantiate<RainbowBear>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::RainbowBear;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::GoldCoin:
+				case ya::eJellyType::GoldCoin:
 				{
 					jelly
 						= object::Instantiate<GoldCoin>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::GoldCoin;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::SilverCoin:
+				case ya::eJellyType::SilverCoin:
 				{
 					jelly
 						= object::Instantiate<SilverCoin>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::SilverCoin;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::Jelly:
+				case ya::eJellyType::Jelly:
 				{
 					jelly
 						= object::Instantiate<Jelly>(eColliderLayer::Jelly);
 					jelly->mJellyType = (UINT)eJellyType::Jelly;
 				}
 				break;
-				case ya::JellyToolScene::eJellyType::Max:
+				case ya::eJellyType::Max:
 					break;
 				default:
 					break;
@@ -340,63 +340,63 @@ namespace ya
 			GameObject* jelly = nullptr;
 			switch ((eJellyType)data.type)
 			{
-			case ya::JellyToolScene::eJellyType::BigBear:
+			case ya::eJellyType::BigBear:
 			{
 				jelly
 					= object::Instantiate<BigBear>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::BigBear;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::IceBear:
+			case ya::eJellyType::IceBear:
 			{
 				jelly
 					= object::Instantiate<IceBear>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::IceBear;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::PinkBear:
+			case ya::eJellyType::PinkBear:
 			{
 				jelly
 					= object::Instantiate<PinkBear>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::PinkBear;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::YellowBear:
+			case ya::eJellyType::YellowBear:
 			{
 				jelly
 					= object::Instantiate<YellowBear>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::YellowBear;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::RainbowBear:
+			case ya::eJellyType::RainbowBear:
 			{
 				jelly
 					= object::Instantiate<RainbowBear>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::RainbowBear;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::GoldCoin:
+			case ya::eJellyType::GoldCoin:
 			{
 				jelly
 					= object::Instantiate<GoldCoin>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::GoldCoin;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::SilverCoin:
+			case ya::eJellyType::SilverCoin:
 			{
 				jelly
 					= object::Instantiate<SilverCoin>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::SilverCoin;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::Jelly:
+			case ya::eJellyType::Jelly:
 			{
 				jelly
 					= object::Instantiate<Jelly>(eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::Jelly;
 			}
 			break;
-			case ya::JellyToolScene::eJellyType::Max:
+			case ya::eJellyType::Max:
 				break;
 			default:
 				break;

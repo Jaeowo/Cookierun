@@ -62,6 +62,9 @@ namespace ya
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\HPDie"
 			, L"HPDieC", Vector2(0, 0), 0.13f);
 
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Swing"
+			, L"SwingC", Vector2(0, 0), 0.13f);
+
 		mAnimator->GetCompleteEvent(L"LandingC") = std::bind(&Player::LandingComplete, this);
 		mAnimator->GetCompleteEvent(L"AttackC") = std::bind(&Player::LandingComplete, this);
 		
@@ -160,6 +163,11 @@ namespace ya
 		case ya::Player::eState::MujukSlide:
 		{
 			MujukSlide();
+		}
+		break;
+		case ya::Player::eState::Swing:
+		{
+			Swing();
 		}
 		break;
 		case ya::Player::eState::Death:
@@ -601,6 +609,18 @@ namespace ya
 		else if (KEY_UP(eKeyCode::S))
 		{
 			mState = eState::Run;
+		}
+	}
+
+	void Player::Swing()
+	{
+		Rigidbody* rigidbody = GetComponent<Rigidbody>();
+		bool IsGround = false;
+		IsGround = rigidbody->GetGround();
+
+		if (KEY_PREESE(eKeyCode::W))
+		{
+			GetComponent<Rigidbody>()->AddForce(Vector2(0.0f, -200.0f));
 		}
 	}
 

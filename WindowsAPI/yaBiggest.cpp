@@ -8,6 +8,27 @@
 
 namespace ya
 {
+	Biggest::Biggest(Vector2 pos)
+		:mSpeed(-300.0f)
+		, mTime(0.0f)
+	{
+		SetPos({ 1400.0f, 405.0f });
+		mAnimator = new Animator();
+		SetPos(pos);
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Item\\Biggest"
+			, L"Biggest", Vector2(0, 0), 0.25f);
+
+		mAnimator->Play(L"Biggest", true);
+
+		AddComponent(mAnimator);
+
+		Collider* col = new Collider();
+		col->SetPos(pos);
+		col->SetScale(Vector2(70.0f, 70.0f));
+		AddComponent(col);
+
+	}
+
 	Biggest::Biggest()
 		:mSpeed(-300.0f)
 		,mTime(0.0f)

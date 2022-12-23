@@ -46,22 +46,24 @@ namespace ya
 		skilltile->SetPos(Vector2{ 0.0f,700.0f });
 		skilltile->SetCount(15);
 
+		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
+
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(1000.0f, 750.0f));
 		ground->SetColPos(Vector2(8000.0f, 100.0f));
 
-		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
+	
 
-		Flower1* flower11 = ya::object::Instantiate<Flower1>(eColliderLayer::Obstruction);
+		Flower1* flower11 = ya::object::Instantiate<Flower1>(Vector2(1500.0f, 570.0f), eColliderLayer::Obstruction);
 		flower11->SetPos(Vector2(1500.0f, 570.0f));
 
-		Flower2* flower21 = ya::object::Instantiate<Flower2>(eColliderLayer::Obstruction);
+		Flower2* flower21 = ya::object::Instantiate<Flower2>(Vector2(1700.0f, 560.0f),eColliderLayer::Obstruction);
 		flower21->SetPos(Vector2(1700.0f, 560.0f));
 
-		Flower3* flower31 = ya::object::Instantiate<Flower3>(eColliderLayer::Obstruction);
+		Flower3* flower31 = ya::object::Instantiate<Flower3>(Vector2(1900.0f, 550.0f),eColliderLayer::Obstruction);
 		flower31->SetPos(Vector2(1900.0f, 550.0f));
 
-		Flower4* flower41 = ya::object::Instantiate<Flower4>(eColliderLayer::Obstruction);
+		Flower4* flower41 = ya::object::Instantiate<Flower4>(Vector2(2100.0f, 560.0f),eColliderLayer::Obstruction);
 		flower41->SetPos(Vector2(2100.0f, 560.0f));
 
 
@@ -75,14 +77,15 @@ namespace ya
 		Stem* stem1 = ya::object::Instantiate<Stem>(eColliderLayer::Obstruction);
 		stem1->SetPos(Vector2(3100.0f, 450.0f));
 
-		/*LeafFlower* leafflower2 = ya::object::Instantiate<LeafFlower>(eColliderLayer::Obstruction);
-		leafflower2->SetPos(Vector2(3390.0f, 380.0f));*/
+		LeafFlower* leafflower2 = ya::object::Instantiate<LeafFlower>(Vector2(3390.0f, 380.0f),eColliderLayer::Obstruction);
+		leafflower2->SetPos(Vector2(3390.0f, 380.0f));
+		leafflower2->SetColPos(Vector2(-140.0f, 20.0f));
 
-		LeafFlower* leafflower1 = ya::object::Instantiate<LeafFlower>(eColliderLayer::Obstruction);
+		LeafFlower* leafflower1 = ya::object::Instantiate<LeafFlower>(Vector2(3290.0f, 370.0f), eColliderLayer::Obstruction);
 		leafflower1->SetPos(Vector2(3290.0f, 370.0f));
 		leafflower1->SetColPos(Vector2(-440.0f, 235.0f));
 
-		RightLeaf* rightleaf1 = ya::object::Instantiate<RightLeaf>(eColliderLayer::Obstruction);
+		RightLeaf* rightleaf1 = ya::object::Instantiate<RightLeaf>(Vector2(3230.0f, 400.0f),eColliderLayer::Obstruction);
 		rightleaf1->SetPos(Vector2(3230.0f, 400.0f));
 
 		Ground* ground1 = ya::object::Instantiate<Ground>(eColliderLayer::Ground);

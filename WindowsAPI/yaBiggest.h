@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		Biggest(Vector2 pos);
 		Biggest();
 		~Biggest();
 

@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		SmallHp(Vector2 pos);
 		SmallHp();
 		~SmallHp();
 

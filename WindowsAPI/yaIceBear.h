@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		IceBear(Vector2 pos);
 		IceBear();
 		~IceBear();
 

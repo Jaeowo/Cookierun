@@ -9,6 +9,7 @@ namespace ya
 		:public GameObject
 	{
 	public:
+		Jelly(Vector2 pos);
 		Jelly();
 		~Jelly();
 

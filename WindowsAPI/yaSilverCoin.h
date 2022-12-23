@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		SilverCoin(Vector2 pos);
 		SilverCoin();
 		~SilverCoin();
 

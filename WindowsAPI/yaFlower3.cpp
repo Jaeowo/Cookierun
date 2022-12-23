@@ -8,6 +8,32 @@
 
 namespace ya
 {
+	Flower3::Flower3(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+
+		mAnimator = new Animator();
+
+		//std::filesystem::path clear();
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\SkillData\\Flower3\\Wait"
+			, L"Wait3", Vector2(0, 0), 0.25f);
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\SkillData\\Flower3\\Bloom"
+			, L"Bloom3", Vector2(0, 0), 0.15f);
+
+		mAnimator->Play(L"Wait3", false);
+		SetPos(pos);
+		AddComponent(mAnimator);
+
+		Collider* col = new Collider();
+		col->SetPos(pos);
+		col->SetScale(Vector2(400.0f, 1100.0f));
+		AddComponent(col);
+
+
+	}
+
 	Flower3::Flower3()
 		:mSpeed(-300.0f)
 	{

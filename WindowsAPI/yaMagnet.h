@@ -11,6 +11,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		Magnet(Vector2 pos);
 		Magnet();
 		~Magnet();
 

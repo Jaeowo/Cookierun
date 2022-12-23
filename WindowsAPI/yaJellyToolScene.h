@@ -4,29 +4,33 @@
 
 namespace ya
 {
+	struct JellyData
+	{
+		Vector2 pos;
+		UINT type;
+	};
+
+	enum class eJellyType
+	{
+		BigBear,
+		IceBear,
+		PinkBear,
+		YellowBear,
+		RainbowBear,
+		GoldCoin,
+		SilverCoin,
+		Jelly,
+
+		Max,
+	};
+
 	class Image;
 	class JellyToolScene : public Scene
 	{
 	public:
-		enum class eJellyType
-		{
-			BigBear,
-			IceBear,
-			PinkBear,
-			YellowBear,
-			RainbowBear,
-			GoldCoin,
-			SilverCoin,
-			Jelly,
-			
-			Max,
-		};
 
-		struct JellyData
-		{
-			Vector2 pos;
-			UINT type;
-		};
+
+
 
 		JellyToolScene();
 		~JellyToolScene();

@@ -10,6 +10,7 @@ namespace ya
 		:public GameObject
 	{
 	public:
+		YellowBear(Vector2 pos);
 		YellowBear();
 		~YellowBear();
 
