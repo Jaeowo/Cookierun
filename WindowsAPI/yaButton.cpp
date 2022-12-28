@@ -6,6 +6,7 @@ namespace ya
 {
 	Button::Button(eUIType type)
 		: UiBase(type)
+		,mAlphaValue(255)
 	{
 		mOnClick = std::bind(&Button::Click, this);
 	}
@@ -55,7 +56,7 @@ namespace ya
 		func.BlendOp = AC_SRC_OVER;
 		func.BlendFlags = 0;
 		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 255;
+		func.SourceConstantAlpha = mAlphaValue;
 
 
 		AlphaBlend(hdc, (int)mScreenPos.x, (int)mScreenPos.y

@@ -145,6 +145,8 @@
     <ClInclude Include="yaFlower2.h" />
     <ClInclude Include="yaFlower3.h" />
     <ClInclude Include="yaFlower4.h" />
+    <ClInclude Include="yaGameObjectManager.h" />
+    <ClInclude Include="yaGameStart.h" />
     <ClInclude Include="yaGoBonusTime.h" />
     <ClInclude Include="yaGoldCoin.h" />
     <ClInclude Include="yaGroundTile.h" />
@@ -165,6 +167,8 @@
     <ClInclude Include="yaRun.h" />
     <ClInclude Include="yaRunEffect.h" />
     <ClInclude Include="yaSilverCoin.h" />
+    <ClInclude Include="yaSkillBarBlue.h" />
+    <ClInclude Include="yaSkillBarGreen.h" />
     <ClInclude Include="yaSkillJelly1.h" />
     <ClInclude Include="yaSkillJelly2.h" />
     <ClInclude Include="yaSkillJelly3.h" />
@@ -237,6 +241,8 @@
     <ClCompile Include="yaFlower2.cpp" />
     <ClCompile Include="yaFlower3.cpp" />
     <ClCompile Include="yaFlower4.cpp" />
+    <ClCompile Include="yaGameObjectManager.cpp" />
+    <ClCompile Include="yaGameStart.cpp" />
     <ClCompile Include="yaGoBonusTime.cpp" />
     <ClCompile Include="yaGoldCoin.cpp" />
     <ClCompile Include="yaGroundTile.cpp" />
@@ -257,6 +263,8 @@
     <ClCompile Include="yaRun.cpp" />
     <ClCompile Include="yaRunEffect.cpp" />
     <ClCompile Include="yaSilverCoin.cpp" />
+    <ClCompile Include="yaSkillBarBlue.cpp" />
+    <ClCompile Include="yaSkillBarGreen.cpp" />
     <ClCompile Include="yaSkillJelly1.cpp" />
     <ClCompile Include="yaSkillJelly2.cpp" />
     <ClCompile Include="yaSkillJelly3.cpp" />

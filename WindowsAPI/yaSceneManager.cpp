@@ -32,6 +32,9 @@ namespace ya
 		mScenes[(UINT)eSceneType::Title] = new TitleScene();
 		mScenes[(UINT)eSceneType::Title]->Initialize();
 
+		mScenes[(UINT)eSceneType::Skill] = new SkillScene();
+		mScenes[(UINT)eSceneType::Skill]->Initialize();
+
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		mScenes[(UINT)eSceneType::Play]->Initialize();
 
@@ -41,8 +44,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::MapTool]->Initialize();
 		mScenes[(UINT)eSceneType::JellyTool]->Initialize();
 
-		mScenes[(UINT)eSceneType::Skill] = new SkillScene();
-		mScenes[(UINT)eSceneType::Skill]->Initialize();
+	
 
 		ChangeScene(eSceneType::Logo);
 		// 업캐스팅

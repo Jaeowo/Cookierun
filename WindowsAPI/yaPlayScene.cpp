@@ -29,10 +29,12 @@
 #include "yaGoldCoin.h"
 #include "yaBigBear.h"
 #include "yaHpBar.h"
+#include "yaHUD.h"
 #include "yaUIManager.h"
 #include "yaJellyToolScene.h"
 #include "yaStage01.h"
 #include "yaStage02.h"
+#include "yaGameObjectManager.h"
 
 namespace ya
 {
@@ -60,19 +62,21 @@ namespace ya
 		Bg2->SetSpeed(-9.0f);
 	
 
-		
+		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
+		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
+		groundtile->SetPos(Vector2{ 0.0f,700.0f });
+		groundtile->SetCount(15);
 
-		//mImage = Resources::Load<Image>(L"Jelly", L"..\\Resources\\Image\\Jelly\\NormalJelly.bmp");
-		//캐릭터
 		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
-
-		//땅
-		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
-		ground->SetPos(Vector2(1000.0f, 750.0f));
-		ground->SetColPos(Vector2(8000.0f, 100.0f));
 		
 		//펫
 		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
+
+		//땅
+		Ground* ground = ya::object::Instantiate<Ground>(Vector2(8000.0f, 100.0f),eColliderLayer::Ground);
+		ground->SetPos(Vector2(1000.0f, 750.0f));
+		ground->SetColPos(Vector2(8000.0f, 100.0f));
+		
 
 		//장애물
 		//Fire01* fire01 = ya::object::Instantiate<Fire01>(eColliderLayer::Obstruction);
@@ -88,10 +92,7 @@ namespace ya
 		/*Stage02* stage02 = new Stage02();
 		stage02->ObstructionSetting();*/
 
-		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
-		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
-		groundtile->SetPos(Vector2{ 0.0f,700.0f });
-		groundtile->SetCount(15);
+		
 
 		//아이템
 		//Biggest* biggest = ya::object::Instantiate<Biggest>(eColliderLayer::Jelly);
@@ -114,6 +115,8 @@ namespace ya
 		//BigBear* bigbear = ya::object::Instantiate<BigBear>(eColliderLayer::Jelly);
 
 		//UI
+		UIManager::Push(eUIType::N1);
+		UIManager::Push(eUIType::N2);
 		UIManager::Push(eUIType::HP);
 
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
@@ -248,11 +251,7 @@ namespace ya
 	{
 
 		Scene::Render(hdc);
-		wchar_t szFloat[50] = {};
-		swprintf_s(szFloat, 50, L"Play Scene");
-		int strLen = wcsnlen_s(szFloat, 50);
-		TextOut(hdc, 10, 30, szFloat, strLen);
-
+		
 	}
 
 	void PlayScene::Enter()

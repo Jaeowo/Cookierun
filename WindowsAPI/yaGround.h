@@ -10,6 +10,7 @@ namespace ya
 		public GameObject
 	{
 	public:
+		Ground(Vector2 Pos);
 		Ground();
 		~Ground();
 

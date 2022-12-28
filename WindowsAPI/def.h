@@ -74,12 +74,16 @@ enum class eCameraEffect
 
 enum class eUIType
 {
+	N1,
+	N2,
+	N3,
 	HP,
 	MP,
 	SHOP,
 	INVENTORY,
 	OPTION,
-
+	SKILLBAR1,
+	SKILLBAR2,
 
 	END,
 };

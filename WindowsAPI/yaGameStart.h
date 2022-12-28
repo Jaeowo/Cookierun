@@ -3,11 +3,12 @@
 
 namespace ya
 {
-	class Button : public UiBase
+
+	class GameStart : public UiBase
 	{
 	public:
-		Button(eUIType type);
-		~Button();
+		GameStart(eUIType type);
+		~GameStart();
 
 		virtual void OnInit() override;
 		virtual void OnActive() override;
@@ -18,13 +19,9 @@ namespace ya
 
 		virtual void Click();
 
-		int GetAlphaValue() { return mAlphaValue; }
-		void SetAlphaValue(int AlphaValue) { AlphaValue = mAlphaValue; }
-
 	private:
 		Event mOnClick;
 		bool mbMouseOn;
-		int mAlphaValue;
 	};
 
 }

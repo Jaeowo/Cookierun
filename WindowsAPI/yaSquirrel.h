@@ -5,7 +5,7 @@ namespace ya
 {
 	class Animator;
 	class Image;
-	class Player;
+
 
 	class Squirrel
 		: public GameObject
@@ -34,7 +34,6 @@ namespace ya
 	private:
 		Image* mImage;
 		Animator* mAnimator;
-		Player* mPlayer;
 		eState mState;
 	};
 }

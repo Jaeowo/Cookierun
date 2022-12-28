@@ -3,6 +3,7 @@
 #include "yaButton.h"
 #include "yaPanel.h"
 #include "yaHpBar.h"
+#include "yaGameStart.h"
 
 namespace ya
 {
@@ -18,6 +19,22 @@ namespace ya
 		hpbar->SetPos(Vector2(400.0f, 30.0f));
 		hpbar->ImageLoad(L"HpBar", L"..\\Resources\\Image\\UI\\HpBar.bmp");
 
+		Button* hpbar2 = new Button(eUIType::N1);
+		hpbar2->SetAlphaValue(155);
+		mUIs.insert(std::make_pair(eUIType::N1, hpbar2));
+		hpbar2->SetPos(Vector2(400.0f, 30.0f));
+		hpbar2->ImageLoad(L"HpBar2", L"..\\Resources\\Image\\UI\\HpBar2.bmp");
+	
+
+		Button* hpleft = new Button(eUIType::N2);
+		mUIs.insert(std::make_pair(eUIType::N2, hpleft));
+		hpleft->SetPos(Vector2(355.0f, 30.0f));
+		hpleft->ImageLoad(L"HpLeft", L"..\\Resources\\Image\\UI\\HpLeft.bmp");
+
+		GameStart* gamestart = new GameStart(eUIType::OPTION);
+		mUIs.insert(std::make_pair(eUIType::OPTION, gamestart));
+		gamestart->SetPos(Vector2(1000.0f, 650.0f));
+		gamestart->ImageLoad(L"GameStart", L"..\\Resources\\Image\\UI\\Play.bmp");
 	}
 
 	void UIManager::OnLoad(eUIType type)

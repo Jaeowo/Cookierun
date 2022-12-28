@@ -15,7 +15,6 @@
 #include "yaCollisionManager.h"
 #include "yaRunEffect.h"
 
-
 namespace ya
 {
 	Player::Player()
@@ -272,10 +271,10 @@ namespace ya
 			mState = eState::Walk;
 		}
 
-		if (mHp <= 0)
-		{
-			mState = eState::Death;
-		}
+		//if (mHp <= 0)
+		//{
+		//	mState = eState::Death;
+		//}
 
 	}
 
@@ -617,7 +616,7 @@ namespace ya
 		Rigidbody* rigidbody = GetComponent<Rigidbody>();
 		bool IsGround = false;
 		IsGround = rigidbody->GetGround();
-
+		//SetScale(Vector2(1.0f, 1.0f));
 		if (KEY_PREESE(eKeyCode::W))
 		{
 			GetComponent<Rigidbody>()->AddForce(Vector2(0.0f, -200.0f));
@@ -631,9 +630,9 @@ namespace ya
 		mTime += Time::DeltaTime();
 
 		if (mItemTime >= 4.0f)
-		{
+		{/*
 			SceneManager* scenemanager = new SceneManager;
-			scenemanager->ChangeScene(eSceneType::End);
+			scenemanager->ChangeScene(eSceneType::End);*/
 		}
 	}
 

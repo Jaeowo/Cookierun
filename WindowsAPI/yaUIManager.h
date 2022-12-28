@@ -18,10 +18,10 @@ namespace ya
 	{
 	public:
 		static void Initialize();
-		static void OnLoad(eUIType type);
+		static void OnLoad(eUIType type); 
 		static void Tick();
 		static void Render(HDC hdc);
-		static void OnComplete(UiBase* addUI);
+		static void OnComplete(UiBase* addUI); //로드 완료
 		static void OnFail();
 		static void Release();
 

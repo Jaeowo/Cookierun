@@ -4,10 +4,8 @@
 namespace ya
 {
 	class Image;
-	class Player;
 
-	class SkillScene :
-		public Scene
+	class SkillScene : public Scene
 	{
 	public:
 		SkillScene();
@@ -22,7 +20,7 @@ namespace ya
 
 	private:
 		Image* mImage;
-		Player* mPlayer;
+	
 	};
 }
 

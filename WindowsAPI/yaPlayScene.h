@@ -5,8 +5,7 @@ namespace ya
 {
 
 	class Image;
-	class Player;
-	class Squirrel;
+
 
 	class PlayScene : public Scene
 	{
@@ -26,8 +25,7 @@ namespace ya
 
 	private:
 		Image* mImage;
-		Player* mPlayer;
-		Squirrel* mSquirrel;
+		
 
 		std::vector<GameObject*> mJellies;
 		std::vector<JellyData> mJellyDatas;

@@ -367,6 +367,18 @@
     <ClInclude Include="yaGround.h">
       <Filter>Engine\GameObject\Game</Filter>
     </ClInclude>
+    <ClInclude Include="yaGameObjectManager.h">
+      <Filter>Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGameStart.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillBarBlue.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSkillBarGreen.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -630,6 +642,18 @@
     </ClCompile>
     <ClCompile Include="yaLeafFlower.cpp">
       <Filter>Engine\GameObject\Cookie\LilySkill\Leaf</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGameObjectManager.cpp">
+      <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGameStart.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillBarBlue.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSkillBarGreen.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

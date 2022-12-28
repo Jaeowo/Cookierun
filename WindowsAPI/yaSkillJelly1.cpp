@@ -5,7 +5,8 @@
 #include "yaPlayer.h"
 #include "yaApplication.h"
 #include "yaCamera.h"
-
+#include "yaGameObjectManager.h"
+#include "yaTime.h"
 namespace ya
 {
 	SkillJelly1::SkillJelly1()
@@ -28,7 +29,17 @@ namespace ya
 	void SkillJelly1::Tick()
 	{
 		GameObject::Tick();
-		Translate(mSpeed);
+		Vector2 PlayerPos = GameObjectManager::GetPlayer()->GetPos();
+		Vector2 Pos = GetPos();
+
+		Vector2 Dir = PlayerPos - Pos;
+		Dir.Normalize();
+
+		Pos +=  (Pos * Dir) * Time::DeltaTime() ;
+
+		SetPos(Pos);
+
+		//Translate(mSpeed);
 	}
 	void SkillJelly1::Render(HDC hdc)
 	{

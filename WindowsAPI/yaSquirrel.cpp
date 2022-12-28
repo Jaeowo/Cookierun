@@ -5,6 +5,8 @@
 #include "yaComponent.h"
 #include "yaObject.h"
 #include "yaCollider.h"
+#include "yaGameObjectManager.h"
+#include "yaTime.h"
 
 namespace ya
 {
@@ -25,7 +27,6 @@ namespace ya
 		Collider* col = new Collider();
 		AddComponent(col);
 
-		mPlayer = new Player();
 	
 	}
 	Squirrel::~Squirrel()
@@ -39,10 +40,18 @@ namespace ya
 		{
 		case ya::Squirrel::eState::Trace:
 		{
-			Vector2 PlayerPos = mPlayer->GetPos();
-			//Vector2 Pos = GetPos();
-			//Pos = PlayerPos;
-			SetPos({(PlayerPos.x - 100.0f), PlayerPos.y});
+			Vector2 PlayerPos = GameObjectManager::GetPlayer()->GetPos();
+			Vector2 Pos = GetPos();
+			
+
+			Pos.x = (PlayerPos.x - 100.0f);
+			Pos.y = PlayerPos.y;
+			//Vector2 Dir = PlayerPos - Pos;
+			//Dir.Normalize();
+
+			//Pos += (Pos * Dir) * Time::DeltaTime();
+
+			SetPos(Pos);
 			
 		}
 		break;

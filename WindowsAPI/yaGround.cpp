@@ -7,6 +7,19 @@
 
 namespace ya
 {
+	Ground::Ground(Vector2 pos)
+		:mSpeed(-300.0f)
+	{
+		SetPos(pos);
+		//mColPos = (Vector2(8000.0f, 100.0f));
+
+		mCollider = new Collider();
+		mCollider->SetPos(pos);
+		AddComponent(mCollider);
+
+
+	}
+
 	Ground::Ground()
 		:mSpeed(-300.0f)
 	{
@@ -59,6 +72,12 @@ namespace ya
 		{
 			playerObj->SetState(Player::eState::Swing);
 			playerObj->GetComponent<Animator>()->Play(L"SwingC", true);
+		}
+
+		if (playerObj->GetState() == Player::eState::Slide)
+		{
+			playerObj->SetState(Player::eState::Slide);
+			//playerObj->GetComponent<Animator>()->Play(L"SwingC", true);
 		}
 
 		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);

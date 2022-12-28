@@ -4,6 +4,8 @@
 #include "yaBgImageObject.h"
 #include "yaObject.h"
 #include "yaLobbieCookie.h"
+#include "yaUIManager.h"
+#include "yaGameStart.h"
 
 namespace ya
 {
@@ -22,6 +24,9 @@ namespace ya
 		AddGameObject(bg, eColliderLayer::BackGround);
 
 		ya::object::Instantiate<LobbieCookie>(eColliderLayer::Player);
+
+		//UIManager::Push(eUIType::INVENTORY);
+		UIManager::Push(eUIType::OPTION);
 	}
 	void TitleScene::Tick()
 	{
@@ -35,10 +40,7 @@ namespace ya
 	void TitleScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
-		wchar_t szFloat[50] = {};
-		swprintf_s(szFloat, 50, L"Title Scene");
-		int strLen = wcsnlen_s(szFloat, 50);
-		TextOut(hdc, 10, 30, szFloat, strLen);
+	
 	}
 	void TitleScene::Enter()
 	{

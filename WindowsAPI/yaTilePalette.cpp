@@ -93,7 +93,8 @@ namespace ya
 		ofn.nMaxFile = 256;
 		ofn.lpstrFilter = L"Tile\0*.tile\0";
 		ofn.nFilterIndex = 1;
-		ofn.lpstrFileTitle = NULL;
+		ofn.lpstrFile
+			= NULL;
 		ofn.nMaxFileTitle = 0;
 		ofn.lpstrInitialDir = NULL;
 		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
