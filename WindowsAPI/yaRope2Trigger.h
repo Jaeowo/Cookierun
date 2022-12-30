@@ -3,26 +3,24 @@
 
 namespace ya
 {
-	class Image;
-	class Animator;
 
-	class EatingEffect :
-		public GameObject
+	class Rope2Trigger
+		: public GameObject
 	{
 	public:
-		EatingEffect();
-		~EatingEffect();
+		Rope2Trigger(Vector2 pos);
+		Rope2Trigger();
+		~Rope2Trigger();
 
 		virtual void Tick() override;
 		virtual void Render(HDC hdc) override;
 
 		virtual void OnCollisionEnter(Collider* other) override;
+		void SetTarget(GameObject* target) { mTarget = target; }
+
 
 	private:
-		Image* mImage;
 		float mSpeed;
-		float mAlphaValue;
-		float mCount;
+		GameObject* mTarget;
 	};
 }
-

@@ -23,6 +23,13 @@ namespace ya
 	}
 	void EatingEffect::Tick()
 	{
+		mCount += Time::DeltaTime();
+
+		if (mCount >= 1.0f)
+		{
+			Death();
+		}
+
 		GameObject::Tick();
 		Translate(mSpeed);
 	}

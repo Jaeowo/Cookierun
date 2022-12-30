@@ -98,6 +98,12 @@
     <Filter Include="Engine\GameObject\Cookie\LilySkill\Leaf">
       <UniqueIdentifier>{29a79076-431d-49fa-9c04-67a4cfa49687}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObject\Obstruction\Trigger">
+      <UniqueIdentifier>{6d74db4b-d874-455e-9868-30b13d627046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene\ChangeStage">
+      <UniqueIdentifier>{e435d4e7-55ba-49f3-89a3-103bd6b18dc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -221,9 +227,6 @@
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClInclude>
     <ClInclude Include="yaDown.h">
-      <Filter>Engine\GameObject\Obstruction</Filter>
-    </ClInclude>
-    <ClInclude Include="yaEventTrigger.h">
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClInclude>
     <ClInclude Include="yaRolling.h">
@@ -379,6 +382,27 @@
     <ClInclude Include="yaSkillBarGreen.h">
       <Filter>Engine\GameObject\UI</Filter>
     </ClInclude>
+    <ClInclude Include="yaScoreNumber.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRope2Trigger.h">
+      <Filter>Engine\GameObject\Obstruction\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFinishSkill2.h">
+      <Filter>Engine\GameObject\Cookie\LilySkill</Filter>
+    </ClInclude>
+    <ClInclude Include="yaChange01.h">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClInclude>
+    <ClInclude Include="yaChange02.h">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClInclude>
+    <ClInclude Include="yaChange03.h">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClInclude>
+    <ClInclude Include="yaChangeRandom.h">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -500,9 +524,6 @@
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClCompile>
     <ClCompile Include="yaDown.cpp">
-      <Filter>Engine\GameObject\Obstruction</Filter>
-    </ClCompile>
-    <ClCompile Include="yaEventTrigger.cpp">
       <Filter>Engine\GameObject\Obstruction</Filter>
     </ClCompile>
     <ClCompile Include="yaRolling.cpp">
@@ -654,6 +675,27 @@
     </ClCompile>
     <ClCompile Include="yaSkillBarGreen.cpp">
       <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaScoreNumber.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRope2Trigger.cpp">
+      <Filter>Engine\GameObject\Obstruction\Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFinishSkill2.cpp">
+      <Filter>Engine\GameObject\Cookie\LilySkill</Filter>
+    </ClCompile>
+    <ClCompile Include="yaChange01.cpp">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClCompile>
+    <ClCompile Include="yaChange02.cpp">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClCompile>
+    <ClCompile Include="yaChange03.cpp">
+      <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClCompile>
+    <ClCompile Include="yaChangeRandom.cpp">
+      <Filter>Engine\Scene\ChangeStage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

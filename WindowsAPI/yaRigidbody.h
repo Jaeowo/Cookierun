@@ -1,8 +1,6 @@
 #pragma once
 #include "yaComponent.h"
 
-//점점 세지는 중력은 필요없을거 같음 -> 항상 같은 속도로 떨어짐
-//가속도,마찰력 X 특정한 지형 만났을 경우에만 가속도
 
 namespace ya
 {
@@ -27,7 +25,7 @@ namespace ya
 		// 힘과 마찰력을 이용한 이동
 		float mMass;
 		float mFriction;
-		//float mMoveFriction;
+		float mMoveFriction;
 		Vector2 mForce;
 		Vector2 mVelocity;
 		Vector2 mAccelation;

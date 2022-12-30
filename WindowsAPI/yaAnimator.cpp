@@ -35,6 +35,18 @@ namespace ya
 		{
 			mPlayAnimaion->Tick();
 
+			/*
+			if (mbLoop && mPlayAnimaion->isComplete())
+			{
+				Animator::Events* events 
+					= FindEvents(mPlayAnimaion->GetName());
+				if (events != nullptr)
+					events ->mCompleteEvent();
+
+				mPlayAnimaion->Reset();
+			}
+			*/
+
 			if (mPlayAnimaion->isComplete())
 			{
 				Animator::Events* events
@@ -43,7 +55,10 @@ namespace ya
 					events->mCompleteEvent();
 
 				mPlayAnimaion->Reset();
+
 			}
+
+		
 		}
 	}
 

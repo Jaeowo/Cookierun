@@ -51,6 +51,7 @@ enum class eColliderLayer
 	BackGround,
 	Tile,
 	Obstruction,
+	Effect,
 	Jelly,
 	Player,
 	Pet,

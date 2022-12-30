@@ -3,26 +3,24 @@
 
 namespace ya
 {
-	class Image;
-	class Animator;
-
-	class EatingEffect :
-		public GameObject
+	class FinishSkill2
+		: public GameObject
 	{
 	public:
-		EatingEffect();
-		~EatingEffect();
+		FinishSkill2(Vector2 pos);
+		FinishSkill2();
+		~FinishSkill2();
 
 		virtual void Tick() override;
 		virtual void Render(HDC hdc) override;
 
 		virtual void OnCollisionEnter(Collider* other) override;
+		void SetTarget(GameObject* target) { mTarget = target; }
+
 
 	private:
-		Image* mImage;
 		float mSpeed;
-		float mAlphaValue;
-		float mCount;
+		GameObject* mTarget;
 	};
 }
 

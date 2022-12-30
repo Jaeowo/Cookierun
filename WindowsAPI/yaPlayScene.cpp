@@ -63,9 +63,6 @@ namespace ya
 	
 
 		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
-		GroundTile* groundtile = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
-		groundtile->SetPos(Vector2{ 0.0f,700.0f });
-		groundtile->SetCount(15);
 
 		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
 		
@@ -87,8 +84,8 @@ namespace ya
 		//Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
 		
 		
-		Stage01* stage01 = new Stage01();
-		stage01->ObstructionSetting();
+	/*	Stage01* stage01 = new Stage01();
+		stage01->ObstructionSetting();*/
 		/*Stage02* stage02 = new Stage02();
 		stage02->ObstructionSetting();*/
 

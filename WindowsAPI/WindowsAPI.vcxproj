@@ -134,11 +134,15 @@
   <ItemGroup>
     <ClInclude Include="yaBigBear.h" />
     <ClInclude Include="yaBigHp.h" />
+    <ClInclude Include="yaChange01.h" />
+    <ClInclude Include="yaChange02.h" />
+    <ClInclude Include="yaChange03.h" />
     <ClInclude Include="yaChangeBear.h" />
     <ClInclude Include="yaChangeCoin.h" />
+    <ClInclude Include="yaChangeRandom.h" />
     <ClInclude Include="yaDown.h" />
     <ClInclude Include="yaEatingEffect.h" />
-    <ClInclude Include="yaEventTrigger.h" />
+    <ClInclude Include="yaFinishSkill2.h" />
     <ClInclude Include="yaFire01.h" />
     <ClInclude Include="yaFire02.h" />
     <ClInclude Include="yaFlower1.h" />
@@ -164,8 +168,10 @@
     <ClInclude Include="yaRolling.h" />
     <ClInclude Include="yaRope01.h" />
     <ClInclude Include="yaRope02.h" />
+    <ClInclude Include="yaRope2Trigger.h" />
     <ClInclude Include="yaRun.h" />
     <ClInclude Include="yaRunEffect.h" />
+    <ClInclude Include="yaScoreNumber.h" />
     <ClInclude Include="yaSilverCoin.h" />
     <ClInclude Include="yaSkillBarBlue.h" />
     <ClInclude Include="yaSkillBarGreen.h" />
@@ -230,11 +236,15 @@
     <ClCompile Include="Maths.cpp" />
     <ClCompile Include="yaBigBear.cpp" />
     <ClCompile Include="yaBigHp.cpp" />
+    <ClCompile Include="yaChange01.cpp" />
+    <ClCompile Include="yaChange02.cpp" />
+    <ClCompile Include="yaChange03.cpp" />
     <ClCompile Include="yaChangeBear.cpp" />
     <ClCompile Include="yaChangeCoin.cpp" />
+    <ClCompile Include="yaChangeRandom.cpp" />
     <ClCompile Include="yaDown.cpp" />
     <ClCompile Include="yaEatingEffect.cpp" />
-    <ClCompile Include="yaEventTrigger.cpp" />
+    <ClCompile Include="yaFinishSkill2.cpp" />
     <ClCompile Include="yaFire01.cpp" />
     <ClCompile Include="yaFire02.cpp" />
     <ClCompile Include="yaFlower1.cpp" />
@@ -260,8 +270,10 @@
     <ClCompile Include="yaRolling.cpp" />
     <ClCompile Include="yaRope01.cpp" />
     <ClCompile Include="yaRope02.cpp" />
+    <ClCompile Include="yaRope2Trigger.cpp" />
     <ClCompile Include="yaRun.cpp" />
     <ClCompile Include="yaRunEffect.cpp" />
+    <ClCompile Include="yaScoreNumber.cpp" />
     <ClCompile Include="yaSilverCoin.cpp" />
     <ClCompile Include="yaSkillBarBlue.cpp" />
     <ClCompile Include="yaSkillBarGreen.cpp" />

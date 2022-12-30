@@ -14,6 +14,8 @@
 #include "yaObject.h"
 #include "yaCollisionManager.h"
 #include "yaRunEffect.h"
+#include "yaSkillJelly5.h"
+#include "yaSkillJelly6.h"
 
 namespace ya
 {
@@ -26,14 +28,19 @@ namespace ya
 		, mMujukTime(0.0f)
 		, mTime (0.0f)
 		, mDistance (0)
+		, mSkill1Time(0.0f)
+		, mSkill1Time2(0.0f)
+		, mSkill2Time(0.0f)
 	{
 	
-		AddComponent<Rigidbody>();
+		
 
 		SetName(L"Player");
 		SetPos({ 400.0f, 625.0f });
 		SetScale({ 1.0f, 1.0f });
 		PlayerPos = GetPos();
+
+		AddComponent<Rigidbody>();
 
 		mAnimator = new Animator();
 
@@ -64,6 +71,9 @@ namespace ya
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Swing"
 			, L"SwingC", Vector2(0, 0), 0.13f);
 
+		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\SkillIntro"
+			, L"SkillIntroC", Vector2(0, 0), 0.13f);
+
 		mAnimator->GetCompleteEvent(L"LandingC") = std::bind(&Player::LandingComplete, this);
 		mAnimator->GetCompleteEvent(L"AttackC") = std::bind(&Player::LandingComplete, this);
 		
@@ -78,7 +88,7 @@ namespace ya
 		mCollider->SetOffset(Vector2(10.0f, 125.0f));
 		mCollider->SetScale(Vector2(100.0f, 150.0f));
 
-
+		
 		mCoff = 0.1f;
 	}
 
@@ -93,8 +103,53 @@ namespace ya
 
 		mHp -= Time::DeltaTime();
 
-		//mDistance = Speed * Time::DeltaTime();
-		//speed를 통일해주자..
+	
+
+		if (mState == eState::Skill1 || mState == eState::Skill2)
+		{
+
+		}
+		else
+		{
+			mSkill1Time += Time::DeltaTime();
+		}
+
+		if (!(mState == eState::Skill2))
+		{
+			mSkill2Time += Time::DeltaTime();
+		}
+
+
+		if (mSkill1Time >= 3.0f)
+		{
+			mSkillCount1 = 0;
+			if (mSkillCount1 == 0)
+			{
+				mState = eState::Skill1;
+				mSkillCount1 = 1;
+			}
+		}
+
+		if (mSkill2Time >= 30.0f)
+		{
+			mSkillCount2 = 0;
+			if (mSkillCount2 == 0)
+			{
+				mState = eState::Skill2;
+				mSkillCount2 = 1;
+			}
+		}
+
+		/*if (GetState() == eState::Run)
+		{
+			mDistance = 600 * Time::DeltaTime();
+		}
+		else
+		{
+			mDistance = 300 * Time::DeltaTime();
+		}*/
+
+
 
 		switch (mState)
 		{
@@ -167,6 +222,16 @@ namespace ya
 		case ya::Player::eState::Swing:
 		{
 			Swing();
+		}
+		break;
+		case ya::Player::eState::Skill1:
+		{
+			Skill1();
+		}
+		break;
+		case ya::Player::eState::Skill2:
+		{
+			Skill2();
 		}
 		break;
 		case ya::Player::eState::Death:
@@ -582,7 +647,7 @@ namespace ya
 
 				JumpCount = 2;
 				SetJumpCount(JumpCount);
-				mAnimator->Play(L"DoubleJumpC", true);;
+				mAnimator->Play(L"DoubleJumpC", true);
 			}
 
 		}
@@ -623,6 +688,51 @@ namespace ya
 		}
 	}
 
+	void Player::Skill1()
+	{
+		if (mSkillCount1 == 1)
+		{
+			mAnimator->Play(L"SkillIntroC", false);
+
+			mSkill1Time = 0.0f;
+			mSkillCount1 = 2;
+			SkillJelly5* skilljelly5 = ya::object::Instantiate<SkillJelly5>(eColliderLayer::Jelly);
+			skilljelly5->SetPos(Vector2((PlayerPos.x - 100.0f), (PlayerPos.y - 200.0f)));
+			SkillJelly6* skilljelly6 = ya::object::Instantiate<SkillJelly6>(eColliderLayer::Jelly);
+			skilljelly6->SetPos(Vector2((PlayerPos.x - 200.0f), (PlayerPos.y - 200.0f)));
+			SkillJelly5* skilljelly51 = ya::object::Instantiate<SkillJelly5>(eColliderLayer::Jelly);
+			skilljelly51->SetPos(Vector2((PlayerPos.x + 100.0f), (PlayerPos.y - 50.0f)));
+			SkillJelly6* skilljelly61 = ya::object::Instantiate<SkillJelly6>(eColliderLayer::Jelly);
+			skilljelly61->SetPos(Vector2((PlayerPos.x - 200.0f), (PlayerPos.y - 100.0f)));
+			SkillJelly5* skilljelly52 = ya::object::Instantiate<SkillJelly5>(eColliderLayer::Jelly);
+			skilljelly52->SetPos(Vector2((PlayerPos.x + 200.0f), (PlayerPos.y - 50.0f)));
+			SkillJelly6* skilljelly62 = ya::object::Instantiate<SkillJelly6>(eColliderLayer::Jelly);
+			skilljelly62->SetPos(Vector2((PlayerPos.x + 200.0f), (PlayerPos.y - 150.0f)));
+			SkillJelly6* skilljelly63 = ya::object::Instantiate<SkillJelly6>(eColliderLayer::Jelly);
+			skilljelly63->SetPos(Vector2((PlayerPos.x ), (PlayerPos.y - 150.0f)));
+			SkillJelly5* skilljelly53 = ya::object::Instantiate<SkillJelly5>(eColliderLayer::Jelly);
+			skilljelly53->SetPos(Vector2((PlayerPos.x ), (PlayerPos.y - 250.0f)));
+			mSkill1Time2 = 0.0f;
+			mSkill1Time2 += Time::DeltaTime();
+			mState = eState::Walk;
+			mSkillCount1 = 0;
+
+		/*	if (mSkill1Time2 >= 0.3f)
+			{
+				SkillJelly5* skilljelly51 = ya::object::Instantiate<SkillJelly5>(eColliderLayer::Jelly);
+				skilljelly51->SetPos(Vector2((PlayerPos.x + 100.0f), (PlayerPos.y )));
+				SkillJelly6* skilljelly61 = ya::object::Instantiate<SkillJelly6>(eColliderLayer::Jelly);
+				skilljelly61->SetPos(Vector2((PlayerPos.x + 200.0f), (PlayerPos.y )));
+			
+				
+			}*/
+		}
+	}
+
+	void Player::Skill2()
+	{
+	}
+
 	void Player::Death()
 	{
 		mAnimator->Play(L"HPDieC", false);
@@ -657,6 +767,11 @@ namespace ya
 	{
 		mAnimator->Play(L"WalkC", true);
 		mState = eState::Walk;
+	}
+
+	void Player::ScoreToString()
+	{
+		mStringScore = std::to_string(mScore);
 	}
 
 

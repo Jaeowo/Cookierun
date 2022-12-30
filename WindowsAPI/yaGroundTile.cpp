@@ -14,6 +14,10 @@ namespace ya
 		{
 			mImage = Resources::Load<Image>(L"Tile1", L"..\\Resources\\Image\\Tile1.bmp");
 		}
+	
+		//SetPos(Vector2{ 0.0f ,700.0f });
+	
+	
 
 	}
 	GroundTile::~GroundTile()
@@ -21,31 +25,39 @@ namespace ya
 	}
 	void GroundTile::Tick()
 	{
-		//Translate(mSpeed);
+
+		Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void GroundTile::Render(HDC hdc)
 	{
-		mCount = GetCount();
+		//mCount = GetCount();
+
+		//Vector2 pos = GetPos();
+		//Vector2 scale = GetScale();
+		////Vector2 finalPos = pos;
+
+		//Vector2 rect;
+		//rect.x = mImage->GetWidth() * scale.x;
+		//rect.y = mImage->GetHeight() * scale.y;
+
+		//for (int i = 0; i <= mCount; ++i)
+		//{
+		//	TransparentBlt(hdc, (pos.x + rect.x) * i , pos.y, rect.x, rect.y
+		//		, mImage->GetDC(), 0 , 0, mImage->GetWidth(), mImage->GetHeight()
+		//		, RGB(255, 0, 255));
+		//}
+	
 
 		Vector2 pos = GetPos();
-		Vector2 scale = GetScale();
 		Vector2 finalPos = pos;
-
 		Vector2 rect;
-		rect.x = mImage->GetWidth() * scale.x;
-		rect.y = mImage->GetHeight() * scale.y;
+		rect.x = mImage->GetWidth();
+		rect.y = mImage->GetHeight();
 
-		
-
-		for (int i = 0; i <= mCount; ++i)
-		{
-			TransparentBlt(hdc, (finalPos.x + rect.x) * i , finalPos.y, rect.x, rect.y
-				, mImage->GetDC(), 0 , 0, mImage->GetWidth(), mImage->GetHeight()
-				, RGB(255, 0, 255));
-		}
-
-
+		TransparentBlt(hdc, finalPos.x, finalPos.y, rect.x, rect.y
+			, mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()
+			, RGB(255, 0, 255));
 
 		GameObject::Render(hdc);
 	}

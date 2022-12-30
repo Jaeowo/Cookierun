@@ -90,7 +90,11 @@ namespace ya
 	void Jelly::OnCollisionEnter(Collider* other)
 	{
 		//점수추가
-		
+		Vector2 Pos = GetPos();
+
+		EatingEffect* eatingeffect = ya::object::Instantiate<EatingEffect>(eColliderLayer::Effect);
+		eatingeffect->SetPos(Pos);
+
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		int Score = playerObj->GetScore();
 		Score += 1000;

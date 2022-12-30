@@ -77,6 +77,9 @@ namespace ya
 		void RunSlide();
 		void Swing();
 
+		void Skill1();
+		void Skill2();
+
 		void Death();
 
 		void SetHp(int hp) { mHp = hp; }
@@ -93,16 +96,26 @@ namespace ya
 
 		float GetSpeed() { return mSpeed; }
 
+		float GetmSkill1Time() { return mSkill1Time; }
+		float GetmSkill2Time() { return mSkill2Time; }
+
 	private:
 		int mJumpCount;
 		float mHp;
 		float mSpeed;
 		float mTime;
+		float mSkill1Time;
+		float mSkill1Time2;
+		float mSkill2Time;
+		int mSkillCount1;
+		int mSkillCount2;
 
 	//=======
 	public:
 		void SetScore(int Score) { mScore = Score; }
 		int GetScore() { return mScore; }
+		std::string GestStringScore() { return mStringScore; }
+		void ScoreToString();
 
 		void SetItemTime(float ItemTime) { mItemTime = ItemTime; }
 		float GetItemTime() { return mItemTime; }
@@ -116,7 +129,10 @@ namespace ya
 		Image* mImage;
 		Animator* mAnimator;
 		Collider* mCollider;
+
 		int mScore;
+		std::string mStringScore;
+
 		float mItemTime;
 		float mMujukTime;
 		int mDistance;

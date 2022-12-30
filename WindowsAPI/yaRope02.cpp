@@ -18,6 +18,9 @@ namespace ya
 		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Rope02\\Wait"
 			, L"Rope02Wait", Vector2(0, 0), 0.15f);
 
+		mAnimator->CreateAnimations(L"..\\Resources\\Image\\Map\\Rope02\\Active"
+			, L"Rope02Active", Vector2(0, 0), 0.15f);
+
 		mAnimator->Play(L"Rope02Wait", true);
 
 		AddComponent(mAnimator);
