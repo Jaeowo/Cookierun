@@ -29,11 +29,11 @@ namespace ya
 {
 	JellyToolScene::JellyToolScene()
 	{
-		//Stage01* stage01 = new Stage01();
-		//stage01->ObstructionSetting();
+		Stage01* stage01 = new Stage01();
+		stage01->ObstructionSetting();
 
-		Stage02* stage02 = new Stage02();
-		stage02->ObstructionSetting();
+	/*	Stage02* stage02 = new Stage02();
+		stage02->ObstructionSetting();*/
 	}
 
 	JellyToolScene::~JellyToolScene()

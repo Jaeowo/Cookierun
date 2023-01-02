@@ -2,6 +2,7 @@
 #include "yaCollider.h"
 #include "yaRope02.h"
 #include "yaAnimator.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -22,7 +23,9 @@ namespace ya
 	}
 	void Rope2Trigger::Tick()
 	{
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void Rope2Trigger::Render(HDC hdc)

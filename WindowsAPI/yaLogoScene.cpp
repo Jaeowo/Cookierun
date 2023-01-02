@@ -7,7 +7,7 @@
 #include "yaObject.h"
 #include "yaApplication.h"
 #include "yaToolScene.h"
-#include "yaUIManager.h"
+//#include "yaUIManager.h"
 
 namespace ya
 {
@@ -27,7 +27,7 @@ namespace ya
 		bg->Initialize();
 
 		AddGameObject(bg, eColliderLayer::BackGround);
-		UIManager::Pop(eUIType::HP);
+		//UIManager::Pop(eUIType::HP);
 	}
 
 	void LogoScene::Tick()
@@ -50,10 +50,12 @@ namespace ya
 
 	void LogoScene::Enter()
 	{
-
+		/*UIManager::Pop(eUIType::HP);
+		UIManager::Pop(eUIType::OPTION);*/
 	}
 
 	void LogoScene::Exit()
 	{
+
 	}
 }

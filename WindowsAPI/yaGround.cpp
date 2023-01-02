@@ -3,6 +3,7 @@
 #include "yaCollider.h"
 #include "yaRigidbody.h"
 #include "yaAnimator.h"
+#include "yaApplication.h"
 
 
 namespace ya
@@ -35,7 +36,9 @@ namespace ya
 	}
 	void Ground::Tick()
 	{
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 		GameObject::Tick();
 		mCollider->SetScale(mColPos);
 	}

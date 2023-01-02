@@ -2,6 +2,7 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaPlayer.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -49,7 +50,9 @@ namespace ya
 	void GoBonusTime::Tick()
 	{
 
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void GoBonusTime::Render(HDC hdc)

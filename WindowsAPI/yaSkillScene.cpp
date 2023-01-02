@@ -122,7 +122,7 @@ namespace ya
 		ground2->SetPos(Vector2(3230.0f, 400.0f));
 		ground2->SetColPos(Vector2(170.0f, 100.0f));
 
-		UIManager::Push(eUIType::HP);
+		
 
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
 		hpbar->SetTarget(player);

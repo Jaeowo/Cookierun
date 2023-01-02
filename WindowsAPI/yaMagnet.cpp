@@ -2,6 +2,8 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaPlayer.h"
+#include "yaSquirrel.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -50,7 +52,9 @@ namespace ya
 	void Magnet::Tick()
 	{
 
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void Magnet::Render(HDC hdc)
@@ -60,6 +64,9 @@ namespace ya
 	void Magnet::OnCollisionEnter(Collider* other)
 	{
 
+		Squirrel* squirrelobj = dynamic_cast<Squirrel*>(other->GetOwner());
+
+		//squirrelobj->SetState(Player::eState::Biggest);
 		this->Death();
 
 	}

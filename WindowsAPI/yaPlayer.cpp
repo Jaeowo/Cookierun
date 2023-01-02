@@ -72,18 +72,23 @@ namespace ya
 			, L"SwingC", Vector2(0, 0), 0.13f);
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\SkillIntro"
-			, L"SkillIntroC", Vector2(0, 0), 0.13f);
+			, L"SkillIntroC", Vector2(0, 0), 0.2f);
 
 		mAnimator->GetCompleteEvent(L"LandingC") = std::bind(&Player::LandingComplete, this);
 		mAnimator->GetCompleteEvent(L"AttackC") = std::bind(&Player::LandingComplete, this);
+		mAnimator->GetCompleteEvent(L"SkillIntroC") = std::bind(&Player::LandingComplete, this);
+
 		
 
 		AddComponent(mAnimator);
 		
 		Camera::SetTarget(this);
-
+		mSlideCollider = new Collider();
 		mCollider = new Collider();
 		AddComponent(mCollider);
+		
+		mSlideCollider->SetOffset(Vector2(10.0f, 164.0f));
+		mSlideCollider->SetScale(Vector2(100.0f, 70.0f));
 
 		mCollider->SetOffset(Vector2(10.0f, 125.0f));
 		mCollider->SetScale(Vector2(100.0f, 150.0f));
@@ -103,6 +108,10 @@ namespace ya
 
 		mHp -= Time::DeltaTime();
 
+		if (mHp >= 100.0f)
+		{
+			mHp = 99.9f;
+		}
 	
 
 		if (mState == eState::Skill1 || mState == eState::Skill2)
@@ -120,7 +129,7 @@ namespace ya
 		}
 
 
-		if (mSkill1Time >= 3.0f)
+		if (mSkill1Time >= 15.0f)
 		{
 			mSkillCount1 = 0;
 			if (mSkillCount1 == 0)
@@ -130,7 +139,7 @@ namespace ya
 			}
 		}
 
-		if (mSkill2Time >= 30.0f)
+		if (mSkill2Time >= 35.0f)
 		{
 			mSkillCount2 = 0;
 			if (mSkillCount2 == 0)
@@ -333,6 +342,10 @@ namespace ya
 		}
 		else if (KEY_UP(eKeyCode::S))
 		{
+			SetPos({ 400.0f, 500.0f });
+			mCollider->SetOffset(Vector2(10.0f, 125.0f));
+			mCollider->SetScale(Vector2(100.0f, 150.0f));
+			//GetComponent<Rigidbody>()->SetGround(true);
 			mState = eState::Walk;
 		}
 
@@ -354,7 +367,7 @@ namespace ya
 	{
 		mItemTime += Time::DeltaTime();
 
-		if (mItemTime >= 3.0f)
+		if (mItemTime >= 5.0f)
 		{
 			SetState(Player::eState::Mujuk);
 		}
@@ -374,7 +387,7 @@ namespace ya
 	{
 		mItemTime += Time::DeltaTime();
 
-		if (mItemTime >= 3.0f)
+		if (mItemTime >= 5.0f)
 		{
 			SetState(Player::eState::Mujuk);
 		}
@@ -436,7 +449,7 @@ namespace ya
 	{
 		mItemTime += Time::DeltaTime();
 
-		if (mItemTime >= 3.0f)
+		if (mItemTime >= 5.0f)
 		{
 			SetState(Player::eState::Mujuk);
 		}
@@ -714,7 +727,7 @@ namespace ya
 			skilljelly53->SetPos(Vector2((PlayerPos.x ), (PlayerPos.y - 250.0f)));
 			mSkill1Time2 = 0.0f;
 			mSkill1Time2 += Time::DeltaTime();
-			mState = eState::Walk;
+			mState = eState::Mujuk;
 			mSkillCount1 = 0;
 
 		/*	if (mSkill1Time2 >= 0.3f)
@@ -748,7 +761,7 @@ namespace ya
 
 	void Player::Walk()
 	{
-
+		//SetPos({ 400.0f, 625.0f });
 		mCollider->SetOffset(Vector2(10.0f, 125.0f));
 		mCollider->SetScale(Vector2(100.0f, 150.0f));
 		SetScale(Vector2(1.0f, 1.0f));

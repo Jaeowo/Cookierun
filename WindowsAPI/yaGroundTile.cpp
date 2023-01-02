@@ -1,18 +1,19 @@
 #include "yaGroundTile.h"
 #include "yaResources.h"
 #include "yaImage.h"
+#include "yaApplication.h"
 
 namespace ya
 {
 	GroundTile::GroundTile()
-		:mSpeed(-50.0f)
+		:mSpeed(-300.0f)
 		,mCount(1)
 	{
 		SetName(L"Tile1");
 
 		if (mImage == nullptr)
 		{
-			mImage = Resources::Load<Image>(L"Tile1", L"..\\Resources\\Image\\Tile1.bmp");
+			mImage = Resources::Load<Image>(L"Tile1", L"..\\Resources\\Image\\Tile2.bmp");
 		}
 	
 		//SetPos(Vector2{ 0.0f ,700.0f });
@@ -26,8 +27,11 @@ namespace ya
 	void GroundTile::Tick()
 	{
 
-		Translate(mSpeed);
 		GameObject::Tick();
+
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 	}
 	void GroundTile::Render(HDC hdc)
 	{

@@ -129,6 +129,7 @@ namespace ya
 		Image* mImage;
 		Animator* mAnimator;
 		Collider* mCollider;
+		Collider* mSlideCollider;
 
 		int mScore;
 		std::string mStringScore;

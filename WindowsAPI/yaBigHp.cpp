@@ -2,6 +2,7 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaPlayer.h"
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -49,8 +50,9 @@ namespace ya
 	}
 	void BigHp::Tick()
 	{
-
-		Translate(mSpeed);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::JellyTool)
+			Translate(mSpeed);
 		GameObject::Tick();
 	}
 	void BigHp::Render(HDC hdc)

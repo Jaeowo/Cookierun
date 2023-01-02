@@ -40,19 +40,30 @@ namespace ya
 		{
 		case ya::Squirrel::eState::Trace:
 		{
-			Vector2 PlayerPos = GameObjectManager::GetPlayer()->GetPos();
-			Vector2 Pos = GetPos();
 			
 
-			Pos.x = (PlayerPos.x - 100.0f);
-			Pos.y = PlayerPos.y;
-			//Vector2 Dir = PlayerPos - Pos;
-			//Dir.Normalize();
+			if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Biggest
+				|| GameObjectManager::GetPlayer()->GetState() == Player::eState::BiggestJump
+				|| GameObjectManager::GetPlayer()->GetState() == Player::eState::BiggestSlide)
+			{
+				Vector2 PlayerPos = GameObjectManager::GetPlayer()->GetPos();
+				Vector2 Pos = GetPos();
+				Pos.x = (PlayerPos.x );
+				Pos.y = (PlayerPos.y + 350.0f);
+				SetPos(Pos);
+			}
+			else
+			{
+				Vector2 PlayerPos = GameObjectManager::GetPlayer()->GetPos();
+				Vector2 Pos = GetPos();
 
-			//Pos += (Pos * Dir) * Time::DeltaTime();
 
-			SetPos(Pos);
-			
+				Pos.x = (PlayerPos.x - 110.0f);
+				Pos.y = (PlayerPos.y + 130.0f);
+				SetPos(Pos);
+			}
+
+
 		}
 		break;
 		case ya::Squirrel::eState::Magnet:

@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaBackPlayScene.h" />
     <ClInclude Include="yaBigBear.h" />
     <ClInclude Include="yaBigHp.h" />
     <ClInclude Include="yaChange01.h" />
@@ -234,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Maths.cpp" />
+    <ClCompile Include="yaBackPlayScene.cpp" />
     <ClCompile Include="yaBigBear.cpp" />
     <ClCompile Include="yaBigHp.cpp" />
     <ClCompile Include="yaChange01.cpp" />

@@ -44,8 +44,6 @@ namespace ya
 		mScenes[(UINT)eSceneType::MapTool]->Initialize();
 		mScenes[(UINT)eSceneType::JellyTool]->Initialize();
 
-	
-
 		ChangeScene(eSceneType::Logo);
 		// 업캐스팅
 		// 다운캐스팅

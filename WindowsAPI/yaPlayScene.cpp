@@ -48,6 +48,7 @@ namespace ya
 
 	void PlayScene::Initialize()
 	{
+
 		//배경
 		BgImageObject* Bg1 = new BgImageObject();
 		Bg1->SetImage(L"Bg1", L"Bg1.bmp");
@@ -61,20 +62,12 @@ namespace ya
 		AddGameObject(Bg2, eColliderLayer::BackGround);
 		Bg2->SetSpeed(-9.0f);
 	
-
-		//타일하나여서 툴 말고 그냥 출력되도록 변경... 
-
-		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
 		
 		//펫
 		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 
 		//땅
-		Ground* ground = ya::object::Instantiate<Ground>(Vector2(8000.0f, 100.0f),eColliderLayer::Ground);
-		ground->SetPos(Vector2(1000.0f, 750.0f));
-		ground->SetColPos(Vector2(8000.0f, 100.0f));
-		
-
+	
 		//장애물
 		//Fire01* fire01 = ya::object::Instantiate<Fire01>(eColliderLayer::Obstruction);
 		//Fire02* fire02 = ya::object::Instantiate<Fire02>(eColliderLayer::Obstruction);
@@ -83,9 +76,8 @@ namespace ya
 		//Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);
 		//Rope02* rope02 = ya::object::Instantiate<Rope02>(eColliderLayer::Obstruction);
 		
-		
-	/*	Stage01* stage01 = new Stage01();
-		stage01->ObstructionSetting();*/
+		Stage01* stage01 = new Stage01();
+		stage01->ObstructionSetting();
 		/*Stage02* stage02 = new Stage02();
 		stage02->ObstructionSetting();*/
 
@@ -112,12 +104,10 @@ namespace ya
 		//BigBear* bigbear = ya::object::Instantiate<BigBear>(eColliderLayer::Jelly);
 
 		//UI
-		UIManager::Push(eUIType::N1);
-		UIManager::Push(eUIType::N2);
-		UIManager::Push(eUIType::HP);
+	
+		
 
-		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
-		hpbar->SetTarget(player);
+
 
 
 
@@ -237,6 +227,18 @@ namespace ya
 	{
 		Scene::Tick();
 		
+		
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Skill2)
+		{
+			SceneManager::ChangeScene(eSceneType::Skill);
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			SceneManager::ChangeScene(eSceneType::End);
+		}
+
+
 		if (KEY_DOWN(eKeyCode::N))
 		{
 			SceneManager::ChangeScene(eSceneType::Skill);
@@ -256,13 +258,18 @@ namespace ya
 		CollisionManager::SetLayer(eColliderLayer::Obstruction, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Ground, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Jelly, eColliderLayer::Player, true);
-
-
-
+	
+		UIManager::Push(eUIType::HP);
+		UIManager::Push(eUIType::N1);
+		UIManager::Push(eUIType::N2);
+		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
+		GameObjectManager::SetPlayer(player);
+		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
+		hpbar->SetTarget(player);
 	}
 
 	void PlayScene::Exit()
 	{
-
+		//UIManager::Pop(eUIType::HP);
 	}
 }

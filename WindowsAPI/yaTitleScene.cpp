@@ -26,7 +26,7 @@ namespace ya
 		ya::object::Instantiate<LobbieCookie>(eColliderLayer::Player);
 
 		//UIManager::Push(eUIType::INVENTORY);
-		UIManager::Push(eUIType::OPTION);
+		
 	}
 	void TitleScene::Tick()
 	{
@@ -44,8 +44,10 @@ namespace ya
 	}
 	void TitleScene::Enter()
 	{
+		UIManager::Push(eUIType::OPTION);
 	}
 	void TitleScene::Exit()
 	{
+		UIManager::Pop(eUIType::OPTION);
 	}
 }

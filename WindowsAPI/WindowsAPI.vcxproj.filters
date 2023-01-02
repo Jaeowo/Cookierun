@@ -403,6 +403,9 @@
     <ClInclude Include="yaChangeRandom.h">
       <Filter>Engine\Scene\ChangeStage</Filter>
     </ClInclude>
+    <ClInclude Include="yaBackPlayScene.h">
+      <Filter>Engine\Scene\MapSetting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsAPI.rc">
@@ -696,6 +699,9 @@
     </ClCompile>
     <ClCompile Include="yaChangeRandom.cpp">
       <Filter>Engine\Scene\ChangeStage</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBackPlayScene.cpp">
+      <Filter>Engine\Scene\MapSetting</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
