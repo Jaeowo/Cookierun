@@ -4,7 +4,7 @@
 #include "yaPlayer.h"
 #include "yaApplication.h"
 #include "yaTime.h"
-
+#include "yaGameObjectManager.h"	
 namespace ya
 {
 	Rope01::Rope01(Vector2 pos)
@@ -62,6 +62,19 @@ namespace ya
 	void Rope01::Tick()
 	{
 		GameObject::Tick();
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			mSpeed = 0;
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);
@@ -103,6 +116,9 @@ namespace ya
 		else if (playerObj->GetState() == Player::eState::Mujuk
 			|| playerObj->GetState() == Player::eState::MujukJump
 			|| playerObj->GetState() == Player::eState::MujukSlide)
+		{
+		}
+		else if (playerObj->GetState() == Player::eState::Death)
 		{
 		}
 		else if (playerObj->GetState() == Player::eState::Run

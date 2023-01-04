@@ -3,6 +3,8 @@
 namespace ya
 {
 	class GameObject;
+	class Animator;
+
 	class ScoreNumber
 		:public UiBase
 	{
@@ -21,9 +23,8 @@ namespace ya
 
 	private:
 		GameObject* mTarget;
-		int mScoreStartX;
-		int mScoreX;
-		std::string mstr;
+		int mScore;
+		Animator* mAnimator;
 	};
 
 }

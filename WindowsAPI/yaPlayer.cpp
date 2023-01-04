@@ -31,12 +31,13 @@ namespace ya
 		, mSkill1Time(0.0f)
 		, mSkill1Time2(0.0f)
 		, mSkill2Time(0.0f)
+		, mCheck(0)
 	{
 	
 		
 
 		SetName(L"Player");
-		SetPos({ 400.0f, 625.0f });
+		SetPos({ 400.0f, 500.0f });
 		SetScale({ 1.0f, 1.0f });
 		PlayerPos = GetPos();
 
@@ -107,6 +108,8 @@ namespace ya
 		GameObject::Tick();
 
 		mHp -= Time::DeltaTime();
+		
+
 
 		if (mHp >= 100.0f)
 		{
@@ -149,16 +152,12 @@ namespace ya
 			}
 		}
 
-		/*if (GetState() == eState::Run)
+		if (mHp <= 0.0f)
 		{
-			mDistance = 600 * Time::DeltaTime();
+			mState = eState::Death;
+		
+			
 		}
-		else
-		{
-			mDistance = 300 * Time::DeltaTime();
-		}*/
-
-
 
 		switch (mState)
 		{
@@ -241,6 +240,11 @@ namespace ya
 		case ya::Player::eState::Skill2:
 		{
 			Skill2();
+		}
+		break;
+		case ya::Player::eState::Back:
+		{
+			Back();
 		}
 		break;
 		case ya::Player::eState::Death:
@@ -336,7 +340,7 @@ namespace ya
 		
 		if (KEY_PREESE(eKeyCode::S))
 		{
-			mAnimator->Play(L"SlideC", true);
+			
 			mCollider->SetOffset(Vector2(10.0f, 164.0f));
 			mCollider->SetScale(Vector2(100.0f, 70.0f));
 		}
@@ -585,11 +589,11 @@ namespace ya
 		mItemTime += Time::DeltaTime();
 		
 
-		RunEffect* runeffect = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
-		runeffect->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });
+		/*RunEffect* runeffect = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
+		runeffect->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });*/
 		
 
-		if (mItemTime >= 3.0f)
+		if (mItemTime >= 4.0f)
 		{
 			SetState(Player::eState::Mujuk);
 			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
@@ -609,10 +613,10 @@ namespace ya
 
 	void Player::RunJump()
 	{
-		RunEffect* runeffect2 = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
-		runeffect2->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });
+		/*RunEffect* runeffect2 = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
+		runeffect2->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });*/
 
-		if (mItemTime >= 3.0f)
+		if (mItemTime >= 4.0f)
 		{
 			SetState(Player::eState::Mujuk);
 			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
@@ -672,7 +676,7 @@ namespace ya
 		mItemTime += Time::DeltaTime();
 		RunEffect* runeffect = new RunEffect;
 		runeffect->SetPos({ (PlayerPos.x - 100.0f), PlayerPos.y });
-		if (mItemTime >= 3.0f)
+		if (mItemTime >= 4.0f)
 		{
 			SetState(Player::eState::Mujuk);
 			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
@@ -746,17 +750,30 @@ namespace ya
 	{
 	}
 
+	void Player::Back()
+	{
+		//mState = eState::Walk;
+	}
+
 	void Player::Death()
 	{
-		mAnimator->Play(L"HPDieC", false);
-		
-		mTime += Time::DeltaTime();
+		////mAnimator->Play(L"HPDieC", false);
+		//
+		//mTime += Time::DeltaTime();
 
-		if (mItemTime >= 4.0f)
-		{/*
-			SceneManager* scenemanager = new SceneManager;
-			scenemanager->ChangeScene(eSceneType::End);*/
+		//if (mItemTime >= 4.0f)
+		//{/*
+		//	SceneManager* scenemanager = new SceneManager;
+		//	scenemanager->ChangeScene(eSceneType::End);*/
+		//}
+
+		
+		if (mCheck == 0)
+		{
+			mAnimator->Play(L"HPDieC", false);
+			mCheck = 1;
 		}
+		
 	}
 
 	void Player::Walk()
@@ -765,6 +782,7 @@ namespace ya
 		mCollider->SetOffset(Vector2(10.0f, 125.0f));
 		mCollider->SetScale(Vector2(100.0f, 150.0f));
 		SetScale(Vector2(1.0f, 1.0f));
+		mItemTime = 0.0f;
 		//mSpeed=-300.0f;
 		if (KEY_DOWN(eKeyCode::W))
 		{
@@ -773,6 +791,7 @@ namespace ya
 		else if (KEY_PREESE(eKeyCode::S))
 		{
 			mState = eState::Slide;
+			mAnimator->Play(L"SlideC", true);
 		}
 	}
 
@@ -782,10 +801,6 @@ namespace ya
 		mState = eState::Walk;
 	}
 
-	void Player::ScoreToString()
-	{
-		mStringScore = std::to_string(mScore);
-	}
 
 
 

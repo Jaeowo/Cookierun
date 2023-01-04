@@ -173,6 +173,12 @@
     <ClInclude Include="yaRun.h" />
     <ClInclude Include="yaRunEffect.h" />
     <ClInclude Include="yaScoreNumber.h" />
+    <ClInclude Include="yaScoreNumber2.h" />
+    <ClInclude Include="yaScoreNumber3.h" />
+    <ClInclude Include="yaScoreNumber4.h" />
+    <ClInclude Include="yaScoreNumber5.h" />
+    <ClInclude Include="yaScoreNumber6.h" />
+    <ClInclude Include="yaScoreNumber7.h" />
     <ClInclude Include="yaSilverCoin.h" />
     <ClInclude Include="yaSkillBarBlue.h" />
     <ClInclude Include="yaSkillBarGreen.h" />
@@ -185,6 +191,7 @@
     <ClInclude Include="yaSkillScene.h" />
     <ClInclude Include="yaSkillTile.h" />
     <ClInclude Include="yaSmallHp.h" />
+    <ClInclude Include="yaSound.h" />
     <ClInclude Include="yaSquirrel.h" />
     <ClInclude Include="yaAnimation.h" />
     <ClInclude Include="Common.h" />
@@ -276,6 +283,12 @@
     <ClCompile Include="yaRun.cpp" />
     <ClCompile Include="yaRunEffect.cpp" />
     <ClCompile Include="yaScoreNumber.cpp" />
+    <ClCompile Include="yaScoreNumber2.cpp" />
+    <ClCompile Include="yaScoreNumber3.cpp" />
+    <ClCompile Include="yaScoreNumber4.cpp" />
+    <ClCompile Include="yaScoreNumber5.cpp" />
+    <ClCompile Include="yaScoreNumber6.cpp" />
+    <ClCompile Include="yaScoreNumber7.cpp" />
     <ClCompile Include="yaSilverCoin.cpp" />
     <ClCompile Include="yaSkillBarBlue.cpp" />
     <ClCompile Include="yaSkillBarGreen.cpp" />
@@ -288,6 +301,7 @@
     <ClCompile Include="yaSkillScene.cpp" />
     <ClCompile Include="yaSkillTile.cpp" />
     <ClCompile Include="yaSmallHp.cpp" />
+    <ClCompile Include="yaSound.cpp" />
     <ClCompile Include="yaSquirrel.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />

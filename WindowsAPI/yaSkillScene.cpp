@@ -16,9 +16,13 @@
 #include "yaSquirrel.h"
 #include "yaPlayer.h"
 #include "yaGameObject.h"
+#include "yaBackPlayScene.h"
+#include "yaInput.h"
+#include "yaCamera.h"
 
 #include "yaUIManager.h"
 #include "yaHpBar.h"
+#include "yaScoreNumber.h"
 
 
 namespace ya
@@ -32,8 +36,7 @@ namespace ya
 	void SkillScene::Initialize()
 	{
 
-		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
-		GameObjectManager::SetPlayer(player);
+
 
 		//¹è°æ
 		BgImageObject* Bg3 = new BgImageObject();
@@ -58,9 +61,10 @@ namespace ya
 		skilltile->SetPos(Vector2{ 0.0f,700.0f });
 		skilltile->SetCount(15);
 
-		
+		mPlayer = ya::object::Instantiate<Player>(eColliderLayer::Player);
+		GameObjectManager::SetPlayer(mPlayer);
 
-		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
+		//Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(1000.0f, 750.0f));
@@ -93,6 +97,12 @@ namespace ya
 		Flower4* flower42 = ya::object::Instantiate<Flower4>(Vector2(3650.0f, 560.0f), eColliderLayer::Obstruction);
 		flower42->SetPos(Vector2(3650.0f, 560.0f));
 
+		Flower1* flower12 = ya::object::Instantiate<Flower1>(Vector2(3700.0f, 570.0f), eColliderLayer::Obstruction);
+		flower12->SetPos(Vector2(3800.0f, 570.0f));
+
+		Flower2* flower22 = ya::object::Instantiate<Flower2>(Vector2(3800.0f, 560.0f), eColliderLayer::Obstruction);
+		flower22->SetPos(Vector2(3900.0f, 560.0f));
+
 		Stem* stem = ya::object::Instantiate<Stem>(eColliderLayer::Obstruction);
 		stem->SetPos(Vector2(3000.0f, 450.0f));
 
@@ -114,6 +124,10 @@ namespace ya
 		RightLeaf* rightleaf1 = ya::object::Instantiate<RightLeaf>(Vector2(3230.0f, 400.0f),eColliderLayer::Obstruction);
 		rightleaf1->SetPos(Vector2(3230.0f, 400.0f));
 
+		BackPlayScene* backplayscene = ya::object::Instantiate<BackPlayScene>(Vector2(3650.0f, 560.0f), eColliderLayer::Obstruction);
+		backplayscene->SetPos(Vector2(4700.0f, 560.0f));
+		//backplayscene->SetTarget(mPlayer);
+
 		Ground* ground1 = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground1->SetPos(Vector2(2850.0f, 600.0f));
 		ground1->SetColPos(Vector2(170.0f, 100.0f));
@@ -124,11 +138,23 @@ namespace ya
 
 		
 
-		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
-		hpbar->SetTarget(player);
+	
+
+		//ScoreNumber* scorenumber = UIManager::GetUiInstant<ScoreNumber>(eUIType::SCORE);
+		//scorenumber->SetTarget(player);
+
 	}
 	void SkillScene::Tick()
 	{
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Back)
+		{
+			SceneManager::ChangeScene(eSceneType::Play);
+		}
+		if (KEY_DOWN(eKeyCode::N))
+		{
+			SceneManager::ChangeScene(eSceneType::Play);
+		}
+
 		Scene::Tick();
 	}
 	void SkillScene::Render(HDC hdc)
@@ -137,7 +163,18 @@ namespace ya
 	}
 	void SkillScene::Enter()
 	{
+		Camera::SetCameraEffect(eCameraEffect::FadeIn);
 
+		UIManager::Push(eUIType::HP);
+		UIManager::Push(eUIType::N1);
+		UIManager::Push(eUIType::N2);
+		UIManager::Push(eUIType::SCORE);
+
+		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
+		hpbar->SetTarget(mPlayer);
+
+		ScoreNumber* scorenumber = UIManager::GetUiInstant<ScoreNumber>(eUIType::SCORE);
+		scorenumber->SetTarget(mPlayer);
 		CollisionManager::SetLayer(eColliderLayer::Obstruction, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Ground, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Jelly, eColliderLayer::Player, true);

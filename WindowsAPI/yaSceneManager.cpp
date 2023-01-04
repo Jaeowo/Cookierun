@@ -37,7 +37,6 @@ namespace ya
 
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		mScenes[(UINT)eSceneType::Play]->Initialize();
-
 		mScenes[(UINT)eSceneType::End] = new EndScene();
 		mScenes[(UINT)eSceneType::End]->Initialize();
 

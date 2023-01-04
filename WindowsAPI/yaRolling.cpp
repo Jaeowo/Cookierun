@@ -5,7 +5,7 @@
 #include "yaRigidbody.h"
 #include "yaTime.h"
 #include "yaApplication.h"
-
+#include "yaGameObjectManager.h"		
 namespace ya
 {
 	Rolling::Rolling(Vector2 pos)
@@ -62,6 +62,19 @@ namespace ya
 	void Rolling::Tick()
 	{
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			mSpeed = 0;
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);
 
@@ -115,6 +128,9 @@ namespace ya
 		else if (playerObj->GetState() == Player::eState::Mujuk
 			|| playerObj->GetState() == Player::eState::MujukJump
 			|| playerObj->GetState() == Player::eState::MujukSlide)
+		{
+		}
+		else if (playerObj->GetState() == Player::eState::Death)
 		{
 		}
 		else if (playerObj->GetState() == Player::eState::Run

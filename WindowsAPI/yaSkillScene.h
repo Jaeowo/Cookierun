@@ -4,6 +4,7 @@
 namespace ya
 {
 	class Image;
+	class Player;
 
 	class SkillScene : public Scene
 	{
@@ -20,7 +21,8 @@ namespace ya
 
 	private:
 		Image* mImage;
-	
+		Player* mPlayer;
+		bool mChange;
 	};
 }
 

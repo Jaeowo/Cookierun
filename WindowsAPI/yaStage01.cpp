@@ -15,6 +15,7 @@
 #include "yaSmallHp.h"
 #include "yaBigHp.h"
 #include "yaBiggest.h"
+#include "yaRun.h"
 
 namespace ya
 {
@@ -27,7 +28,7 @@ namespace ya
 	void Stage01::ObstructionSetting()
 	{
 		Isit = true;
-
+		
 		//땅
 		Ground* ground = ya::object::Instantiate<Ground>(Vector2(2790.0f, 100.0f), eColliderLayer::Ground);
 		ground->SetPos(Vector2(2790.0f, 750.0f));
@@ -35,6 +36,13 @@ namespace ya
 		Ground* ground2 = ya::object::Instantiate<Ground>(Vector2(3720.0f, 100.0f), eColliderLayer::Ground);
 		ground2->SetPos(Vector2(7740.0f, 750.0f));
 		ground2->SetColPos(Vector2(3720.0f, 100.0f));
+
+		Ground* ground3 = ya::object::Instantiate<Ground>(Vector2(3720.0f, 100.0f), eColliderLayer::Ground);
+		ground3->SetPos(Vector2(13720.0f, 750.0f));
+		ground3->SetColPos(Vector2(7740.0f, 100.0f));
+		/*Ground* ground4 = ya::object::Instantiate<Ground>(Vector2(3720.0f, 100.0f), eColliderLayer::Ground);
+		ground4->SetPos(Vector2(7740.0f, 750.0f));
+		ground4->SetColPos(Vector2(3720.0f, 100.0f));*/
 
 		//땅타일
 		//한번에 for문돌려서 찍으려했는데 움직일때 이상해서 일단 하드코딩 ㅜㅜ
@@ -50,7 +58,14 @@ namespace ya
 		GroundTile* groundtile5 = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
 		groundtile5->SetPos(Vector2{ 7740.0f,700.0f });
 
-
+		GroundTile* groundtile6 = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
+		groundtile6->SetPos(Vector2{ 9900.0f,700.0f });
+		GroundTile* groundtile7 = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
+		groundtile7->SetPos(Vector2{ 11760.0f,700.0f });
+		GroundTile* groundtile8 = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
+		groundtile8->SetPos(Vector2{ 13620.0f,700.0f });
+		GroundTile* groundtile9 = ya::object::Instantiate<GroundTile>(eColliderLayer::Tile);
+		groundtile9->SetPos(Vector2{ 15480.0f,700.0f });
 	
 
 
@@ -104,6 +119,22 @@ namespace ya
 
 		Rope02* rope024 = ya::object::Instantiate<Rope02>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
 		rope024->SetPos(Vector2(8400.0f, 160.0f));
+
+		Run* run = ya::object::Instantiate<Run>(Vector2(10200.0f, 605.0f), eColliderLayer::Jelly);
+		run->SetPos(Vector2(10200.0f, 605.0f));
+
+		Rolling* rolling = ya::object::Instantiate<Rolling>(Vector2(10600.0f, 655.0f),eColliderLayer::Obstruction);
+		rolling->SetPos(Vector2(10600.0f, 655.0f));
+		Rolling* rolling2 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling2->SetPos(Vector2(10800.0f, 655.0f));
+		Rolling* rolling3 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling2->SetPos(Vector2(11000.0f, 655.0f));
+		Rolling* rolling4 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling2->SetPos(Vector2(11200.0f, 655.0f));
+		Rolling* rolling5 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling2->SetPos(Vector2(11400.0f, 655.0f));
+
+
 	/*	Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
 		Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);
 		Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);

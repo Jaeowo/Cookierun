@@ -32,7 +32,7 @@ namespace ya
 	{
 		if (mAlphaTime <= mEndTime)
 		{
-			mAlphaTime += Time::DeltaTime();
+			mAlphaTime += (Time::DeltaTime()*1.5f);
 			float ratio = (mAlphaTime / mEndTime);
 
 			if (eCameraEffect::FadeIn == mEffect)
@@ -41,7 +41,7 @@ namespace ya
 			}
 			else if(eCameraEffect::FadeOut == mEffect)
 			{
-				mCuttonAlpha = ratio;
+				mCuttonAlpha = ratio ;
 			}
 		}
 

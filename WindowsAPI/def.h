@@ -85,6 +85,7 @@ enum class eUIType
 	OPTION,
 	SKILLBAR1,
 	SKILLBAR2,
+	SCORE,
 
 	END,
 };

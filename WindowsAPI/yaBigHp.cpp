@@ -3,7 +3,7 @@
 #include "yaCollider.h"
 #include "yaPlayer.h"
 #include "yaApplication.h"
-
+#include "yaGameObjectManager.h"
 namespace ya
 {
 	BigHp::BigHp(Vector2 pos)
@@ -50,6 +50,19 @@ namespace ya
 	}
 	void BigHp::Tick()
 	{
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			mSpeed = 0;
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);

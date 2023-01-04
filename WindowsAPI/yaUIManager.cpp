@@ -4,6 +4,13 @@
 #include "yaPanel.h"
 #include "yaHpBar.h"
 #include "yaGameStart.h"
+#include "yaScoreNumber.h"
+#include "yaScoreNumber2.h"
+#include "yaScoreNumber3.h"
+#include "yaScoreNumber4.h"
+#include "yaScoreNumber5.h"
+#include "yaScoreNumber6.h"
+#include "yaScoreNumber7.h"
 
 namespace ya
 {
@@ -35,6 +42,36 @@ namespace ya
 		mUIs.insert(std::make_pair(eUIType::OPTION, gamestart));
 		gamestart->SetPos(Vector2(1000.0f, 650.0f));
 		gamestart->ImageLoad(L"GameStart", L"..\\Resources\\Image\\UI\\Play.bmp");
+
+		ScoreNumber* scorenumber = new ScoreNumber(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber));
+		scorenumber->SetPos(Vector2(940.0f, 170.0f));
+
+		ScoreNumber2* scorenumber2 = new ScoreNumber2(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber2));
+		scorenumber2->SetPos(Vector2(905.0f, 70.0f));
+
+		ScoreNumber3* scorenumber3 = new ScoreNumber3(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber3));
+		scorenumber3->SetPos(Vector2(870.0f, 70.0f));
+
+		ScoreNumber4* scorenumber4 = new ScoreNumber4(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber4));
+		scorenumber4->SetPos(Vector2(835.0f, 70.0f));
+
+		ScoreNumber5* scorenumber5 = new ScoreNumber5(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber5));
+		scorenumber5->SetPos(Vector2(800.0f, 70.0f));
+
+		ScoreNumber6* scorenumber6 = new ScoreNumber6(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber6));
+		scorenumber6->SetPos(Vector2(765.0f, 70.0f));
+
+		ScoreNumber7* scorenumber7 = new ScoreNumber7(eUIType::SCORE);
+		mUIs.insert(std::make_pair(eUIType::SCORE, scorenumber7));
+		scorenumber7->SetPos(Vector2(730.0f, 70.0f));
+
+		
 	}
 
 	void UIManager::OnLoad(eUIType type)

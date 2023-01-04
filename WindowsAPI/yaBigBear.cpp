@@ -3,6 +3,7 @@
 #include "yaCollider.h"
 #include "yaPlayer.h"
 #include "yaApplication.h"
+#include "yaGameObjectManager.h"		
 
 namespace ya
 {
@@ -62,6 +63,19 @@ namespace ya
 	void BigBear::Tick()
 	{
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			mSpeed = 0;
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);
 

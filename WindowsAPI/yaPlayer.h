@@ -30,6 +30,8 @@ namespace ya
 			Skill1,
 			Skill2,
 
+			Back,
+
 			BonusTimeIntro,
 			BonusTimeUp,
 			BonusTimeDown,
@@ -80,6 +82,8 @@ namespace ya
 		void Skill1();
 		void Skill2();
 
+		void Back();
+
 		void Death();
 
 		void SetHp(int hp) { mHp = hp; }
@@ -109,13 +113,13 @@ namespace ya
 		float mSkill2Time;
 		int mSkillCount1;
 		int mSkillCount2;
+		int mCheck;
 
 	//=======
 	public:
 		void SetScore(int Score) { mScore = Score; }
 		int GetScore() { return mScore; }
-		std::string GestStringScore() { return mStringScore; }
-		void ScoreToString();
+	
 
 		void SetItemTime(float ItemTime) { mItemTime = ItemTime; }
 		float GetItemTime() { return mItemTime; }
@@ -139,6 +143,7 @@ namespace ya
 		int mDistance;
 		Vector2 PlayerPos;
 	
+		
 	};
 
 }

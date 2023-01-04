@@ -4,7 +4,7 @@
 #include "yaPlayer.h"
 #include "yaTime.h"
 #include "yaApplication.h"
-
+#include "yaGameObjectManager.h"		
 namespace ya
 {
     Fire01::Fire01(Vector2 pos)
@@ -64,7 +64,19 @@ namespace ya
         eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
         if (type != eSceneType::JellyTool)
             Translate(mSpeed);
+        if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+        {
+            mSpeed = 0;
+        }
 
+        if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+        {
+            mSpeed = -500.0f;
+        }
+        else
+        {
+            mSpeed = -300.0f;
+        }
        
         switch (mState)
         {
@@ -108,6 +120,10 @@ namespace ya
                 || playerObj->GetState() == Player::eState::MujukJump
                 || playerObj->GetState() == Player::eState::MujukSlide)
         {
+        }
+        else if (playerObj->GetState() == Player::eState::Death)
+        {
+
         }
         else if (playerObj->GetState() == Player::eState::Run
             || playerObj->GetState() == Player::eState::RunJump

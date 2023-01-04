@@ -8,7 +8,7 @@
 #include "yaGround.h"
 #include "yaCollisionManager.h"
 #include "yaSquirrel.h"
-
+#include "yaTime.h"
 #include "yaGroundTile.h"
 #include "yaJelly.h"
 #include "yaPinkBear.h"
@@ -35,10 +35,20 @@
 #include "yaStage01.h"
 #include "yaStage02.h"
 #include "yaGameObjectManager.h"
+#include "yaScoreNumber.h"
+#include "yaScoreNumber2.h"
+#include "yaScoreNumber3.h"
+#include "yaScoreNumber4.h"
+#include "yaScoreNumber5.h"
+#include "yaScoreNumber6.h"
+#include "yaScoreNumber7.h"
 
+
+#include "yaCamera.h"
 namespace ya
 {
 	PlayScene::PlayScene()
+		:mCount(0.0f)
 	{
 	}
 
@@ -62,7 +72,8 @@ namespace ya
 		AddGameObject(Bg2, eColliderLayer::BackGround);
 		Bg2->SetSpeed(-9.0f);
 	
-		
+		mPlayer = ya::object::Instantiate<Player>(eColliderLayer::Player);
+		GameObjectManager::SetPlayer(mPlayer);
 		//Æê
 		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 
@@ -231,11 +242,18 @@ namespace ya
 		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Skill2)
 		{
 			SceneManager::ChangeScene(eSceneType::Skill);
+			
 		}
 
 		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
 		{
-			SceneManager::ChangeScene(eSceneType::End);
+			mCount += Time::DeltaTime();
+		
+			if (mCount >= 3.0f)
+			{
+				SceneManager::ChangeScene(eSceneType::End);
+			}
+		
 		}
 
 
@@ -262,14 +280,41 @@ namespace ya
 		UIManager::Push(eUIType::HP);
 		UIManager::Push(eUIType::N1);
 		UIManager::Push(eUIType::N2);
-		Player* player = ya::object::Instantiate<Player>(eColliderLayer::Player);
-		GameObjectManager::SetPlayer(player);
+		UIManager::Push(eUIType::SCORE);
+		
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
-		hpbar->SetTarget(player);
+		hpbar->SetTarget(mPlayer);
+
+		ScoreNumber* scorenumber = UIManager::GetUiInstant<ScoreNumber>(eUIType::SCORE);
+		scorenumber->SetTarget(mPlayer);
+
+		/*ScoreNumber2* scorenumber2 = UIManager::GetUiInstant<ScoreNumber2>(eUIType::SCORE);
+		scorenumber2->SetTarget(mPlayer);
+
+		ScoreNumber3* scorenumber3 = UIManager::GetUiInstant<ScoreNumber3>(eUIType::SCORE);
+		scorenumber3->SetTarget(mPlayer);
+
+		ScoreNumber4* scorenumber4 = UIManager::GetUiInstant<ScoreNumber4>(eUIType::SCORE);
+		scorenumber4->SetTarget(mPlayer);
+
+		ScoreNumber5* scorenumber5 = UIManager::GetUiInstant<ScoreNumber5>(eUIType::SCORE);
+		scorenumber5->SetTarget(mPlayer);
+
+		ScoreNumber6* scorenumber6 = UIManager::GetUiInstant<ScoreNumber6>(eUIType::SCORE);
+		scorenumber6->SetTarget(mPlayer);
+
+		ScoreNumber7* scorenumber7 = UIManager::GetUiInstant<ScoreNumber7>(eUIType::SCORE);
+		scorenumber7->SetTarget(mPlayer);*/
 	}
 
 	void PlayScene::Exit()
 	{
 		//UIManager::Pop(eUIType::HP);
+		UIManager::Pop(eUIType::HP);
+		UIManager::Pop(eUIType::N1);
+		UIManager::Pop(eUIType::N2);
+		UIManager::Pop(eUIType::SCORE);
+
+		Camera::SetCameraEffect(eCameraEffect::FadeOut);
 	}
 }

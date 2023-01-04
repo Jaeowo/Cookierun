@@ -5,7 +5,7 @@ namespace ya
 {
 	LobbieCookie::LobbieCookie()
 	{
-		SetPos({ 250.0f, 600.0f });
+		SetPos({ 750.0f, 460.0f });
 		SetScale({ 1.0f, 1.0f });
 		//dd
 

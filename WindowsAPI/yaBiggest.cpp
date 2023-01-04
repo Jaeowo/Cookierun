@@ -5,7 +5,7 @@
 #include "resource.h"
 #include "yaTime.h"
 #include "yaApplication.h"
-
+#include "yaGameObjectManager.h"
 namespace ya
 {
 	Biggest::Biggest(Vector2 pos)
@@ -54,6 +54,19 @@ namespace ya
 	void Biggest::Tick()
 	{
 		GameObject::Tick();
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			mSpeed = 0;
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);

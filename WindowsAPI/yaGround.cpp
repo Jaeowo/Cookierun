@@ -4,7 +4,7 @@
 #include "yaRigidbody.h"
 #include "yaAnimator.h"
 #include "yaApplication.h"
-
+#include "yaGameObjectManager.h"
 
 namespace ya
 {
@@ -36,6 +36,14 @@ namespace ya
 	}
 	void Ground::Tick()
 	{
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);
@@ -65,6 +73,22 @@ namespace ya
 			playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
 		}
 
+		if (playerObj->GetState() == Player::eState::Biggest)
+		{
+			//playerObj->SetState(Player::eState::Biggest);
+			//playerObj->GetComponent<Animator>()->Play(L"LandingC", false);
+			float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);
+			float fScale = other->GetScale().y / 2.0f + GetComponent<Collider>()->GetScale().y / 2.0f;
+
+
+			if (fLen < fScale)
+			{
+				Vector2 playerPos = playerObj->GetPos();
+				playerPos.y -= (fScale - fLen) - 1.0f;
+				playerObj->SetPos(playerPos);
+			}
+		}
+
 		if (playerObj->GetState() == Player::eState::RunJump)
 		{
 			playerObj->SetState(Player::eState::Run);
@@ -76,18 +100,22 @@ namespace ya
 			playerObj->SetState(Player::eState::Swing);
 			playerObj->GetComponent<Animator>()->Play(L"SwingC", true);
 		}
-
+		if (playerObj->GetState() == Player::eState::Back)
+		{
+			playerObj->SetState(Player::eState::Back);
+			playerObj->GetComponent<Animator>()->Play(L"SwingC", true);
+		}
 	
 
-		float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);
-		float fScale = other->GetScale().y / 2.0f + GetComponent<Collider>()->GetScale().y / 2.0f;
+		//float fLen = fabs(other->GetPos().y - GetComponent<Collider>()->GetPos().y);
+		//float fScale = other->GetScale().y / 2.0f + GetComponent<Collider>()->GetScale().y / 2.0f;
 
-		if (fLen < fScale)
-		{
-			Vector2 playerPos = playerObj->GetPos();
-			playerPos.y -= (fScale - fLen) - 1.0f;
-			playerObj->SetPos(playerPos);
-		}
+		//if (fLen < fScale)
+		//{
+		//	Vector2 playerPos = playerObj->GetPos();
+		//	playerPos.y -= (fScale - fLen) - 1.0f;
+		//	playerObj->SetPos(playerPos);
+		//}
 
 	}
 	void Ground::OnCollisionStay(Collider* other)
