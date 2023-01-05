@@ -35,7 +35,7 @@ namespace ya
 	{
 
 
-		HBRUSH tr = Application::GetInstance().GetBrush(eBrushColor::Transparent);
+	/*	HBRUSH tr = Application::GetInstance().GetBrush(eBrushColor::Transparent);
 		Brush brush(hdc, tr);
 
 		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
@@ -54,7 +54,7 @@ namespace ya
 
 		SelectObject(hdc, oldPen);
 		DeleteObject(redPen);
-		DeleteObject(greenPen);
+		DeleteObject(greenPen);*/
 	}
 
 	void Collider::OnCollisionEnter(Collider* other)

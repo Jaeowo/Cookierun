@@ -104,9 +104,6 @@
     <Filter Include="Engine\Scene\ChangeStage">
       <UniqueIdentifier>{e435d4e7-55ba-49f3-89a3-103bd6b18dc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\GameObject\UI\Score">
-      <UniqueIdentifier>{ebc1cb9b-a881-4c7c-90ed-4005bb89fe1f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -409,26 +406,11 @@
     <ClInclude Include="yaSound.h">
       <Filter>Engine\Resource\Base</Filter>
     </ClInclude>
-    <ClInclude Include="yaScoreNumber.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
+    <ClInclude Include="yaEditor.h">
+      <Filter>Engine\GameObject\UI</Filter>
     </ClInclude>
-    <ClInclude Include="yaScoreNumber2.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="yaScoreNumber3.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="yaScoreNumber4.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="yaScoreNumber5.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="yaScoreNumber6.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClInclude>
-    <ClInclude Include="yaScoreNumber7.h">
-      <Filter>Engine\GameObject\UI\Score</Filter>
+    <ClInclude Include="yaBack.h">
+      <Filter>Engine\GameObject\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -727,26 +709,11 @@
     <ClCompile Include="yaSound.cpp">
       <Filter>Engine\Resource\Base</Filter>
     </ClCompile>
-    <ClCompile Include="yaScoreNumber.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
+    <ClCompile Include="yaEditor.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
     </ClCompile>
-    <ClCompile Include="yaScoreNumber2.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="yaScoreNumber3.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="yaScoreNumber4.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="yaScoreNumber5.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="yaScoreNumber6.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
-    </ClCompile>
-    <ClCompile Include="yaScoreNumber7.cpp">
-      <Filter>Engine\GameObject\UI\Score</Filter>
+    <ClCompile Include="yaBack.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

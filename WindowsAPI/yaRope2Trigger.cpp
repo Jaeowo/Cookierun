@@ -3,7 +3,8 @@
 #include "yaRope02.h"
 #include "yaAnimator.h"
 #include "yaApplication.h"
-
+#include "yaGameObjectManager.h"
+#include "yaPlayer.h"
 namespace ya
 {
 	Rope2Trigger::Rope2Trigger(Vector2 pos)
@@ -23,6 +24,19 @@ namespace ya
 	}
 	void Rope2Trigger::Tick()
 	{
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		{
+			mSpeed = 0;
+		}
+
+		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Run)
+		{
+			mSpeed = -500.0f;
+		}
+		else
+		{
+			mSpeed = -300.0f;
+		}
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);

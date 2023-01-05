@@ -8,7 +8,7 @@
 #include "yaSkillJelly2.h"
 #include "yaSkillJelly3.h"
 #include "yaSkillJelly4.h"
-
+#include "yaSound.h"
 namespace ya
 {
 	
@@ -100,7 +100,9 @@ namespace ya
 		
 		if (mCount == 0)
 		{
-
+			Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			sound->Load(L"..\\Resources\\Sound\\jicho_bigflower_01.wav");
+			sound->Play(false);
 			mAnimator->Play(L"BloomL", false);
 
 			Vector2 Pos = GetPos();

@@ -7,12 +7,16 @@
 #include "yaObject.h"
 #include "yaApplication.h"
 #include "yaToolScene.h"
+#include "yaSound.h"
+#include "yaResource.h"
+#include "yaResources.h"
 //#include "yaUIManager.h"
 
 namespace ya
 {
 	LogoScene::LogoScene()
 	{
+		
 	}
 
 	LogoScene::~LogoScene()
@@ -21,10 +25,12 @@ namespace ya
 
 	void LogoScene::Initialize()
 	{
+		
 
 		BgImageObject* bg = new BgImageObject();
 		bg->SetImage(L"Logo", L"Logo.bmp");
 		bg->Initialize();
+
 
 		AddGameObject(bg, eColliderLayer::BackGround);
 		//UIManager::Pop(eUIType::HP);
@@ -52,6 +58,8 @@ namespace ya
 	{
 		/*UIManager::Pop(eUIType::HP);
 		UIManager::Pop(eUIType::OPTION);*/
+
+	
 	}
 
 	void LogoScene::Exit()

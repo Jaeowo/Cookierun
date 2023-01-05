@@ -5,8 +5,9 @@ namespace ya
 {
 
 	class Image;
-	class Player;
 
+	class Sound;
+	class Player;
 	class PlayScene : public Scene
 	{
 	public:
@@ -22,12 +23,15 @@ namespace ya
 
 		void Load();
 		void Create();
-
+	
 	private:
 		Image* mImage;
-		Player* mPlayer;
 		
+		Sound* mSound;
+
+		int mSkillCount;
 		float mCount;
+		Player* mPlayer;
 		std::vector<GameObject*> mJellies;
 		std::vector<JellyData> mJellyDatas;
 	};

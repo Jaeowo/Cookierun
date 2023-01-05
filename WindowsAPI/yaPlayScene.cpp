@@ -35,20 +35,14 @@
 #include "yaStage01.h"
 #include "yaStage02.h"
 #include "yaGameObjectManager.h"
-#include "yaScoreNumber.h"
-#include "yaScoreNumber2.h"
-#include "yaScoreNumber3.h"
-#include "yaScoreNumber4.h"
-#include "yaScoreNumber5.h"
-#include "yaScoreNumber6.h"
-#include "yaScoreNumber7.h"
-
+#include "yaSound.h"
 
 #include "yaCamera.h"
 namespace ya
 {
 	PlayScene::PlayScene()
 		:mCount(0.0f)
+		,mSkillCount(0)
 	{
 	}
 
@@ -58,7 +52,7 @@ namespace ya
 
 	void PlayScene::Initialize()
 	{
-
+		mSound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
 		//¹è°æ
 		BgImageObject* Bg1 = new BgImageObject();
 		Bg1->SetImage(L"Bg1", L"Bg1.bmp");
@@ -72,8 +66,14 @@ namespace ya
 		AddGameObject(Bg2, eColliderLayer::BackGround);
 		Bg2->SetSpeed(-9.0f);
 	
+		//mPlayer = ya::object::Instantiate<Player>(eColliderLayer::Player);
+		//GameObjectManager::SetPlayer(mPlayer);
+
+		//mPlayer = ya::object::Instantiate<Player>(eColliderLayer::Player);
+		
 		mPlayer = ya::object::Instantiate<Player>(eColliderLayer::Player);
 		GameObjectManager::SetPlayer(mPlayer);
+
 		//Æê
 		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 
@@ -133,7 +133,7 @@ namespace ya
 
 			
 			GetCurrentDirectoryW(256, szFilePath);
-			lstrcatW(szFilePath,L"\\AStage01" );
+			lstrcatW(szFilePath,L"\\a4" );
 			
 
 			FILE* pFile = nullptr;
@@ -206,14 +206,14 @@ namespace ya
 			case ya::eJellyType::GoldCoin:
 			{
 				jelly
-					= object::Instantiate<GoldCoin>(eColliderLayer::Jelly);
+					= object::Instantiate<GoldCoin>(data.pos, eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::GoldCoin;
 			}
 			break;
 			case ya::eJellyType::SilverCoin:
 			{
 				jelly
-					= object::Instantiate<SilverCoin>(eColliderLayer::Jelly);
+					= object::Instantiate<SilverCoin>(data.pos, eColliderLayer::Jelly);
 				jelly->mJellyType = (UINT)eJellyType::SilverCoin;
 			}
 			break;
@@ -238,17 +238,20 @@ namespace ya
 	{
 		Scene::Tick();
 		
-		
-		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Skill2)
+
+		if (mSkillCount == 0 && GameObjectManager::GetPlayer()->GetState() == Player::eState::Skill2)
 		{
+			mSkillCount = 1;
+		
 			SceneManager::ChangeScene(eSceneType::Skill);
 			
 		}
 
 		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
 		{
-			mCount += Time::DeltaTime();
 		
+			mCount += Time::DeltaTime();
+
 			if (mCount >= 3.0f)
 			{
 				SceneManager::ChangeScene(eSceneType::End);
@@ -262,13 +265,37 @@ namespace ya
 			SceneManager::ChangeScene(eSceneType::Skill);
 		}
 
+		if (KEY_DOWN(eKeyCode::O))
+		{
+			SceneManager::ChangeScene(eSceneType::End);
+		}
+		
 	}
 
 	void PlayScene::Render(HDC hdc)
 	{
-
-		Scene::Render(hdc);
 		
+		Scene::Render(hdc);
+
+		/*wchar_t szFloat[100] = {};
+		swprintf_s(szFloat, 50, L"Play Scene");
+		int strLen = wcsnlen_s(szFloat, 50);
+		TextOut(hdc, 10, 30, szFloat, strLen);*/
+
+		WCHAR word[1024];
+		int num = GameObjectManager::GetPlayer()->GetScore();
+		wsprintfW(word, L"Score : %d", num);
+		TextOutW(hdc, 100, 100, word, lstrlen(word));
+
+		WCHAR word2[1024];
+		int num2 = GameObjectManager::GetPlayer()->GetCoin();
+		wsprintfW(word2, L"Coin : %d", num2);
+		TextOutW(hdc, 100, 120, word2, lstrlen(word2));
+
+	
+
+		
+	
 	}
 
 	void PlayScene::Enter()
@@ -280,41 +307,24 @@ namespace ya
 		UIManager::Push(eUIType::HP);
 		UIManager::Push(eUIType::N1);
 		UIManager::Push(eUIType::N2);
-		UIManager::Push(eUIType::SCORE);
-		
+	
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
-		hpbar->SetTarget(mPlayer);
+		hpbar->SetTarget(GameObjectManager::GetPlayer());
 
-		ScoreNumber* scorenumber = UIManager::GetUiInstant<ScoreNumber>(eUIType::SCORE);
-		scorenumber->SetTarget(mPlayer);
+		mSound->Load(L"..\\Resources\\Sound\\MainTheme.wav");
+		mSound->Play(true);
 
-		/*ScoreNumber2* scorenumber2 = UIManager::GetUiInstant<ScoreNumber2>(eUIType::SCORE);
-		scorenumber2->SetTarget(mPlayer);
-
-		ScoreNumber3* scorenumber3 = UIManager::GetUiInstant<ScoreNumber3>(eUIType::SCORE);
-		scorenumber3->SetTarget(mPlayer);
-
-		ScoreNumber4* scorenumber4 = UIManager::GetUiInstant<ScoreNumber4>(eUIType::SCORE);
-		scorenumber4->SetTarget(mPlayer);
-
-		ScoreNumber5* scorenumber5 = UIManager::GetUiInstant<ScoreNumber5>(eUIType::SCORE);
-		scorenumber5->SetTarget(mPlayer);
-
-		ScoreNumber6* scorenumber6 = UIManager::GetUiInstant<ScoreNumber6>(eUIType::SCORE);
-		scorenumber6->SetTarget(mPlayer);
-
-		ScoreNumber7* scorenumber7 = UIManager::GetUiInstant<ScoreNumber7>(eUIType::SCORE);
-		scorenumber7->SetTarget(mPlayer);*/
+		mPlayer->SetPos({ 400.0f, 500.0f });
+		mPlayer->SetState(Player::eState::Walk);
 	}
 
 	void PlayScene::Exit()
 	{
-		//UIManager::Pop(eUIType::HP);
 		UIManager::Pop(eUIType::HP);
 		UIManager::Pop(eUIType::N1);
 		UIManager::Pop(eUIType::N2);
-		UIManager::Pop(eUIType::SCORE);
-
-		Camera::SetCameraEffect(eCameraEffect::FadeOut);
+	
+		mSound->Stop(false);
+		
 	}
 }

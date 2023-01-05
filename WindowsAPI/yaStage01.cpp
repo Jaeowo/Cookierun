@@ -84,8 +84,6 @@ namespace ya
 		ropet02->SetTarget(rope02);
 		ropet02->SetPos(Vector2(3700.0f, 160.0f));
 
-
-
 		Fire02* fire021 = ya::object::Instantiate<Fire02>(Vector2(4200.0f, 650.0f),eColliderLayer::Obstruction);
 		fire021->SetPos(Vector2(4200.0f, 650.0f));
 		Fire02* fire022 = ya::object::Instantiate<Fire02>(Vector2(4300.0f, 650.0f),eColliderLayer::Obstruction);
@@ -127,14 +125,55 @@ namespace ya
 		rolling->SetPos(Vector2(10600.0f, 655.0f));
 		Rolling* rolling2 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
 		rolling2->SetPos(Vector2(10800.0f, 655.0f));
-		Rolling* rolling3 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
-		rolling2->SetPos(Vector2(11000.0f, 655.0f));
-		Rolling* rolling4 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
-		rolling2->SetPos(Vector2(11200.0f, 655.0f));
-		Rolling* rolling5 = ya::object::Instantiate<Rolling>(Vector2(10800.0f, 655.0f), eColliderLayer::Obstruction);
-		rolling2->SetPos(Vector2(11400.0f, 655.0f));
+		Rolling* rolling3 = ya::object::Instantiate<Rolling>(Vector2(11000.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling3->SetPos(Vector2(11000.0f, 655.0f));
+		Rolling* rolling4 = ya::object::Instantiate<Rolling>(Vector2(11200.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling4->SetPos(Vector2(11200.0f, 655.0f));
+		Rolling* rolling5 = ya::object::Instantiate<Rolling>(Vector2(11400.0f, 655.0f), eColliderLayer::Obstruction);
+		rolling5->SetPos(Vector2(11400.0f, 655.0f));
 
+		Rope02* rope025 = ya::object::Instantiate<Rope02>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		rope025->SetPos(Vector2(12000.0f, 160.0f));
+		Rope2Trigger* ropet03 = ya::object::Instantiate<Rope2Trigger>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		ropet03->SetTarget(rope025);
+		ropet03->SetPos(Vector2(12000.0f, 160.0f));
 
+		Rope02* rope026 = ya::object::Instantiate<Rope02>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		rope026->SetPos(Vector2(12200.0f, 160.0f));
+		Rope2Trigger* ropet04 = ya::object::Instantiate<Rope2Trigger>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		ropet04->SetTarget(rope026);
+		ropet04->SetPos(Vector2(12200.0f, 160.0f));
+
+		Rope02* rope027 = ya::object::Instantiate<Rope02>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		rope027->SetPos(Vector2(12400.0f, 160.0f));
+		Rope2Trigger* ropet05 = ya::object::Instantiate<Rope2Trigger>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		ropet05->SetTarget(rope027);
+		ropet05->SetPos(Vector2(12400.0f, 160.0f));
+
+		Rope02* rope028 = ya::object::Instantiate<Rope02>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		rope028->SetPos(Vector2(12600.0f, 160.0f));
+		Rope2Trigger* ropet06 = ya::object::Instantiate<Rope2Trigger>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		ropet06->SetTarget(rope028);
+		ropet06->SetPos(Vector2(12600.0f, 160.0f));
+
+		Rope02* rope029 = ya::object::Instantiate<Rope02>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		rope029->SetPos(Vector2(12800.0f, 160.0f));
+		Rope2Trigger* ropet07 = ya::object::Instantiate<Rope2Trigger>(Vector2(3700.0f, 160.0f), eColliderLayer::Obstruction);
+		ropet07->SetTarget(rope029);
+		ropet07->SetPos(Vector2(12800.0f, 160.0f));
+
+		Fire01* fire012 = ya::object::Instantiate<Fire01>(Vector2(2400.0f, 650.0f), eColliderLayer::Obstruction);
+		fire012->SetPos(Vector2(13100.0f, 650.0f));
+		Fire02* fire0122 = ya::object::Instantiate<Fire02>(Vector2(2400.0f, 650.0f), eColliderLayer::Obstruction);
+		fire0122->SetPos(Vector2(13200.0f, 650.0f));
+		Fire01* fire013 = ya::object::Instantiate<Fire01>(Vector2(2400.0f, 650.0f), eColliderLayer::Obstruction);
+		fire013->SetPos(Vector2(13300.0f, 650.0f));
+		Fire02* fire0123 = ya::object::Instantiate<Fire02>(Vector2(2400.0f, 650.0f), eColliderLayer::Obstruction);
+		fire0123->SetPos(Vector2(13400.0f, 650.0f));
+		Fire01* fire014 = ya::object::Instantiate<Fire01>(Vector2(2400.0f, 650.0f), eColliderLayer::Obstruction);
+		fire014->SetPos(Vector2(13500.0f, 650.0f));
+		Fire02* fire01234 = ya::object::Instantiate<Fire02>(Vector2(2400.0f, 650.0f), eColliderLayer::Obstruction);
+		fire01234->SetPos(Vector2(13600.0f, 650.0f));
 	/*	Down* down = ya::object::Instantiate<Down>(eColliderLayer::Obstruction);
 		Rolling* rolling = ya::object::Instantiate<Rolling>(eColliderLayer::Obstruction);
 		Rope01* rope01 = ya::object::Instantiate<Rope01>(eColliderLayer::Obstruction);

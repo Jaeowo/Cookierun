@@ -5,7 +5,7 @@
 #include "yaApplication.h"
 #include "yaSkillJelly3.h"
 #include "yaObject.h"
-
+#include "yaSound.h"
 namespace ya
 {
 	Flower3::Flower3(Vector2 pos)
@@ -75,6 +75,10 @@ namespace ya
 	void Flower3::OnCollisionEnter(Collider* other)
 	{
 		mAnimator->Play(L"Bloom3", false);
+
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\jicho_smallflower_03.wav");
+		sound->Play(false);
 
 		Vector2 Pos = GetPos();
 		SkillJelly3* skilljelly3 = ya::object::Instantiate<SkillJelly3>(eColliderLayer::Jelly);

@@ -6,6 +6,8 @@
 #include "yaLobbieCookie.h"
 #include "yaUIManager.h"
 #include "yaGameStart.h"
+#include "yaSound.h"
+#include "yaEditor.h"
 
 namespace ya
 {
@@ -20,6 +22,8 @@ namespace ya
 		BgImageObject* bg = new BgImageObject();
 		bg->SetImage(L"Lobbie", L"Lobbie.bmp");
 		bg->Initialize();
+
+		mSound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
 
 		AddGameObject(bg, eColliderLayer::BackGround);
 
@@ -45,9 +49,14 @@ namespace ya
 	void TitleScene::Enter()
 	{
 		UIManager::Push(eUIType::OPTION);
+		UIManager::Push(eUIType::EDITOR);
+		mSound->Load(L"..\\Resources\\Sound\\lobby.wav");
+		mSound->Play(true);
 	}
 	void TitleScene::Exit()
 	{
+		UIManager::Pop(eUIType::EDITOR);
 		UIManager::Pop(eUIType::OPTION);
+		mSound->Stop(true);
 	}
 }

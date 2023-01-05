@@ -3,6 +3,8 @@
 #include "yaInput.h"
 #include "yaApplication.h"
 #include "yaSceneManager.h"
+#include "yaSound.h"
+#include "yaObject.h"
 namespace ya
 {
 	GameStart::GameStart(eUIType type)
@@ -52,16 +54,7 @@ namespace ya
 
 	void GameStart::OnRender(HDC hdc)
 	{
-		//BLENDFUNCTION func = {};
-		//func.BlendOp = AC_SRC_OVER;
-		//func.BlendFlags = 0;
-		//func.AlphaFormat = AC_SRC_ALPHA;
-		//func.SourceConstantAlpha = 255;
 
-
-		//AlphaBlend(hdc, (int)mScreenPos.x, (int)mScreenPos.y
-		//	, mImage->GetWidth(), mImage->GetHeight()
-		//	, mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), func);
 
 		Vector2 pos = GetPos();
 		Vector2 finalPos = pos;
@@ -81,6 +74,10 @@ namespace ya
 
 	void GameStart::Click()
 	{
+
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\ui_1.wav");
+		sound->Play(false);
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 
 		SceneManager::ChangeScene(eSceneType::Play);

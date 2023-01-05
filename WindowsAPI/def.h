@@ -59,6 +59,7 @@ enum class eColliderLayer
 	Monster,
 	Monster_Projecttile,
 	Ground,
+	BGM,
 
 	//UI
 	BackPack,
@@ -83,6 +84,8 @@ enum class eUIType
 	SHOP,
 	INVENTORY,
 	OPTION,
+	EDITOR,
+	BACK,
 	SKILLBAR1,
 	SKILLBAR2,
 	SCORE,

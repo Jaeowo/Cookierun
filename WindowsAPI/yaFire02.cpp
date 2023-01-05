@@ -5,6 +5,8 @@
 #include "yaApplication.h"
 #include "yaTime.h"
 #include "yaGameObjectManager.h"
+#include "yaSound.h"
+#include "yaObject.h"
 namespace ya
 {
 	Fire02::Fire02(Vector2 pos)
@@ -108,6 +110,9 @@ namespace ya
 			|| playerObj->GetState() == Player::eState::BiggestSlide
 			|| playerObj->GetState() == Player::eState::Biggest)
 		{
+			Sound* sound2 = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			sound2->Load(L"..\\Resources\\Sound\\g_giantland.wav");
+			sound2->Play(false);
 			mState = eState::Away;
 		}
 		else if (playerObj->GetState() == Player::eState::Mujuk
@@ -123,10 +128,16 @@ namespace ya
 			|| playerObj->GetState() == Player::eState::RunSlide)
 		{
 			mState = eState::Away;
+			Sound* sound3 = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			sound3->Load(L"..\\Resources\\Sound\\g_giantland.wav");
+			sound3->Play(false);
 		}
 		else
 		{
 			playerObj->SetState(Player::eState::Attack);
+			Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			sound->Load(L"..\\Resources\\Sound\\g_obs1.wav");
+			sound->Play(false);
 			playerObj->GetComponent<Animator>()->Play(L"AttackC", false);
 			int hp = playerObj->GetHp();
 			hp -= 10;

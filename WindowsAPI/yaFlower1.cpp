@@ -5,6 +5,7 @@
 #include "yaApplication.h"
 #include "yaSkillJelly1.h"
 #include "yaObject.h"
+#include "yaSound.h"
 
 namespace ya
 {
@@ -76,6 +77,10 @@ namespace ya
 	{
 		mAnimator->Play(L"Bloom", false);
 		
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\jicho_smallflower_01.wav");
+		sound->Play(false);
+
 		Vector2 Pos = GetPos();
 		SkillJelly1* skilljelly1 = ya::object::Instantiate<SkillJelly1>(eColliderLayer::Jelly);
 		skilljelly1->SetPos(Vector2((Pos.x-100.0f),(Pos.y-200.0f)));

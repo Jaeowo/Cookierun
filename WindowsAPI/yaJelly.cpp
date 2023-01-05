@@ -8,6 +8,7 @@
 #include "yaEatingEffect.h"
 #include "yaObject.h"
 #include "yaGameObjectManager.h"
+#include "yaSound.h"
 namespace ya
 {
 	Jelly::Jelly(Vector2 pos)
@@ -104,6 +105,10 @@ namespace ya
 	void Jelly::OnCollisionEnter(Collider* other)
 	{
 		//점수추가
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\g_jelly.wav");
+		sound->Play(false);
+
 		Vector2 Pos = GetPos();
 
 		EatingEffect* eatingeffect = ya::object::Instantiate<EatingEffect>(eColliderLayer::Effect);

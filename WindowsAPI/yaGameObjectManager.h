@@ -9,6 +9,7 @@ namespace ya
 	public:
 		static void SetPlayer(Player* player) { mPlayer = player; }
 		static Player* GetPlayer() { return mPlayer; }
+		
 	private:
 		static Player* mPlayer;
 	};

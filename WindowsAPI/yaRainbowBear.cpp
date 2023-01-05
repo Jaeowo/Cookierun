@@ -4,6 +4,9 @@
 #include "yaPlayer.h"
 #include "yaApplication.h"
 #include "yaGameObjectManager.h"
+#include "yaSound.h"
+#include "yaObject.h"
+#include "yaEatingEffect.h"
 namespace ya
 {
 	RainbowBear::RainbowBear(Vector2 pos)
@@ -81,6 +84,13 @@ namespace ya
 	}
 	void RainbowBear::OnCollisionEnter(Collider* other)
 	{
+		Vector2 Pos = GetPos();
+
+		EatingEffect* eatingeffect = ya::object::Instantiate<EatingEffect>(eColliderLayer::Effect);
+		eatingeffect->SetPos(Pos);
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\g_BigBearJelly.wav");
+		sound->Play(false);
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		int Score = playerObj->GetScore();
 		Score += 10000;

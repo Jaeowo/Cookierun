@@ -22,13 +22,14 @@
 
 #include "yaUIManager.h"
 #include "yaHpBar.h"
-#include "yaScoreNumber.h"
-
+#include "yaSound.h"
+#include "yaTime.h"
 
 namespace ya
 {
 	SkillScene::SkillScene()
 	{
+	
 	}
 	SkillScene::~SkillScene()
 	{
@@ -36,7 +37,7 @@ namespace ya
 	void SkillScene::Initialize()
 	{
 
-
+		//Camera::SetCameraEffect(eCameraEffect::FadeIn);
 
 		//¹è°æ
 		BgImageObject* Bg3 = new BgImageObject();
@@ -59,12 +60,25 @@ namespace ya
 
 		SkillTile* skilltile = ya::object::Instantiate<SkillTile>(eColliderLayer::Tile);
 		skilltile->SetPos(Vector2{ 0.0f,700.0f });
-		skilltile->SetCount(15);
 
+		SkillTile* skilltile2 = ya::object::Instantiate<SkillTile>(eColliderLayer::Tile);
+		skilltile2->SetPos(Vector2{ 1860.0f,700.0f });
+
+		SkillTile* skilltile3 = ya::object::Instantiate<SkillTile>(eColliderLayer::Tile);
+		skilltile3->SetPos(Vector2{ 3720.0f,700.0f });
+
+		SkillTile* skilltile4 = ya::object::Instantiate<SkillTile>(eColliderLayer::Tile);
+		skilltile4->SetPos(Vector2{ 5580.0f,700.0f });
+
+		//mPlayer = GameObjectManager::GetPlayer();
 		mPlayer = ya::object::Instantiate<Player>(eColliderLayer::Player);
 		GameObjectManager::SetPlayer(mPlayer);
+	
+	
 
-		//Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
+
+
+		Squirrel* mSquirrel = ya::object::Instantiate<Squirrel>(eColliderLayer::Pet);
 
 		Ground* ground = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(1000.0f, 750.0f));
@@ -103,6 +117,24 @@ namespace ya
 		Flower2* flower22 = ya::object::Instantiate<Flower2>(Vector2(3800.0f, 560.0f), eColliderLayer::Obstruction);
 		flower22->SetPos(Vector2(3900.0f, 560.0f));
 
+		Flower4* flower43 = ya::object::Instantiate<Flower4>(Vector2(4000.0f, 560.0f), eColliderLayer::Obstruction);
+		flower43->SetPos(Vector2(4000.0f, 560.0f));
+
+		Flower1* flower13 = ya::object::Instantiate<Flower1>(Vector2(4100.0f, 570.0f), eColliderLayer::Obstruction);
+		flower13->SetPos(Vector2(4100.0f, 570.0f));
+
+		Flower3* flower35 = ya::object::Instantiate<Flower3>(Vector2(4200.0f, 550.0f), eColliderLayer::Obstruction);
+		flower35->SetPos(Vector2(4200.0f, 550.0f));
+
+		Flower2* flower23 = ya::object::Instantiate<Flower2>(Vector2(3800.0f, 560.0f), eColliderLayer::Obstruction);
+		flower23->SetPos(Vector2(4300.0f, 560.0f));
+
+		Flower1* flower14 = ya::object::Instantiate<Flower1>(Vector2(3700.0f, 570.0f), eColliderLayer::Obstruction);
+		flower14->SetPos(Vector2(4400.0f, 570.0f));
+
+		Flower4* flower44 = ya::object::Instantiate<Flower4>(Vector2(4000.0f, 560.0f), eColliderLayer::Obstruction);
+		flower44->SetPos(Vector2(4500.0f, 560.0f));
+
 		Stem* stem = ya::object::Instantiate<Stem>(eColliderLayer::Obstruction);
 		stem->SetPos(Vector2(3000.0f, 450.0f));
 
@@ -124,9 +156,8 @@ namespace ya
 		RightLeaf* rightleaf1 = ya::object::Instantiate<RightLeaf>(Vector2(3230.0f, 400.0f),eColliderLayer::Obstruction);
 		rightleaf1->SetPos(Vector2(3230.0f, 400.0f));
 
-		BackPlayScene* backplayscene = ya::object::Instantiate<BackPlayScene>(Vector2(3650.0f, 560.0f), eColliderLayer::Obstruction);
-		backplayscene->SetPos(Vector2(4700.0f, 560.0f));
-		//backplayscene->SetTarget(mPlayer);
+	/*	BackPlayScene* backplayscene = ya::object::Instantiate<BackPlayScene>(Vector2(4900.0f, 560.0f), eColliderLayer::Obstruction);
+		backplayscene->SetPos(Vector2(4900.0f, 560.0f));*/
 
 		Ground* ground1 = ya::object::Instantiate<Ground>(eColliderLayer::Ground);
 		ground1->SetPos(Vector2(2850.0f, 600.0f));
@@ -138,48 +169,79 @@ namespace ya
 
 		
 
-	
-
-		//ScoreNumber* scorenumber = UIManager::GetUiInstant<ScoreNumber>(eUIType::SCORE);
-		//scorenumber->SetTarget(player);
-
 	}
 	void SkillScene::Tick()
 	{
-		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Back)
+
+		mExitCount += Time::DeltaTime();
+		if (mExitCount >= 13.5f)
 		{
 			SceneManager::ChangeScene(eSceneType::Play);
 		}
+		/*if (mPlayer->GetChange() == true)
+		{
+			mPlayer->SetChange(false);
+			SceneManager::ChangeScene(eSceneType::Play);
+		}*/
 		if (KEY_DOWN(eKeyCode::N))
 		{
 			SceneManager::ChangeScene(eSceneType::Play);
 		}
+		Vector2 PlayerPos = GameObjectManager::GetPlayer()->GetPos();
+		GameObjectManager::GetPlayer()->SetPos(mPlayer->GetPos());
 
+		//
+		//GameObjectManager::GetPlayer()->SetScore(mPlayer->GetScore());
 		Scene::Tick();
+		mPlayer->SetHp(GameObjectManager::GetPlayer()->GetHp());
+		
 	}
 	void SkillScene::Render(HDC hdc)
 	{
+	
 		Scene::Render(hdc);
+
+		WCHAR word[1024];
+		int num = mPlayer->GetScore();
+		wsprintfW(word, L"Score : %d", num);
+		TextOutW(hdc, 100, 100, word, lstrlen(word));
+
+		WCHAR word2[1024];
+		int num2 = GameObjectManager::GetPlayer()->GetCoin();
+		wsprintfW(word2, L"Coin : %d", num2);
+		TextOutW(hdc, 100, 120, word2, lstrlen(word2));
 	}
 	void SkillScene::Enter()
 	{
-		Camera::SetCameraEffect(eCameraEffect::FadeIn);
+		
 
 		UIManager::Push(eUIType::HP);
 		UIManager::Push(eUIType::N1);
 		UIManager::Push(eUIType::N2);
-		UIManager::Push(eUIType::SCORE);
 
 		HpBar* hpbar = UIManager::GetUiInstant<HpBar>(eUIType::HP);
-		hpbar->SetTarget(mPlayer);
+		hpbar->SetTarget(GameObjectManager::GetPlayer());
 
-		ScoreNumber* scorenumber = UIManager::GetUiInstant<ScoreNumber>(eUIType::SCORE);
-		scorenumber->SetTarget(mPlayer);
+		GameObjectManager::GetPlayer()->SetSkill2Time(0.0f);
+
 		CollisionManager::SetLayer(eColliderLayer::Obstruction, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Ground, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Jelly, eColliderLayer::Player, true);
+
+		mSound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		mSound->Load(L"..\\Resources\\Sound\\LilySkill.wav");
+		mSound->Play(true);
+		mExitCount = 0.0f;
+		mPlayer->SetScore(GameObjectManager::GetPlayer()->GetScore());
 	}
 	void SkillScene::Exit()
 	{
+		mPlayer->SetChange(false);
+		//SceneManager::DetroyGameObject();
+		mSound->Stop(true);
+
+		GameObjectManager::GetPlayer()->SetScore(mPlayer->GetScore());
+		
+		//
 	}
 }

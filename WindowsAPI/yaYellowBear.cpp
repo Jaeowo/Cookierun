@@ -7,6 +7,8 @@
 #include "yaApplication.h"
 #include "yaCamera.h"
 #include "yaGameObjectManager.h"
+#include "yaSound.h"
+#include "yaObject.h"
 namespace ya
 {
 	YellowBear::YellowBear(Vector2 pos)
@@ -98,6 +100,13 @@ namespace ya
 	}
 	void YellowBear::OnCollisionEnter(Collider* other)
 	{
+		Vector2 Pos = GetPos();
+
+		EatingEffect* eatingeffect = ya::object::Instantiate<EatingEffect>(eColliderLayer::Effect);
+		eatingeffect->SetPos(Pos);
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\g_jelly.wav");
+		sound->Play(false);
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		int Score = playerObj->GetScore();
 		Score += 2000;

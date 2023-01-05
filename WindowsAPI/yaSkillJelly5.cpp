@@ -7,7 +7,7 @@
 #include "yaCamera.h"
 #include "yaTime.h"
 #include "yaGameObjectManager.h"
-
+#include "yaSound.h"
 namespace ya
 {
 	SkillJelly5::SkillJelly5()
@@ -70,6 +70,9 @@ namespace ya
 	}
 	void SkillJelly5::OnCollisionEnter(Collider* other)
 	{
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\g_jelly.wav");
+		sound->Play(false);
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 		int Score = playerObj->GetScore();
 		Score += 2500;

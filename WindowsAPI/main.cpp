@@ -33,7 +33,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 메모리 누수를 체크해주는 함수
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc(229);
+    //_CrtSetBreakAlloc(312);
 
     // 1. wndclass 정의 윈도의 기반(여러가지 속성)이 되는 클래스 정의해준다.
 

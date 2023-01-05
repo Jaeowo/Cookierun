@@ -3,6 +3,7 @@
 #include "yaImage.h"
 #include "yaApplication.h"
 #include "yaGameObjectManager.h"		
+#include "yaPlayer.h"
 
 namespace ya
 {
@@ -29,7 +30,7 @@ namespace ya
 	{
 
 		GameObject::Tick();
-		if (GameObjectManager::GetPlayer()->GetState() == Player::eState::Death)
+		if (GameObjectManager::GetPlayer()->GetHp() <= 0)
 		{
 			mSpeed = 0;
 		}

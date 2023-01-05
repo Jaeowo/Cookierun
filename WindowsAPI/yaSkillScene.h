@@ -5,6 +5,7 @@ namespace ya
 {
 	class Image;
 	class Player;
+	class Sound;
 
 	class SkillScene : public Scene
 	{
@@ -19,10 +20,13 @@ namespace ya
 		virtual void Enter();
 		virtual void Exit();
 
+	
+
 	private:
+		Sound* mSound;
 		Image* mImage;
 		Player* mPlayer;
-		bool mChange;
+		float mExitCount;
 	};
 }
 

@@ -44,6 +44,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::JellyTool]->Initialize();
 
 		ChangeScene(eSceneType::Logo);
+
 		// 업캐스팅
 		// 다운캐스팅
 

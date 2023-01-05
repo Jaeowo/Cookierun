@@ -16,9 +16,14 @@
 #include "yaRunEffect.h"
 #include "yaSkillJelly5.h"
 #include "yaSkillJelly6.h"
+#include "yaApplication.h"
+#include "yaSound.h"
+#include "yaSkillScene.h"
 
 namespace ya
 {
+	
+
 	Player::Player()
 		: mSpeed(-300.0f)
 		, mHp(100)
@@ -31,7 +36,10 @@ namespace ya
 		, mSkill1Time(0.0f)
 		, mSkill1Time2(0.0f)
 		, mSkill2Time(0.0f)
+		, mSkillCount1 (0)
 		, mCheck(0)
+		, mChange(false)
+		, mIsDeath(false)
 	{
 	
 		
@@ -58,7 +66,7 @@ namespace ya
 			, L"SlideC", Vector2(0, 0), 0.2f);
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Landing"
-			, L"LandingC", Vector2(0, 0), 0.15f);
+			, L"LandingC", Vector2(0, 0), 0.1f);
 
 		mAnimator->CreateAnimations(L"..\\Resources\\Animations\\Lilybell\\Attack"
 			, L"AttackC", Vector2(0, 0), 0.13f);
@@ -79,7 +87,7 @@ namespace ya
 		mAnimator->GetCompleteEvent(L"AttackC") = std::bind(&Player::LandingComplete, this);
 		mAnimator->GetCompleteEvent(L"SkillIntroC") = std::bind(&Player::LandingComplete, this);
 
-		
+	
 
 		AddComponent(mAnimator);
 		
@@ -109,42 +117,47 @@ namespace ya
 
 		mHp -= Time::DeltaTime();
 		
-
+	
 
 		if (mHp >= 100.0f)
 		{
 			mHp = 99.9f;
 		}
-	
 
-		if (mState == eState::Skill1 || mState == eState::Skill2)
-		{
-
-		}
-		else
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		if (type != eSceneType::Skill)
 		{
 			mSkill1Time += Time::DeltaTime();
-		}
-
-		if (!(mState == eState::Skill2))
-		{
 			mSkill2Time += Time::DeltaTime();
+			mChange = false;
 		}
 
 
-		if (mSkill1Time >= 15.0f)
+
+	
+
+		if (type == eSceneType::Play)
 		{
-			mSkillCount1 = 0;
+			mHp -= Time::DeltaTime();
+		}
+
+		if (mSkill1Time >= 15.1f)
+		{
+			
 			if (mSkillCount1 == 0)
 			{
+
 				mState = eState::Skill1;
 				mSkillCount1 = 1;
 			}
 		}
 
-		if (mSkill2Time >= 35.0f)
+
+		if (mSkill2Time >= 30.0f)
 		{
-			mSkillCount2 = 0;
+			mSkill2Time = 0.0f;
+			//mSkillCount2 = 0;
+			
 			if (mSkillCount2 == 0)
 			{
 				mState = eState::Skill2;
@@ -155,8 +168,12 @@ namespace ya
 		if (mHp <= 0.0f)
 		{
 			mState = eState::Death;
-		
 			
+		}
+
+		if (PlayerPos.y <= 0)
+		{
+			mState = eState::Death;
 		}
 
 		switch (mState)
@@ -289,6 +306,8 @@ namespace ya
 		bool IsGround = false;
 		IsGround = rigidbody->GetGround();
 
+		
+
 		if (IsGround == true)
 		{
 			JumpCount = 0;
@@ -311,6 +330,10 @@ namespace ya
 				bool IsGround = false;
 				IsGround = rigidbody->GetGround();
 				mAnimator->Play(L"JumpC", true);
+
+				Sound* jumpsound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+				jumpsound->Load(L"..\\Resources\\Sound\\jump01.wav");
+				jumpsound->Play(false);
 				
 				
 		}
@@ -324,7 +347,10 @@ namespace ya
 				rigidbody->SetVelocity(velocity);
 
 				rigidbody->SetGround(false);
-
+				
+				Sound* jumpsound2 = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+				jumpsound2->Load(L"..\\Resources\\Sound\\jicho_cookie_jump_02.wav");
+				jumpsound2->Play(false);
 				JumpCount = 2;
 				SetJumpCount(JumpCount);
 				mAnimator->Play(L"DoubleJumpC", false);;
@@ -338,11 +364,13 @@ namespace ya
 	{
 		//Translate(mSpeed);
 		
+		
 		if (KEY_PREESE(eKeyCode::S))
 		{
-			
+			mAnimator->Play(L"SlideC", true);
 			mCollider->SetOffset(Vector2(10.0f, 164.0f));
 			mCollider->SetScale(Vector2(100.0f, 70.0f));
+			
 		}
 		else if (KEY_UP(eKeyCode::S))
 		{
@@ -352,6 +380,8 @@ namespace ya
 			//GetComponent<Rigidbody>()->SetGround(true);
 			mState = eState::Walk;
 		}
+	
+	
 
 		//if (mHp <= 0)
 		//{
@@ -593,7 +623,7 @@ namespace ya
 		runeffect->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });*/
 		
 
-		if (mItemTime >= 4.0f)
+		if (mItemTime >= 3.0f)
 		{
 			SetState(Player::eState::Mujuk);
 			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
@@ -616,7 +646,7 @@ namespace ya
 		/*RunEffect* runeffect2 = ya::object::Instantiate<RunEffect>(eColliderLayer::Jelly);
 		runeffect2->SetPos({ (PlayerPos.x - 100.0f),PlayerPos.y });*/
 
-		if (mItemTime >= 4.0f)
+		if (mItemTime >= 3.0f)
 		{
 			SetState(Player::eState::Mujuk);
 			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
@@ -676,7 +706,7 @@ namespace ya
 		mItemTime += Time::DeltaTime();
 		RunEffect* runeffect = new RunEffect;
 		runeffect->SetPos({ (PlayerPos.x - 100.0f), PlayerPos.y });
-		if (mItemTime >= 4.0f)
+		if (mItemTime >= 3.0f)
 		{
 			SetState(Player::eState::Mujuk);
 			mAnimator->GetCompleteEvent(L"RunC") = std::bind(&Player::LandingComplete, this);
@@ -699,6 +729,12 @@ namespace ya
 		bool IsGround = false;
 		IsGround = rigidbody->GetGround();
 		//SetScale(Vector2(1.0f, 1.0f));
+		mExitCount += Time::DeltaTime();
+		if (mExitCount >= 13.5f)
+		{
+			SetPos({ 400.0f, 500.0f });
+			mState = eState::Walk;
+		}
 		if (KEY_PREESE(eKeyCode::W))
 		{
 			GetComponent<Rigidbody>()->AddForce(Vector2(0.0f, -200.0f));
@@ -710,6 +746,10 @@ namespace ya
 		if (mSkillCount1 == 1)
 		{
 			mAnimator->Play(L"SkillIntroC", false);
+
+			Sound* Skill1Sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			Skill1Sound->Load(L"..\\Resources\\Sound\\jicho_transformstart_new.wav");
+			Skill1Sound->Play(false);
 
 			mSkill1Time = 0.0f;
 			mSkillCount1 = 2;
@@ -748,6 +788,7 @@ namespace ya
 
 	void Player::Skill2()
 	{
+		mSkill2Time = 0.0f;
 	}
 
 	void Player::Back()
@@ -757,20 +798,14 @@ namespace ya
 
 	void Player::Death()
 	{
-		////mAnimator->Play(L"HPDieC", false);
-		//
-		//mTime += Time::DeltaTime();
-
-		//if (mItemTime >= 4.0f)
-		//{/*
-		//	SceneManager* scenemanager = new SceneManager;
-		//	scenemanager->ChangeScene(eSceneType::End);*/
-		//}
-
-		
 		if (mCheck == 0)
 		{
+			mIsDeath = true;
 			mAnimator->Play(L"HPDieC", false);
+			Sound* deathsound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			deathsound->Load(L"..\\Resources\\Sound\\g_end.wav");
+			deathsound->Play(false);
+			Camera::SetCameraEffect(eCameraEffect::FadeOut);
 			mCheck = 1;
 		}
 		
@@ -788,11 +823,21 @@ namespace ya
 		{
 			mState = eState::Jump;
 		}
-		else if (KEY_PREESE(eKeyCode::S))
+		if (KEY_DOWN(eKeyCode::S))
 		{
 			mState = eState::Slide;
-			mAnimator->Play(L"SlideC", true);
+
+
+			Sound* slidesound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+			slidesound->Load(L"..\\Resources\\Sound\\jicho_cookie_slide_02.wav");
+			slidesound->Play(false);
+			
+
 		}
+		/*else if (KEY_PREESE(eKeyCode::S))
+		{
+			
+		}*/
 	}
 
 	void Player::LandingComplete()

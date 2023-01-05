@@ -4,6 +4,7 @@
 namespace ya
 {
 	class Monster;
+
 	class LogoScene : public Scene
 	{
 	public:
@@ -18,7 +19,7 @@ namespace ya
 		virtual void Exit();
 
 	private:
-		Monster* mons[2];
+
 	};
 
 }

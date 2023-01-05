@@ -6,6 +6,8 @@
 #include "yaTime.h"
 #include "yaApplication.h"
 #include "yaGameObjectManager.h"
+#include "yaSound.h"
+#include "yaObject.h"
 namespace ya
 {
 	Biggest::Biggest(Vector2 pos)
@@ -78,7 +80,9 @@ namespace ya
 	void Biggest::OnCollisionEnter(Collider* other)
 	{
 		
-
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\g_ijelly.wav");
+		sound->Play(false);
 		Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
 
 		playerObj->SetState(Player::eState::Biggest);

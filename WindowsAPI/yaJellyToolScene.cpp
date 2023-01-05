@@ -22,6 +22,8 @@
 #include "yaStage01.h"
 #include "yaStage02.h"
 
+#include "yaBack.h"
+#include "yaUIManager.h"
 //#include "framework.h"
 //#include "WindowsAPI.h"
 
@@ -221,7 +223,7 @@ namespace ya
 			LineTo(hdc, mainWidnow.width, LinePos.y);
 		}
 
-		int maxColumn = mainWidnow.width / TILE_SIZE * TILE_SCALE + 150;
+		int maxColumn = mainWidnow.width / TILE_SIZE * TILE_SCALE + 250;
 		for (size_t i = 0; i < maxColumn; i++)
 		{
 			Vector2 LinePos;
@@ -239,11 +241,14 @@ namespace ya
 
 	void JellyToolScene::Enter()
 	{
-		Application::GetInstance().SetMenuBar(true);
+		//Application::GetInstance().SetMenuBar(true);
+		UIManager::Push(eUIType::BACK);
 	}
 
 	void JellyToolScene::Exit()
 	{
+		UIManager::Pop(eUIType::BACK);
+		//Vector2 Camera::mLookPosition = Vector2::Zero;
 	}
 
 	void JellyToolScene::Save()

@@ -4,6 +4,7 @@
 #include "yaAnimator.h"
 #include "yaApplication.h"
 #include "yaSceneManager.h"
+#include "yaSkillScene.h"
 
 namespace ya
 {
@@ -27,6 +28,7 @@ namespace ya
 		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
 		if (type != eSceneType::JellyTool)
 			Translate(mSpeed);
+
 		GameObject::Tick();
 	}
 	void BackPlayScene::Render(HDC hdc)
@@ -35,13 +37,15 @@ namespace ya
 	}
 	void BackPlayScene::OnCollisionEnter(Collider* other)
 	{
-
+		//Player* playerObj = dynamic_cast<Player*>(other->GetOwner());
+		//playerObj->SetChange(true);
 		//Player* playerobj = dynamic_cast<Player*>(mTarget);
 		//playerobj->SetState(Player::eState::Back);
-
-		//SceneManager::ChangeScene(eSceneType::Play);
+		eSceneType type = ya::Application::GetInstance().GetPlaySceneType();
+		SceneManager::ChangeScene(eSceneType::Play);
 		
-	
+		
+		//SkillScene::SetChange(true);
 
 	}
 }

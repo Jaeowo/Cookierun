@@ -8,6 +8,8 @@ namespace ya
 	class Image;
 	class Squirrel;
 
+
+	
 	class Player : public GameObject
 	{
 	public:
@@ -102,30 +104,41 @@ namespace ya
 
 		float GetmSkill1Time() { return mSkill1Time; }
 		float GetmSkill2Time() { return mSkill2Time; }
+		void SetSkill2Time(float Skill2Time) { mSkill2Time = Skill2Time; }
+
+		bool GetDeath() { return mIsDeath; }
+		float GetExitCount() { return mExitCount; }
 
 	private:
 		int mJumpCount;
-		float mHp;
+		 float mHp;
 		float mSpeed;
-		float mTime;
-		float mSkill1Time;
-		float mSkill1Time2;
-		float mSkill2Time;
-		int mSkillCount1;
-		int mSkillCount2;
-		int mCheck;
+		 float mTime;
+		 float mSkill1Time;
+		 float mSkill1Time2;
+		 float mSkill2Time;
+		 int mSkillCount1;
+		 int mSkillCount2;
+		 int mCheck;
+		 bool mIsDeath;
+		 float mExitCount;
 
 	//=======
 	public:
 		void SetScore(int Score) { mScore = Score; }
 		int GetScore() { return mScore; }
 	
+		void SetCoin(int Coin) { mCoin = Coin; }
+		int GetCoin() { return mCoin; }
 
 		void SetItemTime(float ItemTime) { mItemTime = ItemTime; }
 		float GetItemTime() { return mItemTime; }
 
 		void SetDistance(int Distance) { mDistance = Distance; }
 		int GetDistance() { return mDistance; }
+
+		void SetChange(bool Change) { mChange = Change; }
+		bool GetChange() { return mChange; }
 
 	private:
 		eState mState;
@@ -136,13 +149,13 @@ namespace ya
 		Collider* mSlideCollider;
 
 		int mScore;
-		std::string mStringScore;
+		int mCoin;
 
 		float mItemTime;
 		float mMujukTime;
 		int mDistance;
 		Vector2 PlayerPos;
-	
+		bool mChange;
 		
 	};
 

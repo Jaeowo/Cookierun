@@ -3,6 +3,8 @@
 #include "yaCollider.h"
 #include "yaPlayer.h"
 #include "yaApplication.h"
+#include "yaSound.h"
+#include "yaObject.h"
 
 namespace ya
 {
@@ -74,7 +76,12 @@ namespace ya
 		int Score = playerObj->GetScore();
 		Score += 500;
 		playerObj->SetScore(Score);
-
+		int Coin = playerObj->GetCoin();
+		Coin += 10;
+		playerObj->SetCoin(Coin);
+		Sound* sound = ya::object::Instantiate<Sound>(eColliderLayer::BGM);
+		sound->Load(L"..\\Resources\\Sound\\g_coin.wav");
+		sound->Play(false);
 		this->Death();
 	}
 }
