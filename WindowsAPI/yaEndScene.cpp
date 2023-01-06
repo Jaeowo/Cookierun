@@ -30,12 +30,30 @@ namespace ya
 		WCHAR word[1024];
 		int num = GameObjectManager::GetPlayer()->GetScore();
 		wsprintfW(word, L" %d", num);
-		TextOutW(hdc, 700, 300, word, lstrlen(word));
+		//TextOutW(hdc, 700, 300, word, lstrlen(word));
 
 		WCHAR word2[1024];
 		int num2 = GameObjectManager::GetPlayer()->GetCoin();
 		wsprintfW(word2, L" %d", num2);
-		TextOutW(hdc, 1100, 550, word2, lstrlen(word2));
+		//TextOutW(hdc, 1100, 550, word2, lstrlen(word2));
+
+
+		PAINTSTRUCT ps;
+		HFONT font, oldfont;
+
+		font = CreateFont(90, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 3, 2, 1,
+			VARIABLE_PITCH | FF_ROMAN, L"CookieRun Bold");
+		SetTextColor(hdc, RGB(255, 255, 255));
+		SetBkMode(hdc, TRANSPARENT);
+		oldfont = (HFONT)SelectObject(hdc, font);
+
+		TextOutW(hdc, 680, 270, word, lstrlen(word));
+
+		TextOutW(hdc, 1050, 540, word2, lstrlen(word2));
+
+		SelectObject(hdc, oldfont);
+
+		DeleteObject(font);
 
 	}
 	void EndScene::Enter()

@@ -285,15 +285,35 @@ namespace ya
 		WCHAR word[1024];
 		int num = GameObjectManager::GetPlayer()->GetScore();
 		wsprintfW(word, L"Score : %d", num);
-		TextOutW(hdc, 100, 100, word, lstrlen(word));
+		//TextOutW(hdc, 100, 100, word, lstrlen(word));
 
 		WCHAR word2[1024];
 		int num2 = GameObjectManager::GetPlayer()->GetCoin();
 		wsprintfW(word2, L"Coin : %d", num2);
-		TextOutW(hdc, 100, 120, word2, lstrlen(word2));
+		//TextOutW(hdc, 100, 120, word2, lstrlen(word2));
 
 	
+		PAINTSTRUCT ps;
+		HFONT font, oldfont;
 
+
+
+		font = CreateFont(50, 0, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 3, 2, 1,
+			VARIABLE_PITCH | FF_ROMAN, L"CookieRun Bold");
+		SetTextColor(hdc, RGB(255, 255, 255));
+		SetBkMode(hdc, TRANSPARENT);
+		oldfont = (HFONT)SelectObject(hdc, font);
+
+		TextOutW(hdc, 100, 100, word, lstrlen(word));
+
+		TextOutW(hdc, 100, 150, word2, lstrlen(word2));
+	
+		SelectObject(hdc, oldfont);
+
+		DeleteObject(font);
+
+
+		
 		
 	
 	}

@@ -171,10 +171,11 @@ namespace ya
 			
 		}
 
-		if (PlayerPos.y <= 0)
+		/*if (PlayerPos.y <= 100)
 		{
+			mHp = 0;
 			mState = eState::Death;
-		}
+		}*/
 
 		switch (mState)
 		{
